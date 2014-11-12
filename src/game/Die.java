@@ -5,6 +5,10 @@ public class Die {
 	private int faceValue;
 	private Random rnd = new Random();
 	
+	public Die(){
+		faceValue = 0;
+	}
+	
 	public int roll(){
 		faceValue = rnd.nextInt(6)+1;
 		return faceValue;
