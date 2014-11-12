@@ -6,8 +6,10 @@ public class Fleet extends Ownable{
 	private int rent_three = 2000;
 	private int rent_four = 4000;
 	
-	public Fleet(int price){
-		
+	public Fleet(int price, String name, int id){
+		this.price = price;
+		this.name = name;
+		this.fieldId = id;
 	}
 	
 	@Override

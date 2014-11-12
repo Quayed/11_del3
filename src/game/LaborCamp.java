@@ -3,8 +3,10 @@ package game;
 public class LaborCamp extends Ownable{
 	private int baseRent = 100;
 
-	public LaborCamp(int price){
-		
+	public LaborCamp(int price, String name, int id){
+		this.price = price;
+		this.name = name;
+		this.fieldId = id;
 	}
 	
 	@Override

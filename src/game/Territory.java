@@ -2,7 +2,6 @@ package game;
 
 public class Territory extends Ownable{
 	private int rent;
-	private int price;
 	
 	public Territory(int rent, int price, String name, int id){
 		this.rent = rent;

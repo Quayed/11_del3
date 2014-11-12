@@ -4,8 +4,10 @@ public class Tax extends Field{
 	private int taxAmount;
 	private double taxRate = 0.1;
 	
-	public Tax(int taxAmount){
+	public Tax(int taxAmount, String name, int id){
 		this.taxAmount = taxAmount;
+		this.name = name;
+		this.fieldId = id;
 	}
 	
 	@Override
