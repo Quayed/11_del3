@@ -41,4 +41,15 @@ public class Account {
 		}
 	}
 	
+	public void transfer(Account reciever, int amount){
+		if(amount < this.balance && amount > 0){
+			this.withdraw(amount);
+			reciever.deposit(amount);
+		} else if(amount > this.balance){
+			System.out.println("Der er ikke penge nok på kontoen til at trække dette beløb");
+		} else if(amount < 0){
+			System.out.println("Der kan ikke flyttes negative beløb.");
+		}
+	}
+	
 }
