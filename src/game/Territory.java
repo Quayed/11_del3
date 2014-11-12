@@ -1,5 +1,5 @@
 package game;
 
-public class Territory {
-
+public class Territory extends Ownable{
+	private int rent;
 }

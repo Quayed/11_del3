@@ -1,5 +1,5 @@
 package game;
 
-public class Refuge {
-
+public class Refuge extends Field{
+	private int Bonus;
 }

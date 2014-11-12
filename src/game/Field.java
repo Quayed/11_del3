@@ -1,5 +1,5 @@
 package game;
 
-public class Field {
-
+abstract public class Field {
+	abstract public void landOnField(Player player);
 }
