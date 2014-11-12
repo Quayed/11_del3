@@ -6,6 +6,10 @@ public class Fleet extends Ownable{
 	private int rent_three = 2000;
 	private int rent_four = 4000;
 	
+	public Fleet(int price){
+		
+	}
+	
 	@Override
 	public int getRent() {
 		// der skal tjekkes hvor mange fleet felter spilleren ejer.

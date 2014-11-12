@@ -2,7 +2,21 @@ package game;
 
 public class Territory extends Ownable{
 	private int rent;
-
+	private int price;
+	
+	public Territory(int rent, int price){
+		this.rent = rent;
+		this.price = price;
+	}
+	
+	public void setPrice(int price){
+		this.price = price;
+	}
+	
+	public int getPrice(){
+		return price;
+	}
+	
 	@Override
 	public int getRent() {
 		return rent;

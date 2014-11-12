@@ -2,7 +2,7 @@ package game;
 
 public class Tax extends Field{
 	private int taxAmount;
-	private int taxRate;
+	private double taxRate = 0.1;
 	
 	public Tax(int taxAmount){
 		this.taxAmount = taxAmount;
