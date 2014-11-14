@@ -4,11 +4,28 @@ public class OurTax extends OurField{
 	private int taxAmount;
 	private double taxRate = 0.1; 
 	
-	public OurTax(int taxAmount, String name, int id){
+	public OurTax(int taxAmount, double taxRate, String name, int id){
 		this.taxAmount = taxAmount;
+		this.taxRate = taxRate;
 		super.setName(name);
 		super.setFieldId(id);
 		super.setType("Tax");
+	}
+	
+	public void setTaxAmount(int taxAmount){
+		this.taxAmount = taxAmount;
+	}
+	
+	public void setTaxRate(double taxRate){
+		this.taxRate = taxRate;
+	}
+	
+	public int getTaxAmount(){
+		return this.taxAmount;
+	}
+	
+	public double getTaxRate(){
+		return this.taxRate;
 	}
 	
 	@Override
