@@ -10,16 +10,8 @@ public class Territory extends Ownable{
 		super.setFieldId(id);
 	}
 	
-	public void setPrice(int price){
-		super.setPrice(price);
-	}
-	
 	public void setRent(int rent){
 		this.rent = rent;
-	}
-	
-	public int getPrice(){
-		return super.getPrice();
 	}
 	
 	@Override
