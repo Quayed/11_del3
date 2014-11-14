@@ -19,8 +19,8 @@ public class GameBoard {
 		list[12] = new OurRefuge(500, "Monastery", 13);
 		list[13] = new LaborCamp(2500, "Huts in the mountain", 14);
 		list[14] = new LaborCamp(2500, "The pit", 15);
-		list[15] = new OurTax(2000, 0.0, "Goldmine", 16);
-		list[16] = new OurTax(4000, 0.1,  "Caravan", 17);
+		list[15] = new OurTax(2000, 0, "Goldmine", 16);
+		list[16] = new OurTax(4000, 10,  "Caravan", 17);
 		list[17] = new Fleet(4000, "Second Sail", 18);
 		list[18] = new Fleet(4000, "Sea Grover", 19);
 		list[19] = new Fleet(4000, "The Buccaneers", 20);
