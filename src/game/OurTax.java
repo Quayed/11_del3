@@ -1,10 +1,10 @@
 package game;
 
-public class Tax extends OurField{
+public class OurTax extends OurField{
 	private int taxAmount;
 	private double taxRate = 0.1; 
 	
-	public Tax(int taxAmount, String name, int id){
+	public OurTax(int taxAmount, String name, int id){
 		this.taxAmount = taxAmount;
 		super.setName(name);
 		super.setFieldId(id);

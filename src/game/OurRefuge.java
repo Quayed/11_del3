@@ -1,9 +1,9 @@
 package game;
 
-public class Refuge extends OurField{
+public class OurRefuge extends OurField{
 	private int bonus;
 	
-	public Refuge(int bonus, String name, int id){
+	public OurRefuge(int bonus, String name, int id){
 		this.bonus = bonus;
 		super.setName(name);
 		super.setFieldId(id);

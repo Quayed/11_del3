@@ -15,12 +15,12 @@ public class GameBoard {
 		list[8] = new Territory(2600, 5500, "Palace gates", 9);
 		list[9] = new Territory(3200, 6000, "Tower", 10);
 		list[10] = new Territory(4000, 8000, "Castle", 11);
-		list[11] = new Refuge(5000, "Walled city", 12);
-		list[12] = new Refuge(500, "Monastery", 13);
+		list[11] = new OurRefuge(5000, "Walled city", 12);
+		list[12] = new OurRefuge(500, "Monastery", 13);
 		list[13] = new LaborCamp(2500, "Huts in the mountain", 14);
 		list[14] = new LaborCamp(2500, "The pit", 15);
-		list[15] = new Tax(2000, "Goldmine", 16);
-		list[16] = new Tax(4000, "Caravan", 17);
+		list[15] = new OurTax(2000, "Goldmine", 16);
+		list[16] = new OurTax(4000, "Caravan", 17);
 		list[17] = new Fleet(4000, "Second Sail", 18);
 		list[18] = new Fleet(4000, "Sea Grover", 19);
 		list[19] = new Fleet(4000, "The Buccaneers", 20);
