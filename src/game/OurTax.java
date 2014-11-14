@@ -2,11 +2,13 @@ package game;
 
 public class OurTax extends OurField{
 	private int taxAmount;
+	private int taxPercentage;
 	private double taxRate = 0.1; 
 	
-	public OurTax(int taxAmount, double taxRate, String name, int id){
+	public OurTax(int taxAmount, int taxRate, String name, int id){
 		this.taxAmount = taxAmount;
-		this.taxRate = taxRate;
+		this.taxPercentage = taxRate;
+		this.taxRate = (double) taxRate/100;
 		super.setName(name);
 		super.setFieldId(id);
 		super.setType("Tax");
@@ -20,6 +22,10 @@ public class OurTax extends OurField{
 		this.taxRate = taxRate;
 	}
 	
+	public void setTaxPercentage(int taxPercentage) {
+		this.taxPercentage = taxPercentage;
+	}
+	
 	public int getTaxAmount(){
 		return this.taxAmount;
 	}
@@ -28,6 +34,10 @@ public class OurTax extends OurField{
 		return this.taxRate;
 	}
 	
+	public int getTaxPercentage() {
+		return taxPercentage;
+	}
+
 	@Override
 	public void landOnField(Player player) {
 		// felt 16, spilleren skal miste 2000
