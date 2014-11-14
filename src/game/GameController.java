@@ -15,7 +15,8 @@ public class GameController {
 		Player player2 = new Player(2, "Jens2");
 
 		//Kør spillet
-		GameBoard Board =  new GameBoard();
+		GUIManager display = new GUIManager();
+		display.create();
 		
 		//Opsætning af bordet
 		GUIManager.create();
