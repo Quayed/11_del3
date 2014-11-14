@@ -1,14 +1,17 @@
 package game;
 
-public class Player {
+public class Player{
 	private String name;
 	private int field;
 	final private int ID;
+	final private int startMoney = 1000;
+	private Account acc;
 	
 	public Player(int id, String name){
 		this.name = name;
 		this.ID = id;
-	}
+		this.acc = new Account(startMoney, id);
+	} 
 	
 	public void setName(String name){
 		this.name = name;
@@ -19,7 +22,7 @@ public class Player {
 	}
 	
 	public int getId(){
-		return ID;
+		return this.ID;
 	}
 	
 	public void setField(int field){
@@ -29,4 +32,10 @@ public class Player {
 	public int getField(){
 		return this.field;
 	}
+
+	public Account getAcc() {
+		return acc;
+	}
+	
+	
 }
