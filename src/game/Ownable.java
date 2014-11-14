@@ -1,6 +1,6 @@
 package game;
 
-abstract public class Ownable extends Field{
+abstract public class Ownable extends OurField{
 	private int price;
 	private Player owner;
 	abstract public int getRent();

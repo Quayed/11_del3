@@ -1,6 +1,6 @@
 package game;
 
-public class Refuge extends Field{
+public class Refuge extends OurField{
 	private int bonus;
 	
 	public Refuge(int bonus, String name, int id){

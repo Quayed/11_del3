@@ -1,7 +1,7 @@
 package game;
 
 public class GameBoard {
-	Field[] list = new Field[21];
+	OurField[] list = new OurField[21];
 	
 	public GameBoard(){
 		list[0] = new Territory(100, 1000, "Tribe Encampment", 1);
@@ -27,9 +27,13 @@ public class GameBoard {
 		list[20] = new Fleet(4000, "Privateer armade", 21);
 	}
 	
-	public Field getField(int id){
-		Field field = list[id-1];
+	public OurField getField(int id){
+		OurField field = list[id-1];
 		return field;
+	}
+	
+	public int getNumberOfFields(){
+		return list.length;
 	}
 	
 	public String toString() {

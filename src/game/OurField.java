@@ -1,6 +1,6 @@
 package game;
 
-abstract public class Field {
+abstract public class OurField {
 	private String name;
 	private int fieldId;
 	private String type;

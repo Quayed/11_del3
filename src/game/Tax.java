@@ -1,6 +1,6 @@
 package game;
 
-public class Tax extends Field{
+public class Tax extends OurField{
 	private int taxAmount;
 	private double taxRate = 0.1; 
 	
