@@ -6,7 +6,6 @@ public class Game {
 		GameBoard swag = new GameBoard();
 		
 		System.out.print(swag);
-		
 	}
 
 }
