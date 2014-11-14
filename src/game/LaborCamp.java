@@ -13,6 +13,7 @@ public class LaborCamp extends Ownable{
 	public int getRent() {
 		// Ikke helt sikker på denne her metode i den her class.
 		return 0;
+		
 	}
 
 	@Override
