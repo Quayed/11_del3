@@ -7,6 +7,7 @@ public class LaborCamp extends Ownable{
 		super.setPrice(price);
 		super.setName(name);
 		super.setFieldId(id);
+		super.setType("LaborCamp");
 	}
 	
 	@Override

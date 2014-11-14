@@ -8,6 +8,7 @@ public class Fleet extends Ownable{
 		super.setPrice(price);
 		super.setName(name);
 		super.setFieldId(id);
+		super.setType("Fleet");
 	}
 	
 	public void setRent(int rent, int indexOfRent){

@@ -3,6 +3,7 @@ package game;
 abstract public class Field {
 	private String name;
 	private int fieldId;
+	private String type;
 	abstract public void landOnField(Player player);
 	
 	public String getName(){
@@ -19,5 +20,13 @@ abstract public class Field {
 
 	public void setFieldId(int fieldId) {
 		this.fieldId = fieldId;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 }

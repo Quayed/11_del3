@@ -8,6 +8,7 @@ public class Tax extends Field{
 		this.taxAmount = taxAmount;
 		super.setName(name);
 		super.setFieldId(id);
+		super.setType("Tax");
 	}
 	
 	@Override

@@ -7,6 +7,7 @@ public class Refuge extends Field{
 		this.bonus = bonus;
 		super.setName(name);
 		super.setFieldId(id);
+		super.setType("Refuge");
 	}
 	
 	public void setBonus(int bonus){
