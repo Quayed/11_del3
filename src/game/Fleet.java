@@ -5,9 +5,13 @@ public class Fleet extends Ownable{
 	private int[] rent = {500,1000,2000,4000};
 	
 	public Fleet(int price, String name, int id){
-		this.price = price;
+		super.setPrice(price);
 		this.name = name;
 		this.fieldId = id;
+	}
+	
+	public void setRent(int rent, int indexOfRent){
+		this.rent[indexOfRent] = rent;
 	}
 	
 	@Override

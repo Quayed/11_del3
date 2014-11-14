@@ -4,7 +4,7 @@ public class LaborCamp extends Ownable{
 	private int baseRent = 100;
 
 	public LaborCamp(int price, String name, int id){
-		this.price = price;
+		super.setPrice(price);
 		this.name = name;
 		this.fieldId = id;
 	}
@@ -23,7 +23,7 @@ public class LaborCamp extends Ownable{
 	}
 	
 	public String toString() {
-		String s = "Price: " + price + " Name: " + name + " FieldID: " + fieldId;
+		String s = "Price: " + super.getPrice() + " Name: " + name + " FieldID: " + fieldId;
 		return s;
 	}
 }

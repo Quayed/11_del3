@@ -5,17 +5,21 @@ public class Territory extends Ownable{
 	
 	public Territory(int rent, int price, String name, int id){
 		this.rent = rent;
-		this.price = price;
+		super.setPrice(price);;
 		this.name = name;
 		this.fieldId = id;
 	}
 	
 	public void setPrice(int price){
-		this.price = price;
+		super.setPrice(price);
+	}
+	
+	public void setRent(int rent){
+		this.rent = rent;
 	}
 	
 	public int getPrice(){
-		return price;
+		return super.getPrice();
 	}
 	
 	@Override
@@ -29,7 +33,7 @@ public class Territory extends Ownable{
 		// Hvis grunden er ejet af en anden spiller skal der rent overføres fra den ene spiller til den anden.
 	}
 	public String toString() {
-		String s = "Rent: " + rent + " Price: " + price + " Name: " + name + " fieldId: " + fieldId;
+		String s = "Rent: " + rent + " Price: " + super.getPrice() + " Name: " + name + " fieldId: " + fieldId;
 		return s;
 	}
 }
