@@ -10,22 +10,56 @@ public class GUIManager {
 		Field[] fields = new Field[board.getNumberOfFields()];
 		
 		for(int i = 0; i < board.getNumberOfFields(); i++){
-			String field = board.getField(i).getType();
-			switch (field){
+			OurField field = board.getField(i);
+			String fieldType = field.getType();
+			switch (fieldType){
 			case "Territory":
-				fields[i] = new Street.Builder().build();
+				Territory territory = (Territory) field;
+				fields[i] = new Street.Builder()
+					.setTitle(territory.getName())
+					.setDescription("Rent: " + territory.getRent())
+					.setSubText("Price: " + territory.getPrice())
+					.build();
 				break;
 			case "Refuge":
-				fields[i] = new Refuge.Builder().build();
+				OurRefuge refuge = (OurRefuge) field;
+				fields[i] = new Refuge.Builder()
+					.setTitle(refuge.getName())
+					.setDescription("Receive: " + refuge.getBonus())
+					.setSubText("Recieve: " + refuge.getBonus())
+					.build();
 				break;
 			case "LaborCamp":
-				fields[i] = new Brewery.Builder().build();
+				LaborCamp laborCamp = (LaborCamp) field;
+				fields[i] = new Brewery.Builder()
+					.setTitle(laborCamp.getName())
+					.setDescription("Rent: 100x dice roll")
+					.setSubText("Price: " + laborCamp.getPrice())
+					.build();
 				break;
 			case "Tax":
-				fields[i] = new Tax.Builder().build();
-				break;
+				OurTax tax = (OurTax) field;
+				if(tax.getTaxRate() == 0){
+					fields[i] = new Tax.Builder()
+					.setTitle(tax.getName())
+					.setDescription("Pay: " + tax.getTaxAmount())
+					.setSubText("Pay: " + tax.getTaxAmount())
+					.build();
+				}else {
+					fields[i] = new Tax.Builder()
+					.setTitle(tax.getName())
+					.setDescription("Pay: " + tax.getTaxAmount() + " or Pay: " + tax.getTaxPercentage() + "% of your total Assets")
+					.setSubText("Pay: " + tax.getTaxAmount() + " or Pay: " + tax.getTaxPercentage() + "% of your total Assets")
+					.build();
+				}
+				break;		
 			case "Fleet":
-				fields[i] = new Shipping.Builder().build();
+				Fleet fleet = (Fleet) field;
+				fields[i] = new Shipping.Builder()
+					.setTitle(fleet.getName())
+					.setSubText("Price: " + fleet.getPrice())
+					.setDescription("Rent 1: 500 | Rent 2: 1000 | Rent 3: 2000 | Rent 4: 4000")
+					.build();
 				break;
 			}
 		}
