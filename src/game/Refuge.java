@@ -8,6 +8,14 @@ public class Refuge extends Field{
 		super.setName(name);
 		super.setFieldId(id);
 	}
+	
+	public void setBonus(int bonus){
+		this.bonus = bonus;
+	}
+	
+	public int getBonus(){
+		return this.bonus;
+	}
 
 	@Override
 	public void landOnField(Player player) {
