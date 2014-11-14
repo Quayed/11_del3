@@ -13,4 +13,9 @@ public class Refuge extends Field{
 	public void landOnField(Player player) {
 		// bonusen skal indsættes på spillerens konto.		
 	}
+	
+	public String toString() {
+		String s = "Bonus: " + bonus + " Name: " + name + " FieldID: " + fieldId;
+		return s;
+	}
 }

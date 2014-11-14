@@ -1,10 +1,8 @@
 package game;
 
 public class Fleet extends Ownable{
-	private int rent_one = 500;
-	private int rent_two = 1000;
-	private int rent_three = 2000;
-	private int rent_four = 4000;
+
+	private int[] rent = {500,1000,2000,4000};
 	
 	public Fleet(int price, String name, int id){
 		this.price = price;
@@ -22,5 +20,11 @@ public class Fleet extends Ownable{
 	public void landOnField(Player player) {
 		// Spilleren skal have mulighed for at købe feltet.
 		// Hvis feltet allerede er ejet af en skal spilleren miste et antal penge.
+	}
+	
+	public String toString() {
+		String s = "Rent: " + rent[0] + ", " + rent[1] + ", " + rent [2] + ", " + rent[3] + " Name: " + name + " FieldID: " + fieldId;
+		
+		return s;
 	}
 }

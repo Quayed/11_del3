@@ -21,4 +21,9 @@ public class LaborCamp extends Ownable{
 		// Spilleren skal have muligheden for at købe feltet
 		// Spilleren skal betale et antal penge til ejeren af feltet. 
 	}
+	
+	public String toString() {
+		String s = "Price: " + price + " Name: " + name + " FieldID: " + fieldId;
+		return s;
+	}
 }
