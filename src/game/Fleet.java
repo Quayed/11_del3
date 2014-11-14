@@ -6,8 +6,8 @@ public class Fleet extends Ownable{
 	
 	public Fleet(int price, String name, int id){
 		super.setPrice(price);
-		this.name = name;
-		this.fieldId = id;
+		super.setName(name);
+		super.setFieldId(id);
 	}
 	
 	public void setRent(int rent, int indexOfRent){
@@ -27,7 +27,7 @@ public class Fleet extends Ownable{
 	}
 	
 	public String toString() {
-		String s = "Rent: " + rent[0] + ", " + rent[1] + ", " + rent [2] + ", " + rent[3] + " Name: " + name + " FieldID: " + fieldId;
+		String s = "Rent: " + rent[0] + ", " + rent[1] + ", " + rent [2] + ", " + rent[3] + " Name: " + super.getName() + " FieldID: " + super.getFieldId();
 		
 		return s;
 	}

@@ -5,8 +5,8 @@ public class Refuge extends Field{
 	
 	public Refuge(int bonus, String name, int id){
 		this.bonus = bonus;
-		this.name = name;
-		this.fieldId = id;
+		super.setName(name);
+		super.setFieldId(id);
 	}
 
 	@Override
@@ -15,7 +15,7 @@ public class Refuge extends Field{
 	}
 	
 	public String toString() {
-		String s = "Bonus: " + bonus + " Name: " + name + " FieldID: " + fieldId;
+		String s = "Bonus: " + bonus + " Name: " + super.getName() + " FieldID: " + super.getFieldId();
 		return s;
 	}
 }

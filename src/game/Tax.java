@@ -6,8 +6,8 @@ public class Tax extends Field{
 	
 	public Tax(int taxAmount, String name, int id){
 		this.taxAmount = taxAmount;
-		this.name = name;
-		this.fieldId = id;
+		super.setName(name);
+		super.setFieldId(id);
 	}
 	
 	@Override
@@ -17,7 +17,7 @@ public class Tax extends Field{
 	}
 	
 	public String toString() {
-		String s = "Tax Amount: " + taxAmount + " Tax Rate: " + taxRate + " Name: " + name + " FieldID: " + fieldId;
+		String s = "Tax Amount: " + taxAmount + " Tax Rate: " + taxRate + " Name: " + super.getName() + " FieldID: " + super.getFieldId();
 		
 		return s;
 	}
