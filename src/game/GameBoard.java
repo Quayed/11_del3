@@ -27,6 +27,11 @@ public class GameBoard {
 		list[20] = new Fleet(4000, "Privateer armade", 21);
 	}
 	
+	public Field getField(int id){
+		Field field = list[id-1];
+		return field;
+	}
+	
 	public String toString() {
 		String s = "";
 		for(int i = 0; i <= list.length-1; i++) {
