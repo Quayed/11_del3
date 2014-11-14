@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 
 public class GameController {
 
-	public static void main(String[] args) {
+	public void run() {
 		Die dice = new Die();
 		int players;
 		//Vælg antal spillere
