@@ -1,11 +1,36 @@
 package game;
 
-import boundaryToMatador.GUI;
+import boundaryToMatador.*;
 
 public class GUIManager {
 	
 	public static void create() {
-		GUI.create("fields.txt");
+		GameBoard board = new GameBoard();
+		
+		Field[] fields = new Field[board.getNumberOfFields()];
+		
+		for(int i = 0; i < board.getNumberOfFields(); i++){
+			String field = board.getField(i).getType();
+			switch (field){
+			case "Territory":
+				fields[i] = new Street.Builder().build();
+				break;
+			case "Refuge":
+				fields[i] = new Refuge.Builder().build();
+				break;
+			case "LaborCamp":
+				fields[i] = new Brewery.Builder().build();
+				break;
+			case "Tax":
+				fields[i] = new Tax.Builder().build();
+				break;
+			case "Fleet":
+				fields[i] = new Shipping.Builder().build();
+				break;
+			}
+		}
+		
+		GUI.create(fields);
 	}
 	
 	public static void addPlayer(String name, int balance) {
