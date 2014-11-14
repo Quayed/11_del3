@@ -29,7 +29,7 @@ public class Territory extends Ownable{
 		// Hvis grunden er ejet af en anden spiller skal der rent overføres fra den ene spiller til den anden.
 	}
 	public String toString() {
-		String s = "Rent: " + rent + " Price: " + price + " Name: " + " fieldId: " + fieldId;
+		String s = "Rent: " + rent + " Price: " + price + " Name: " + name + " fieldId: " + fieldId;
 		return s;
 	}
 }
