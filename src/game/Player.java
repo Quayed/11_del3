@@ -4,13 +4,13 @@ public class Player{
 	private String name;
 	private int field;
 	final private int ID;
-	final private int startMoney = 1000;
+	final private int STARTMONEY = 30000;
 	private Account acc;
 	
 	public Player(int id, String name){
 		this.name = name;
 		this.ID = id;
-		this.acc = new Account(startMoney, id);
+		this.acc = new Account(this.STARTMONEY, id);
 	} 
 	
 	public void setName(String name){
@@ -37,5 +37,8 @@ public class Player{
 		return acc;
 	}
 	
+	public int getStartMoney(){
+		return STARTMONEY;
+	}
 	
 }
