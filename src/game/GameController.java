@@ -14,6 +14,8 @@ public class GameController {
 		Player players[] = new Player[6];
 		Account accounts[] = new Account[6];
 		int numberOfPlayers;
+		int turn = 0;
+		int dieOne, dieTwo, field;
 		
 		
 		//Kør spillet
@@ -33,7 +35,15 @@ public class GameController {
 		
 		//Første terningekast
 		
-		
+		while(true){
+			display.roll(players[turn].getName());
+			dieOne = dice.roll();
+			dieTwo = dice.roll();
+			display.setDice(dieOne, dieTwo);
+			display.movePlayer(players[turn], dieOne+dieTwo);
+			
+			turn = ++turn % numberOfPlayers;
+		}
 		
 		
 		

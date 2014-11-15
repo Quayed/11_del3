@@ -80,6 +80,13 @@ public class GUIManager {
 		return numberOfPlayers;
 	}
 	
+	public void roll(String name){
+		GUI.getUserButtonPressed("Det er " + name + "s tur. Tryk på knappen for at kaste terninger", "kast");
+	}
+	
+	public void movePlayer(Player player, int roll){
+		
+	}
 }
 
 
