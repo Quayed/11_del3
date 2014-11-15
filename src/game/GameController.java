@@ -4,7 +4,11 @@ import javax.swing.JOptionPane;
 
 
 public class GameController {
-
+	
+	public GameController(){
+		
+	}
+	
 	public void run() {
 		Die dice = new Die();
 		Player players[] = new Player[6];
