@@ -4,7 +4,7 @@ import boundaryToMatador.*;
 
 public class GUIManager {
 	
-	public static void create() {
+	public void create() {
 		GameBoard board = new GameBoard();
 		
 		Field[] fields = new Field[board.getNumberOfFields()];
