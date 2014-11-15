@@ -67,14 +67,18 @@ public class GUIManager {
 		GUI.create(fields);
 	}
 	
-	public static void addPlayer(String name, int balance) {
+	public void addPlayer(String name, int balance) {
 		GUI.addPlayer(name, balance);
 	}
 
-	public static void setDice(int dieOne, int dieTwo) {
+	public void setDice(int dieOne, int dieTwo) {
 		GUI.setDice(dieOne, 0, 4, 7, dieTwo, 0, 5, 7);
 	}
 	
+	public int getNumberOfPlayers(){
+		int numberOfPlayers = Integer.parseInt(GUI.getUserButtonPressed("Vælg hvor mange spillere der skal være", "2", "3", "4", "5", "6"));
+		return numberOfPlayers;
+	}
 	
 }
 
