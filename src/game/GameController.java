@@ -1,4 +1,6 @@
 package game;
+import java.awt.Color;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -11,6 +13,7 @@ public class GameController {
 	public void run() {
 		Die dice = new Die();
 		Player players[] = new Player[6];
+		Color colors[] = new Color[] {Color.BLUE, Color.RED, Color.GREEN, Color.CYAN, Color.ORANGE, Color.YELLOW};
 		int numberOfPlayers;
 		int turn = 0; 
 		int dieOne, dieTwo, field;
@@ -27,7 +30,7 @@ public class GameController {
 		for(int i = 0; i < numberOfPlayers; i++){
 			// her bør der tilføjes muligheden for spillerne at vælge navn - dette skal dog først gøres til sidst.
 			players[i] = new Player(i, "Spiller"+i);
-			display.addPlayer(players[i].getName(), players[i].getAcc().getBalance());
+			display.addPlayer(players[i].getName(), players[i].getAcc().getBalance(), colors[i]);
 		}
 		
 		//Første terningekast
