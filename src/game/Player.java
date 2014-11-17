@@ -2,7 +2,8 @@ package game;
 
 public class Player{
 	private String name;
-	private int field;
+	private int previous_field = 0;
+	private int field = 0;
 	final private int ID;
 	final private int STARTMONEY = 30000;
 	private Account acc;
@@ -32,6 +33,10 @@ public class Player{
 	public int getField(){
 		return this.field;
 	}
+	
+	public int getPrevField() {
+		return this.previous_field;
+	}
 
 	public Account getAcc() {
 		return acc;
@@ -39,6 +44,12 @@ public class Player{
 	
 	public int getStartMoney(){
 		return STARTMONEY;
+	}
+
+	public void move(int roll) {
+		previous_field = field;
+		if (field+roll == 21) field=21;
+		else field = (field+roll)%21;
 	}
 	
 }
