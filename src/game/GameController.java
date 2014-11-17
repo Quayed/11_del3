@@ -2,6 +2,8 @@ package game;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import boundaryToMatador.GUI;
+
 
 public class GameController {
 	
@@ -14,7 +16,7 @@ public class GameController {
 		Player players[] = new Player[6];
 		Account accounts[] = new Account[6];
 		int numberOfPlayers;
-		int turn = 0;
+		int turn = 0; 
 		int dieOne, dieTwo, field;
 		
 		
@@ -40,8 +42,8 @@ public class GameController {
 			dieOne = dice.roll();
 			dieTwo = dice.roll();
 			display.setDice(dieOne, dieTwo);
-			display.movePlayer(players[turn], dieOne+dieTwo);
-			
+			players[turn].move(dieOne+dieTwo);
+			display.movePlayer(players[turn].getPrevField(), players[turn].getField(), players[turn].getName());
 			turn = ++turn % numberOfPlayers;
 		}
 		
