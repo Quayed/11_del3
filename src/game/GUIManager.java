@@ -84,8 +84,9 @@ public class GUIManager {
 		GUI.getUserButtonPressed("Det er " + name + "s tur. Tryk på knappen for at kaste terninger", "kast");
 	}
 	
-	public void movePlayer(Player player, int roll){
-		
+	public void movePlayer(int prevField, int field, String name){
+		if (prevField!=0) GUI.removeCar(prevField, name);
+		GUI.setCar(field, name);
 	}
 }
 
