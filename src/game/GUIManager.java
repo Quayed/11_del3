@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.Color;
+
 import boundaryToMatador.*;
 
 public class GUIManager {
@@ -66,9 +68,11 @@ public class GUIManager {
 		
 		GUI.create(fields);
 	}
-	
 	public void addPlayer(String name, int balance) {
 		GUI.addPlayer(name, balance);
+	}
+	public void addPlayer(String name, int balance, Color color) {
+		GUI.addPlayer(name, balance, color);
 	}
 
 	public void setDice(int dieOne, int dieTwo) {
