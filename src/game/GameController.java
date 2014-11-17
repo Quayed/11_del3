@@ -2,9 +2,6 @@ package game;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import boundaryToMatador.GUI;
-
-
 public class GameController {
 	
 	public GameController(){
