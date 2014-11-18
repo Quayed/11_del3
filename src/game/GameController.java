@@ -15,7 +15,7 @@ public class GameController {
 		Player players[] = new Player[6];
 		Color colors[] = new Color[] {Color.BLUE, Color.RED, Color.GREEN, Color.CYAN, Color.ORANGE, Color.YELLOW};
 		int numberOfPlayers;
-		int turn = 0; 
+		int turn = 0;
 		int dieOne, dieTwo, field;
 		
 		
@@ -43,6 +43,11 @@ public class GameController {
 			players[turn].move(dieOne+dieTwo);
 			display.movePlayer(players[turn].getPrevField(), players[turn].getField(), players[turn].getName());
 			turn = ++turn % numberOfPlayers;
+                        
+                        //Kontrol af hvilket felt der landes på
+                            //Effekt af landing på felt
+                        
+                        if()
 		}
 		
 		
