@@ -49,7 +49,9 @@ public class GameController {
                         
 			//Landing på felt
 			board.getField(activePlayer.getField()-1).landOnField(activePlayer);;
-
+			//Opdatering af gameboard
+			display.updateBalance(activePlayer);
+			
 			
 			turn = ++turn % numberOfPlayers;
 		}

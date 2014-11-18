@@ -84,13 +84,16 @@ public class GUIManager {
 	}
 	
 	public void roll(String name){
-		GUI.getUserButtonPressed("Det er " + name + "s tur. Tryk på knappen for at kaste terninger", "kast");
+		GUI.getUserButtonPressed("Det er " + name + "'s tur. Tryk på knappen for at kaste terninger", "kast");
 	}
 	
 	public int movePlayer(int prevField, int field, String name){
 		if (prevField!=0) GUI.removeCar(prevField, name);
 		GUI.setCar(field, name);
 		return field;
+	}
+	public void updateBalance(Player player) {
+		GUI.setBalance(player.getName(), player.getAcc().getBalance());
 	}
 }
 
