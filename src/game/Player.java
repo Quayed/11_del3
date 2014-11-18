@@ -6,6 +6,7 @@ public class Player{
 	private int field = 0;
 	final private int ID;
 	final private int STARTMONEY = 30000;
+	private String payMethod = "10%"; // Kan være "10%" eller "4000"
 	private Account acc;
 	
 	public Player(int id, String name){
@@ -50,6 +51,13 @@ public class Player{
 		previous_field = field;
 		if (field+roll == 21) field=21;
 		else field = (field+roll)%21;
+	}
+	
+	public void setPayMethod(String method) {
+		this.payMethod = method;
+	}
+	public String getPayMethod() {
+		return this.payMethod;
 	}
 	
 }
