@@ -44,10 +44,8 @@ public class GameController {
 			display.movePlayer(players[turn].getPrevField(), players[turn].getField(), players[turn].getName());
 			turn = ++turn % numberOfPlayers;
                         
-                        //Kontrol af hvilket felt der landes på
-                            //Effekt af landing på felt
-                        
-                        if()
+            //Kontrol af hvilket felt der landes på
+            //Effekt af landing på felt
 		}
 		
 		
