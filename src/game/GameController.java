@@ -11,6 +11,7 @@ public class GameController {
 	}
 	
 	public void run() {
+		GameBoard board = new GameBoard();
 		Die dice = new Die();
 		Player players[] = new Player[6];
 		Color colors[] = new Color[] {Color.BLUE, Color.RED, Color.GREEN, Color.CYAN, Color.ORANGE, Color.YELLOW};
@@ -21,7 +22,7 @@ public class GameController {
 		
 		//Kør spillet
 		GUIManager display = new GUIManager();
-		display.create();
+		display.create(board);
 		
 		
 		//Vælg antal spillere
@@ -34,18 +35,26 @@ public class GameController {
 		}
 		
 		//Første terningekast
-		
+		Player activePlayer;
 		while(true){
-			display.roll(players[turn].getName());
+			activePlayer = players[turn];
+			display.roll(activePlayer.getName());
 			dieOne = dice.roll();
 			dieTwo = dice.roll();
 			display.setDice(dieOne, dieTwo);
-			players[turn].move(dieOne+dieTwo);
-			display.movePlayer(players[turn].getPrevField(), players[turn].getField(), players[turn].getName());
-			turn = ++turn % numberOfPlayers;
+			activePlayer.move(dieOne+dieTwo);
+			//Spiller bevæger sig
+			display.movePlayer(activePlayer.getPrevField(), activePlayer.getField(), activePlayer.getName());
+			
                         
-            //Kontrol af hvilket felt der landes på
-            //Effekt af landing på felt
+			//Landing på felt
+			if (activePlayer.getField() == 19) activePlayer.setPayMethod(display.choosePayment());
+			board.getField(activePlayer.getField()-1).landOnField(activePlayer);;
+			//Opdatering af gameboard
+			display.updateBalance(activePlayer);
+			
+			
+			turn = ++turn % numberOfPlayers;
 		}
 		
 		

@@ -41,7 +41,22 @@ public class OurTax extends OurField{
 	@Override
 	public void landOnField(Player player) {
 		// felt 16, spilleren skal miste 2000
+		if(player.getField() == 9)
+			player.getAcc().withdraw(2000);
+		
 		// felt 17, spilleren skal vælge mellem at miste 10% eller 4000
+		else if (player.getField() == 19) {
+			switch (player.getPayMethod()) {
+			case "10%":
+				player.getAcc().withdraw((int) (player.getAcc().getBalance()*this.taxRate));
+				break;
+			case "4000":
+				player.getAcc().withdraw(4000);
+				break;
+			default:
+				break;
+			}
+		}
 	}
 	
 	public String toString() {
