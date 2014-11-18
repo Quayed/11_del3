@@ -20,7 +20,7 @@ public class OurRefuge extends OurField{
 
 	@Override
 	public void landOnField(Player player) {
-		// bonusen skal indsættes på spillerens konto.		
+		player.getAcc().deposit(this.bonus);	
 	}
 	
 	public String toString() {
