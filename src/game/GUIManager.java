@@ -95,6 +95,9 @@ public class GUIManager {
 	public void updateBalance(Player player) {
 		GUI.setBalance(player.getName(), player.getAcc().getBalance());
 	}
+	public String choosePayment() {
+		return GUI.getUserButtonPressed("\n\nVil du betale 10% eller 4000?", "10%", "4000");
+	}
 }
 
 
