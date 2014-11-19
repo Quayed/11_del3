@@ -98,6 +98,10 @@ public class GUIManager {
 	public String choosePayment() {
 		return GUI.getUserButtonPressed("\n\nVil du betale 10% eller 4000?", "10%", "4000");
 	}
+	
+	public void sendMessage(String message){
+		GUI.getUserButtonPressed("\n\n" + message, "Ok");
+	}
 }
 
 
