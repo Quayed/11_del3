@@ -53,8 +53,6 @@ public class OurTax extends OurField{
 			case "4000":
 				player.getAcc().withdraw(4000);
 				break;
-			default:
-				break;
 			}
 		}
 	}
