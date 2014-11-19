@@ -20,8 +20,10 @@ public class Fleet extends Ownable{
 	
 	@Override
 	public int getRent() {
-		// der skal tjekkes hvor mange fleet felter spilleren ejer.
-		return 0;
+		if (super.getOwner() != null){
+			return this.rent[super.getOwner().getNumberOfFleetsOwned()-1];
+		}
+			return 0; // returner 0 hvis grunden ikke ejes af nogle.
 	}
 	
 	@Override
