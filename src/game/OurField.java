@@ -4,7 +4,7 @@ abstract public class OurField {
 	private String name;
 	private int fieldId;
 	private String type;
-	abstract public void landOnField(Player player);
+	abstract public void landOnField(Player player, GUIManager display);
 	
 	public String getName(){
 		return this.name;

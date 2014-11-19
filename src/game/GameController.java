@@ -50,7 +50,7 @@ public class GameController {
 			//Landing på felt
 			if (activePlayer.getField() == 19) 
 				activePlayer.setPayMethod(display.choosePayment());
-			board.getField(activePlayer.getField()-1).landOnField(activePlayer);
+			board.getField(activePlayer.getField()-1).landOnField(activePlayer, display);
 			//Opdatering af gameboard
 			display.updateBalance(activePlayer);
 			

@@ -22,7 +22,7 @@ public class Fleet extends Ownable{
 	}
 	
 	@Override
-	public void landOnField(Player player) {
+	public void landOnField(Player player, GUIManager display) {
 		// Spilleren skal have mulighed for at købe feltet.
 		// Hvis feltet allerede er ejet af en skal spilleren miste et antal penge.
 	}

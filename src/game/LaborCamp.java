@@ -18,7 +18,7 @@ public class LaborCamp extends Ownable{
 	}
 
 	@Override
-	public void landOnField(Player player) {
+	public void landOnField(Player player, GUIManager display) {
 		// Spilleren skal have muligheden for at købe feltet
 		// Spilleren skal betale et antal penge til ejeren af feltet. 
 	}

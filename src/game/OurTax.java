@@ -39,7 +39,7 @@ public class OurTax extends OurField{
 	}
 
 	@Override
-	public void landOnField(Player player) {
+	public void landOnField(Player player, GUIManager display) {
 		// felt 16, spilleren skal miste 2000
 		if(player.getField() == 9)
 			player.getAcc().withdraw(2000);
