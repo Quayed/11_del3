@@ -107,6 +107,10 @@ public class GUIManager {
 	public String chooseToBuy(String name, int price){
 		return GUI.getUserButtonPressed("\n\n Vil du købe " + name + ", det koster " + price + " penge", "Køb", "Afslå");
 	}
+	
+	public void setOwner(int fieldNumber, String name){
+		GUI.setOwner(fieldNumber, name);
+	}
 }
 
 
