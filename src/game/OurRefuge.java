@@ -19,7 +19,7 @@ public class OurRefuge extends OurField{
 	}
 
 	@Override
-	public void landOnField(Player player) {
+	public void landOnField(Player player, GUIManager display) {
 		player.getAcc().deposit(this.bonus);	
 	}
 	
