@@ -30,6 +30,7 @@ public class Territory extends Ownable{
 			System.out.println("du er ejeren");
 		}
 		else if(!super.isOwned()){
+			
 			System.out.println("den er ikke ejet og du kan købe grunden");
 		}
 		else{
