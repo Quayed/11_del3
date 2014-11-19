@@ -8,6 +8,7 @@ public class Player{
 	final private int STARTMONEY = 30000;
 	private String payMethod = "10%"; // Kan være "10%" eller "4000"
 	private Account acc;
+	private int numberOfFleetsOwned = 0;
 	
 	public Player(int id, String name){
 		this.name = name;
@@ -56,8 +57,20 @@ public class Player{
 	public void setPayMethod(String method) {
 		this.payMethod = method;
 	}
+	
 	public String getPayMethod() {
 		return this.payMethod;
 	}
+
+	public int getNumberOfFleetsOwned() {
+		return numberOfFleetsOwned;
+	}
+
+	public void setNumberOfFleetsOwned(int numberOfFleetsOwned) {
+		this.numberOfFleetsOwned = numberOfFleetsOwned;
+	}
 	
+	public void addNumberOfFleetsOwned(){
+		this.numberOfFleetsOwned++;
+	}
 }
