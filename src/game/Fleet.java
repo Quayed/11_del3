@@ -31,7 +31,7 @@ public class Fleet extends Ownable{
 		if(super.isOwned()){
 			if(!super.isOwner(player)){
 				if(player.getAcc().getBalance() > super.getPrice()){
-					display.sendMessage("Du skal betale " + this.rent[player.getNumberOfFleetsOwned()-1]);
+					display.sendMessage(player.getName() + " er landet på " + super.getName() + "og skal betale " + this.rent[super.getOwner().getNumberOfFleetsOwned()-1]);
 					player.getAcc().transfer(super.getOwner().getAcc(), super.getPrice());
 				} else{
 					// her skal der kaldes en metode for at spilleren har tabt.
@@ -42,7 +42,10 @@ public class Fleet extends Ownable{
 				if(player.getAcc().getBalance() > super.getPrice()){
 					player.getAcc().withdraw(super.getPrice());
 					super.setOwner(player);
+					player.addNumberOfFleetsOwned();
 					display.setOwner(possition, player.getName());
+				} else{
+					display.sendMessage("Du har ikke nok penge til at købe denne grund");
 				}
 			}
 		}
