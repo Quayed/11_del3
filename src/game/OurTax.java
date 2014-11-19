@@ -4,14 +4,16 @@ public class OurTax extends OurField{
 	private int taxAmount;
 	private int taxPercentage;
 	private double taxRate = 0.1; 
+	private int fieldPossition;
 	
-	public OurTax(int taxAmount, int taxRate, String name, int id){
+	public OurTax(int taxAmount, int taxRate, String name, int id, int fieldPossition){
 		this.taxAmount = taxAmount;
 		this.taxPercentage = taxRate;
 		this.taxRate = (double) taxRate/100;
 		super.setName(name);
 		super.setFieldId(id);
 		super.setType("Tax");
+		this.setFieldPossition(fieldPossition);
 	}
 	
 	public void setTaxAmount(int taxAmount){
@@ -36,6 +38,14 @@ public class OurTax extends OurField{
 	
 	public int getTaxPercentage() {
 		return taxPercentage;
+	}
+
+	public int getFieldPossition() {
+		return fieldPossition;
+	}
+
+	public void setFieldPossition(int fieldPossition) {
+		this.fieldPossition = fieldPossition;
 	}
 
 	@Override

@@ -2,12 +2,14 @@ package game;
 
 public class LaborCamp extends Ownable{
 	private int baseRent = 100;
+	private int fieldPossition;
 
-	public LaborCamp(int price, String name, int id){
+	public LaborCamp(int price, String name, int id, int fieldPossition){
 		super.setPrice(price);
 		super.setName(name);
 		super.setFieldId(id);
 		super.setType("LaborCamp");
+		this.setFieldPossition(fieldPossition);
 	}
 	
 	@Override
@@ -15,6 +17,22 @@ public class LaborCamp extends Ownable{
 		// Ikke helt sikker på denne her metode i den her class.
 		return 0;
 		
+	}
+
+	public int getBaseRent() {
+		return baseRent;
+	}
+
+	public void setBaseRent(int baseRent) {
+		this.baseRent = baseRent;
+	}
+
+	public int getFieldPossition() {
+		return fieldPossition;
+	}
+
+	public void setFieldPossition(int fieldPossition) {
+		this.fieldPossition = fieldPossition;
 	}
 
 	@Override

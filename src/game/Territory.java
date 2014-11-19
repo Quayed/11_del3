@@ -2,13 +2,15 @@ package game;
 
 public class Territory extends Ownable{
 	private int rent;
+	private int fieldPossition;
 	
-	public Territory(int rent, int price, String name, int id){
+	public Territory(int rent, int price, String name, int id, int fieldPossition){
 		this.rent = rent;
 		super.setPrice(price);;
 		super.setName(name);
 		super.setFieldId(id);
 		super.setType("Territory");
+		this.setFieldPossition(fieldPossition);
 	}
 	
 	public void setRent(int rent){
@@ -19,8 +21,14 @@ public class Territory extends Ownable{
 	public int getRent() {
 		return rent;
 	}
-	
-	
+
+	public int getFieldPossition() {
+		return fieldPossition;
+	}
+
+	public void setFieldPossition(int fieldPossition) {
+		this.fieldPossition = fieldPossition;
+	}
 
 	@Override
 	public void landOnField(Player player, GUIManager display) {
@@ -31,7 +39,7 @@ public class Territory extends Ownable{
 		}
 		else if(!super.isOwned()){
 			
-			System.out.println("den er ikke ejet og du kan købe grunden");
+			System.out.println("den er ikke ejet og du kan kï¿½be grunden");
 		}
 		else{
 			System.out.println("Nu skal du sku betale");

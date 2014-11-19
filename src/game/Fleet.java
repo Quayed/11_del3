@@ -3,12 +3,15 @@ package game;
 public class Fleet extends Ownable{
 
 	private int[] rent = {500,1000,2000,4000};
+	private int possition;
 	
-	public Fleet(int price, String name, int id){
+	public Fleet(int price, String name, int id, int possition){
 		super.setPrice(price);
 		super.setName(name);
 		super.setFieldId(id);
 		super.setType("Fleet");
+		this.possition = possition;
+		
 	}
 	
 	public void setRent(int rent, int indexOfRent){
@@ -25,6 +28,24 @@ public class Fleet extends Ownable{
 	public void landOnField(Player player, GUIManager display) {
 		// Spilleren skal have mulighed for at købe feltet.
 		// Hvis feltet allerede er ejet af en skal spilleren miste et antal penge.
+		if(super.isOwned()){
+			if(!super.isOwner(player)){
+				if(player.getAcc().getBalance() > super.getPrice()){
+					display.sendMessage("Du skal betale " + this.rent[player.getNumberOfFleetsOwned()-1]);
+					player.getAcc().transfer(super.getOwner().getAcc(), super.getPrice());
+				} else{
+					// her skal der kaldes en metode for at spilleren har tabt.
+				}
+			}
+		} else{
+			if(display.chooseToBuy(super.getName(), super.getPrice()) == "Køb"){
+				if(player.getAcc().getBalance() > super.getPrice()){
+					player.getAcc().withdraw(super.getPrice());
+					super.setOwner(player);
+					display.setOwner(possition, player.getName());
+				}
+			}
+		}
 	}
 	
 	public String toString() {

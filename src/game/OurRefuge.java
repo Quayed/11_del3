@@ -2,12 +2,14 @@ package game;
 
 public class OurRefuge extends OurField{
 	private int bonus;
+	private int fieldPossition;
 	
-	public OurRefuge(int bonus, String name, int id){
+	public OurRefuge(int bonus, String name, int id, int fieldPossition){
 		this.bonus = bonus;
 		super.setName(name);
 		super.setFieldId(id);
 		super.setType("Refuge");
+		this.setFieldPossition(fieldPossition);
 	}
 	
 	public void setBonus(int bonus){
@@ -16,6 +18,14 @@ public class OurRefuge extends OurField{
 	
 	public int getBonus(){
 		return this.bonus;
+	}
+
+	public int getFieldPossition() {
+		return fieldPossition;
+	}
+
+	public void setFieldPossition(int fieldPossition) {
+		this.fieldPossition = fieldPossition;
 	}
 
 	@Override
