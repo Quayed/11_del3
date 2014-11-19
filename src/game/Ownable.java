@@ -19,4 +19,20 @@ abstract public class Ownable extends OurField{
 	public void setOwner(Player owner) {
 		this.owner = owner;
 	}
+	public boolean isOwned(){
+		if(owner == null){
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+	public boolean isOwner(Player player){
+		if(player==this.owner){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 }

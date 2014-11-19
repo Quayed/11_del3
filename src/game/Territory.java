@@ -19,6 +19,8 @@ public class Territory extends Ownable{
 	public int getRent() {
 		return rent;
 	}
+	
+	
 
 	@Override
 	public void landOnField(Player player) {
