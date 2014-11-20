@@ -45,8 +45,6 @@ public class Territory extends Ownable{
 					display.sendMessage("Du har ikke nok penge til at købe denne grund");
 				}
 			}
-			
-			
 		}
 		else{
 			System.out.println("Nu skal du sku betale");

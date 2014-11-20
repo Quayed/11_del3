@@ -73,4 +73,9 @@ public class Player{
 	public void addNumberOfFleetsOwned(){
 		this.numberOfFleetsOwned++;
 	}
+	
+	//Denne metode skal kaldes idet GameController vurderer at en spiller er gået bankerot
+	public void bankruptcy(){
+		//Frigiv alle ejede grunde
+	}
 }

@@ -58,6 +58,10 @@ public class GameController {
 			turn = ++turn % numberOfPlayers;
 			for(int i = 0; i < numberOfPlayers; i++) {
 				display.updateBalance(players[i]);
+				//Det kontrolleres om spilleren er gået bankerot
+				if(players[i].getAcc().getBalance() < 0){
+					players[i].bankruptcy();
+				}
 			}
 		}
 		

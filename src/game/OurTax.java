@@ -55,11 +55,11 @@ public class OurTax extends OurField{
 			display.sendMessage(player.getName() + " er landet på Goldmine og skal betale 2000 kroner i skat.");
 			player.getAcc().withdraw(2000);
 		}
-		
 		// felt 17, spilleren skal vælge mellem at miste 10% eller 4000
 		else if (player.getField() == 19) {
 			switch (player.getPayMethod()) {
 			case "10%":
+				//Dette skal laves om til total assets
 				player.getAcc().withdraw((int) (player.getAcc().getBalance()*this.taxRate));
 				break;
 			case "4000":
