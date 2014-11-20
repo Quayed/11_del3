@@ -44,7 +44,7 @@ public class Fleet extends Ownable{
 				}
 			}
 		} else{
-			if(display.chooseToBuy(super.getName(), super.getPrice(), player) == "Køb"){
+			if(display.chooseToBuyFleet(super.getName(), super.getPrice(), player) == "Køb"){
 				if(player.getAcc().getBalance() > super.getPrice()){
 					player.getAcc().withdraw(super.getPrice());
 					super.setOwner(player);

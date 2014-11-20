@@ -51,8 +51,10 @@ public class OurTax extends OurField{
 	@Override
 	public void landOnField(Player player, GUIManager display) {
 		// felt 16, spilleren skal miste 2000
-		if(player.getField() == 9)
+		if(player.getField() == 9) {
+			display.sendMessage(player.getName() + " er landet på Goldmine og skal betale 2000 kroner i skat.");
 			player.getAcc().withdraw(2000);
+		}
 		
 		// felt 17, spilleren skal vælge mellem at miste 10% eller 4000
 		else if (player.getField() == 19) {

@@ -104,7 +104,7 @@ public class GUIManager {
 		GUI.getUserButtonPressed("\n\n" + message, "Ok");
 	}
 	
-	public String chooseToBuy(String name, int price, Player player){
+	public String chooseToBuyFleet(String name, int price, Player player){
 		return GUI.getUserButtonPressed("\n" + player.getName() + " er landet på flåden " + name + ". Den er ikke ejet.\nVil du købe " + name + "? Det koster " + price + " kroner", "Køb", "Afslå");
 	}
 	
