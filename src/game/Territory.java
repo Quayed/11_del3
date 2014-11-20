@@ -35,11 +35,11 @@ public class Territory extends Ownable{
 		// spilleren skal have muligheden for at købe grunden hvis den ikke er ejet af andre.
 		// Hvis grunden er ejet af en anden spiller skal der rent overføres fra den ene spiller til den anden.
 		if (super.isOwner(player)){
-			System.out.println("du er ejeren");
+			System.out.println("Du er ejeren af denne grund");
 		}
 		else if(!super.isOwned()){
 			
-			System.out.println("den er ikke ejet og du kan k�be grunden");
+			System.out.println("Den er ikke ejet og du kan købe grunden");
 		}
 		else{
 			System.out.println("Nu skal du sku betale");

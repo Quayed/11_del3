@@ -30,7 +30,7 @@ public class GameController {
 		
 		for(int i = 0; i < numberOfPlayers; i++){
 			// her bør der tilføjes muligheden for spillerne at vælge navn - dette skal dog først gøres til sidst.
-			players[i] = new Player(i, "Spiller"+i);
+			players[i] = new Player(i, "Spiller "+i);
 			display.addPlayer(players[i].getName(), players[i].getAcc().getBalance(), colors[i]);
 		}
 		
@@ -38,7 +38,7 @@ public class GameController {
 		Player activePlayer;
 		while(true){
 			activePlayer = players[turn];
-			display.roll(activePlayer.getName());
+			display.roll(activePlayer);
 			dieOne = dice.roll();
 			dieTwo = dice.roll();
 			display.setDice(dieOne, dieTwo);
@@ -49,17 +49,17 @@ public class GameController {
                         
 			//Landing på felt
 			if (activePlayer.getField() == 19) 
-				activePlayer.setPayMethod(display.choosePayment());
+				activePlayer.setPayMethod(display.choosePayment(activePlayer));
 			board.getField(activePlayer.getField()-1).landOnField(activePlayer, display);
 			//Opdatering af gameboard
-			display.updateBalance(activePlayer);
+			
 			
 			
 			turn = ++turn % numberOfPlayers;
+			for(int i = 0; i < numberOfPlayers; i++) {
+				display.updateBalance(players[i]);
+			}
 		}
-		
-		
-		
 		
 	}
 

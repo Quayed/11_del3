@@ -83,8 +83,8 @@ public class GUIManager {
 		return numberOfPlayers;
 	}
 	
-	public void roll(String name){
-		GUI.getUserButtonPressed("Det er " + name + "'s tur. Tryk på knappen for at kaste terninger", "kast");
+	public void roll(Player player){
+		GUI.getUserButtonPressed("Det er " + player.getName() + "'s tur. Tryk på knappen for at kaste terninger", "kast");
 	}
 	
 	public int movePlayer(int prevField, int field, String name){
@@ -96,16 +96,16 @@ public class GUIManager {
 		GUI.setBalance(player.getName(), player.getAcc().getBalance());
 	}
 	
-	public String choosePayment() {
-		return GUI.getUserButtonPressed("\n\nVil du betale 10% eller 4000?", "10%", "4000");
+	public String choosePayment(Player player) {
+		return GUI.getUserButtonPressed("\n" + player.getName() + " er landet på karavane feltet og skal betale skat\nVil du betale 10% eller 4000?", "10%", "4000");
 	}
 	
 	public void sendMessage(String message){
 		GUI.getUserButtonPressed("\n\n" + message, "Ok");
 	}
 	
-	public String chooseToBuy(String name, int price){
-		return GUI.getUserButtonPressed("\n\n Vil du købe " + name + ", det koster " + price + " penge", "Køb", "Afslå");
+	public String chooseToBuy(String name, int price, Player player){
+		return GUI.getUserButtonPressed("\n" + player.getName() + " er landet på flåden " + name + ". Den er ikke ejet.\nVil du købe " + name + "? Det koster " + price + " kroner", "Køb", "Afslå");
 	}
 	
 	public void setOwner(int fieldNumber, String name){

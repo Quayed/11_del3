@@ -52,4 +52,11 @@ public class Account {
 		}
 	}
 	
+	public String toString() {
+		String s = "";
+		s += getId() + " " + getBalance();
+		
+		return s;
+	}
+	
 }
