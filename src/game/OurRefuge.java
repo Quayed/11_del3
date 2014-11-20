@@ -30,6 +30,7 @@ public class OurRefuge extends OurField{
 
 	@Override
 	public void landOnField(Player player, GUIManager display) {
+		display.sendMessage(player.getName() + " landede på " + super.getName() + " og modtager " + this.bonus);
 		player.getAcc().deposit(this.bonus);	
 	}
 	

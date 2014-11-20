@@ -36,7 +36,6 @@ public class Fleet extends Ownable{
 					display.sendMessage(player.getName() + " er landet på " + super.getName() + " og skal betale " + this.rent[super.getOwner().getNumberOfFleetsOwned()-1] + " kroner.");
 					
 					//Her overføres penge fra spilleren der landte på 
-					
 					player.getAcc().transfer(super.getOwner().getAcc(), this.rent[super.getOwner().getNumberOfFleetsOwned()-1]);
 					
 					
