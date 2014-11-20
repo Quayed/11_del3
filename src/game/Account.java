@@ -30,26 +30,12 @@ public class Account {
 	}
 	
 	public void withdraw(int amount){
-		if(amount > 0){
-			if(amount < this.balance){
-				this.balance -= amount;
-			} else{
-				System.out.println("Der er ikke nok penge på kontoen til at udtrække dette beløb.");
-			}
-		} else if(amount < 0){
-			System.out.println("Du kan ikke udtrække negative beløb.");
-		}
+		this.balance -= amount; 
 	}
 	
 	public void transfer(Account reciever, int amount){
-		if(amount < this.balance && amount > 0){
-			this.withdraw(amount);
-			reciever.deposit(amount);
-		} else if(amount > this.balance){
-			System.out.println("Der er ikke penge nok på kontoen til at trække dette beløb");
-		} else if(amount < 0){
-			System.out.println("Der kan ikke flyttes negative beløb.");
-		}
+		this.withdraw(amount);
+		reciever.deposit(amount);
 	}
 	
 	public String toString() {

@@ -76,6 +76,7 @@ public class Player{
 	
 	//Denne metode skal kaldes idet GameController vurderer at en spiller er gået bankerot
 	public void bankruptcy(){
+		System.out.print("Spiller" + name + " er gået banekrot og har tabt.");
 		//Frigiv alle ejede grunde
 	}
 }
