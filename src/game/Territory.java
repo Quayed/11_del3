@@ -32,22 +32,31 @@ public class Territory extends Ownable{
 
 	@Override
 	public void landOnField(Player player, GUIManager display) {
-		// spilleren skal have muligheden for at købe grunden hvis den ikke er ejet af andre.
-		// Hvis grunden er ejet af en anden spiller skal der rent overføres fra den ene spiller til den anden.
 		if (super.isOwner(player)){
 			System.out.println("Du er ejeren af denne grund");
 		}
 		else if(!super.isOwned()){
+			if(display.chooseToBuyTerritory(super.getName(), super.getPrice(), player, this.rent) == "Køb"){
+				if(player.getAcc().getBalance() > super.getPrice()){
+					player.getAcc().withdraw(super.getPrice());
+					super.setOwner(player);
+					display.setOwner(fieldPossition, player.getName());
+				} else{
+					display.sendMessage("Du har ikke nok penge til at købe denne grund");
+				}
+			}
 			
-			System.out.println("Den er ikke ejet og du kan købe grunden");
+			
 		}
 		else{
 			System.out.println("Nu skal du sku betale");
+			display.sendMessage(player.getName() + " er landet på " + super.getName() + ". Grunden er ejet, du skal betale " + this.rent + " i leje.");
+			player.getAcc().transfer(super.getOwner().getAcc(), this.rent);
 		}
 		
 	}
 	public String toString() {
-		String s = "Rent: " + rent + " Price: " + super.getPrice() + " Name: " + super.getName() + " fieldId: " + super.getFieldId();
+		String s = "Rent: " + rent + " Price: " + super.getPrice() + " Name: " + super.getOwner().getName() + " fieldId: " + super.getFieldId();
 		return s;
 	}
 }
