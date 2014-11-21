@@ -1,9 +1,6 @@
 package game;
 import java.awt.Color;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
 public class GameController {
 	
 	public GameController(){
@@ -45,15 +42,50 @@ public class GameController {
 			activePlayer.move(dieOne+dieTwo);
 			//Spiller bevæger sig
 			display.movePlayer(activePlayer.getPrevField(), activePlayer.getField(), activePlayer.getName());
-			
                         
-			//Landing på felt
+			//Landing på felter
+			switch(board.getField(activePlayer.getField()-1).getType()) {
+			case("Territory"):
+				Territory currentTerritory = (Territory) board.getField(activePlayer.getField()-1);
+			
+				if (currentTerritory.isOwner(activePlayer)){
+					System.out.println("Du er ejeren af denne grund");
+				}
+				else if(!currentTerritory.isOwned()){
+					if(display.chooseToBuyTerritory(currentTerritory.getName(), currentTerritory.getPrice(), activePlayer, currentTerritory.getRent()) == "Køb"){
+						if(activePlayer.getAcc().getBalance() > currentTerritory.getPrice()){
+							activePlayer.getAcc().withdraw(currentTerritory.getPrice());
+							currentTerritory.setOwner(activePlayer);
+							display.setOwner(activePlayer.getField(), activePlayer.getName());
+						} else{
+							display.sendMessage("Du har ikke nok penge til at købe denne grund");
+						}
+					}
+				}
+				else{
+					System.out.println("Nu skal du sku betale");
+					display.sendMessage(activePlayer.getName() + " er landet på " + currentTerritory.getName() + ". Grunden er ejet, du skal betale " + currentTerritory.getRent() + " i leje.");
+					activePlayer.getAcc().transfer(currentTerritory.getOwner().getAcc(), currentTerritory.getRent());
+				}
+				break;
+			case("LaborCamp"):
+				//statements
+				break;
+			case("Refuge"):
+				//statements
+				break;
+			case("Fleet"):
+				//statements
+				break;
+			case("Tax"):
+				//statements
+				break;
+			}
+
 			if (activePlayer.getField() == 19) 
 				activePlayer.setPayMethod(display.choosePayment(activePlayer));
 			board.getField(activePlayer.getField()-1).landOnField(activePlayer, display);
 			//Opdatering af gameboard
-			
-			
 			
 			turn = ++turn % numberOfPlayers;
 			for(int i = 0; i < numberOfPlayers; i++) {
@@ -63,8 +95,6 @@ public class GameController {
 					players[i].bankruptcy();
 				}
 			}
-		}
-		
+		}	
 	}
-
 }
