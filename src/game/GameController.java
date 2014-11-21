@@ -141,12 +141,27 @@ public class GameController {
 				//statements
 				break;
 			case("Tax"):
-				//statements
+				OurTax currentTax =  (OurTax) board.getField(activePlayer.getField() -1); 
+				// felt 16, spilleren skal miste 2000
+				if(activePlayer.getField() == 9) {
+					display.sendMessage(activePlayer.getName() + " er landet på " + currentTax.getName() + " og skal betale 2000 kroner i skat.");
+					activePlayer.getAcc().withdraw(2000);
+				}
+				// felt 17, spilleren skal vælge mellem at miste 10% eller 4000
+				else if (activePlayer.getField() == 19) {
+					switch (display.choosePayment(activePlayer.getName())) {
+					case "10%":
+						//Dette skal laves om til total assets
+						activePlayer.getAcc().withdraw((int) (activePlayer.getAcc().getBalance()*currentTax.getTaxRate()));
+						break;
+					case "4000":
+						activePlayer.getAcc().withdraw(4000);
+						break;
+					}
+				}
 				break;
 			}
 
-			if (activePlayer.getField() == 19) 
-				activePlayer.setPayMethod(display.choosePayment(activePlayer));
 			board.getField(activePlayer.getField()-1).landOnField(activePlayer, display);
 			//Opdatering af gameboard
 			

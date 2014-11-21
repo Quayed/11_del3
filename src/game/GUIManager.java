@@ -96,8 +96,8 @@ public class GUIManager {
 		GUI.setBalance(player.getName(), player.getAcc().getBalance());
 	}
 	
-	public String choosePayment(Player player) {
-		return GUI.getUserButtonPressed("\n" + player.getName() + " er landet på karavane feltet og skal betale skat\nVil du betale 10% eller 4000?", "10%", "4000");
+	public String choosePayment(String name) {
+		return GUI.getUserButtonPressed("\n" + name + " er landet på karavane feltet og skal betale skat\nVil du betale 10% eller 4000?", "10%", "4000");
 	}
 	
 	public void sendMessage(String message){
