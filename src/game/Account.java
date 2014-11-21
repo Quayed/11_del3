@@ -29,19 +29,29 @@ public class Account {
 		}
 	}
 	
-	public void withdraw(int amount){
-		this.balance -= amount; 
+	public boolean withdraw(int amount){
+		if(amount > 0){
+			if(amount <= this.balance){
+				this.balance -= amount; 
+				return true;	
+			}			
+		} 
+		return false;		
 	}
 	
-	public void transfer(Account reciever, int amount){
-		if(amount > this.balance){
-			reciever.deposit(balance);
-			this.withdraw(amount);
-		} else{
-			this.withdraw(amount);
-			reciever.deposit(amount);
+	public boolean transfer(Account reciever, int amount){
+		if(amount > 0){
+			if(amount > this.balance){
+				reciever.deposit(balance);
+				this.withdraw(amount);
+				return false;
+			} else{
+				this.withdraw(amount);
+				reciever.deposit(amount);
+				return true;
+			}
 		}
-		
+		return false;
 	}
 	
 	public String toString() {
