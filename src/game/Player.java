@@ -5,7 +5,7 @@ public class Player{
 	private int previous_field = 0;
 	private int field = 0;
 	final private int ID;
-	final private int STARTMONEY = 30000;
+	final private int STARTMONEY = 5000;
 	private String payMethod = "10%"; // Kan være "10%" eller "4000"
 	private Account acc;
 	private int numberOfFleetsOwned = 0;

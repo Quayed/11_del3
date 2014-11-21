@@ -62,7 +62,9 @@ public class GameController {
 				}
 				else if(!currentTerritory.isOwned()){
 					if(display.chooseToBuyTerritory(currentTerritory.getName(), currentTerritory.getPrice(), activePlayer, currentTerritory.getRent()) == "Køb"){
-						buyField(currentTerritory);
+						if(buyField(currentTerritory)){
+							activePlayer.addNumberOfFleetsOwned();
+						}
 					}
 				}
 				else{
@@ -95,7 +97,9 @@ public class GameController {
 			    	}
 			    }else{
 			    	if(display.chooseToBuyLaborCamp(currentLaborCamp.getName(), currentLaborCamp.getPrice(), activePlayer) == "Køb"){
-			    		buyField(currentLaborCamp);
+			    		if(buyField(currentLaborCamp)){
+			    			activePlayer.addNumberOfLaborCamps();
+			    		}
 			    	}
 			    }
 				break;
@@ -129,7 +133,9 @@ public class GameController {
 				currentTax =  (OurTax) board.getField(activePlayer.getField() -1); 
 				if(activePlayer.getField() == 9) {
 					display.sendMessage(activePlayer.getName() + " er landet på " + currentTax.getName() + " og skal betale 2000 kroner i skat.");
-					activePlayer.getAcc().withdraw(2000);
+					if(!activePlayer.getAcc().withdraw(2000)){
+						die();
+					}
 				}else if (activePlayer.getField() == 19) {
 					switch (display.choosePayment(activePlayer.getName())) {
 					case "10%":
@@ -141,10 +147,14 @@ public class GameController {
 								totalAssets += currentOwnable.getPrice();
 							}
 						}
-						activePlayer.getAcc().withdraw((int) (totalAssets*currentTax.getTaxRate()));
+						if(!activePlayer.getAcc().withdraw((int) (totalAssets*currentTax.getTaxRate()))){
+							die();
+						}
 						break;
 					case "4000":
-						activePlayer.getAcc().withdraw(4000);
+						if(!activePlayer.getAcc().withdraw(4000)){
+							die();
+						}
 						break;
 					}
 				}
@@ -164,19 +174,21 @@ public class GameController {
 		}	
 	}
 	
-	private void buyField(Ownable field){
-		if(activePlayer.getAcc().getBalance() > field.getPrice()){
+	private boolean buyField(Ownable field){
+		if(activePlayer.getAcc().getBalance() >= field.getPrice()){
     		activePlayer.getAcc().withdraw(field.getPrice());
     		field.setOwner(activePlayer);
     		activePlayer.addNumberOfLaborCamps();
     		display.setOwner(activePlayer.getField(), activePlayer.getName());
+    		return true;
     	}
     	else{
     		display.sendMessage("Du har ikke nok penge til at købe denne grund");
+    		return false;
     	}
 	}
 	
 	private void die(){
-		
+		System.out.println("DØD ");
 	}
 }
