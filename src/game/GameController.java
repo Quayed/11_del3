@@ -43,12 +43,13 @@ public class GameController {
 		//loop er får vores spil til at køre.
 		while(true){
 			activePlayer = players[turn];
-			if (activePlayer == null) continue;
+			if (activePlayer == null) continue; // tjekker om spilleren har tabt eller stadig er med.
 			display.roll(activePlayer);
 			dieOne = dice.roll();
 			dieTwo = dice.roll();
 			display.setDice(dieOne, dieTwo);
 			activePlayer.move(dieOne+dieTwo);
+			
 			//Spiller bevæger sig
 			display.movePlayer(activePlayer.getPrevField(), activePlayer.getField(), activePlayer.getName());
                         
