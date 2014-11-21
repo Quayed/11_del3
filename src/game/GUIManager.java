@@ -122,6 +122,7 @@ public class GUIManager {
 	
 	public void removePlayer(String name){
 		GUI.removeAllCars(name);
+		GUI.setBalance(name, -9999);
 	}
 	
 	public void removeOwner(int fieldNumber){
