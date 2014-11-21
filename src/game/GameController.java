@@ -43,7 +43,10 @@ public class GameController {
 		//loop er får vores spil til at køre.
 		while(true){
 			activePlayer = players[turn];
-			if (activePlayer == null) continue; // tjekker om spilleren har tabt eller stadig er med.
+			if (activePlayer == null) {// tjekker om spilleren har tabt eller stadig er med.
+				turn = ++turn % numberOfPlayers;
+				continue; 
+			}
 			display.roll(activePlayer);
 			dieOne = dice.roll();
 			dieTwo = dice.roll();
@@ -68,7 +71,7 @@ public class GameController {
 				else{
 					display.sendMessage(activePlayer.getName() + " er landet på " + currentTerritory.getName() + ". Grunden er ejet, du skal betale " + currentTerritory.getRent() + " i leje.");
 					if(!activePlayer.getAcc().transfer(currentTerritory.getOwner().getAcc(), currentTerritory.getRent())){
-						die();
+						die(turn);
 					}
 				}
 				break;
@@ -90,7 +93,7 @@ public class GameController {
 			    			display.sendMessage("du har slået " + (dieOne + dieTwo) + ", og skal betale " + rent);
 			    			//Jeg sender penge fra den aktive spiller til ejeren af feltet. Jeg ved han har penge nok da dette var condition til at komme herned 
 			    			if(!activePlayer.getAcc().transfer(currentLaborCamp.getOwner().getAcc(), rent)){
-			    				die();
+			    				die(turn);
 			    			}
 			    	}
 			    }else{
@@ -116,7 +119,7 @@ public class GameController {
 							display.sendMessage(activePlayer.getName() + " er landet på " + currentFleet.getName() + " og skal betale " + currentFleet.getRent() + " kroner.");
 							//Her overføres penge fra spilleren der landte på 
 							if(!activePlayer.getAcc().transfer(currentFleet.getOwner().getAcc(), currentFleet.getRent())){
-								die();
+								die(turn);
 							}
 						} 
 					}
@@ -134,7 +137,7 @@ public class GameController {
 				if(activePlayer.getField() == 9) {
 					display.sendMessage(activePlayer.getName() + " er landet på " + currentTax.getName() + " og skal betale 2000 kroner i skat.");
 					if(!activePlayer.getAcc().withdraw(2000)){
-						die();
+						die(turn);
 					}
 				}else if (activePlayer.getField() == 19) {
 					switch (display.choosePayment(activePlayer.getName())) {
@@ -148,12 +151,12 @@ public class GameController {
 							}
 						}
 						if(!activePlayer.getAcc().withdraw((int) (totalAssets*currentTax.getTaxRate()))){
-							die();
+							die(turn);
 						}
 						break;
 					case "4000":
 						if(!activePlayer.getAcc().withdraw(4000)){
-							die();
+							die(turn);
 						}
 						break;
 					}
@@ -165,11 +168,8 @@ public class GameController {
 			
 			turn = ++turn % numberOfPlayers;
 			for(int i = 0; i < numberOfPlayers; i++) {
+				if (players[i] == null) continue;
 				display.updateBalance(players[i]);
-				//Det kontrolleres om spilleren er gået bankerot
-				if(players[i].getAcc().getBalance() < 0){
-					players[i].bankruptcy();
-				}
 			}
 		}	
 	}
@@ -177,6 +177,7 @@ public class GameController {
 	private boolean buyField(Ownable field){
 		if(activePlayer.getAcc().getBalance() >= field.getPrice()){
     		activePlayer.getAcc().withdraw(field.getPrice());
+    		activePlayer.addToInventory(activePlayer.getField());
     		field.setOwner(activePlayer);
     		display.setOwner(activePlayer.getField(), activePlayer.getName());
     		return true;
@@ -187,7 +188,17 @@ public class GameController {
     	}
 	}
 	
-	private void die(){
-		System.out.println("DØD ");
+	private void die(int turn){
+		int[] playerInventory = activePlayer.getInventory();
+		for (int i = 0; i < playerInventory.length; i++){
+			if (playerInventory[i] != 0){
+				Ownable currentOwnable = (Ownable) board.getField(playerInventory[i]-1);
+				currentOwnable.setOwner(null);
+				display.removeOwner(playerInventory[i]);
+			}
+		}
+		activePlayer.resetInventory();
+		display.removePlayer(activePlayer.getName());
+		players[turn] = null;
 	}
 }

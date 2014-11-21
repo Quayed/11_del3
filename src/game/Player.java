@@ -11,7 +11,8 @@ public class Player{
 	private int numberOfFleetsOwned = 0;
 	private int numberOfLaborCampsOwned = 0;
 	private boolean hasLost = false;
-	private int[] inventory = new int[17];
+	private int[] inventory = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	private int numberOfFieldsOwned = 0;
 	
 	public Player(int id, String name){
 		this.name = name;
@@ -110,5 +111,17 @@ public class Player{
 
 	public void setInventory(int[] inventory) {
 		this.inventory = inventory;
+	}
+	
+	public void addToInventory(int field){
+		this.inventory[this.numberOfFieldsOwned] = field;
+		this.numberOfFieldsOwned++;
+	}
+	
+	public void resetInventory(){
+		for(int i = 0; i < this.inventory.length; i++){
+			this.inventory[i] = 0;
+		}
+		this.numberOfFieldsOwned = 0;
 	}
 }

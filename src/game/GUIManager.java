@@ -119,6 +119,14 @@ public class GUIManager {
 	public void setOwner(int fieldNumber, String name){
 		GUI.setOwner(fieldNumber, name);
 	}
+	
+	public void removePlayer(String name){
+		GUI.removeAllCars(name);
+	}
+	
+	public void removeOwner(int fieldNumber){
+		GUI.removeOwner(fieldNumber);
+	}
 }
 
 
