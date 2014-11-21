@@ -2,28 +2,33 @@ package game;
 import java.awt.Color;
 
 public class GameController {
-	
+	Territory currentTerritory;
+	Fleet currentFleet;
+	LaborCamp currentLaborCamp;
+	OurRefuge currentRefuge;
+	OurTax currentTax;
+	Player activePlayer;
+	GameBoard board;
+	Die dice;
+	Player players[];
+	Color colors[];
+	GUIManager display;
 	public GameController(){
 		
 	}
 	
 	public void run() {
-		GameBoard board = new GameBoard();
-		Die dice = new Die();
-		Player players[] = new Player[6];
-		Color colors[] = new Color[] {Color.BLUE, Color.RED, Color.GREEN, Color.CYAN, Color.ORANGE, Color.YELLOW};
+		board = new GameBoard();
+		dice = new Die();
+		players = new Player[6];
+		colors = new Color[] {Color.BLUE, Color.RED, Color.GREEN, Color.CYAN, Color.ORANGE, Color.YELLOW};
 		int numberOfPlayers;
 		int turn = 0;
 		int dieOne, dieTwo;
 		//Kør spillet
-		GUIManager display = new GUIManager();
+		display = new GUIManager();
 		display.create(board);
-		Territory currentTerritory;
-		Fleet currentFleet;
-		LaborCamp currentLaborCamp;
-		OurRefuge currentRefuge;
-		OurTax currentTax;
-		Player activePlayer;
+		
 		
 		//Vælg antal spillere
 		numberOfPlayers = display.getNumberOfPlayers();
@@ -55,13 +60,7 @@ public class GameController {
 				}
 				else if(!currentTerritory.isOwned()){
 					if(display.chooseToBuyTerritory(currentTerritory.getName(), currentTerritory.getPrice(), activePlayer, currentTerritory.getRent()) == "Køb"){
-						if(activePlayer.getAcc().getBalance() > currentTerritory.getPrice()){
-							activePlayer.getAcc().withdraw(currentTerritory.getPrice());
-							currentTerritory.setOwner(activePlayer);
-							display.setOwner(activePlayer.getField(), activePlayer.getName());
-						} else{
-							display.sendMessage("Du har ikke nok penge til at købe denne grund");
-						}
+						buyField();
 					}
 				}
 				else{
@@ -95,15 +94,7 @@ public class GameController {
 			    	}
 			    }else{
 			    	if(display.chooseToBuyLaborCamp(currentLaborCamp.getName(), currentLaborCamp.getPrice(), activePlayer) == "Køb"){
-				    	if(activePlayer.getAcc().getBalance() > currentLaborCamp.getPrice()){
-				    		activePlayer.getAcc().withdraw(currentLaborCamp.getPrice());
-				    		currentLaborCamp.setOwner(activePlayer);
-				    		activePlayer.addNumberOfLaborCamps();
-				    		display.setOwner(activePlayer.getField(), activePlayer.getName());
-				    	}
-				    	else{
-				    		display.sendMessage("Du har ikke nok penge til at købe denne grund");
-				    	}
+			    		buyField();
 			    	}
 			    }
 				break;
@@ -131,14 +122,7 @@ public class GameController {
 					}
 				} else{
 					if(display.chooseToBuyFleet(currentFleet.getName(), currentFleet.getPrice(), activePlayer) == "Køb"){
-						if(activePlayer.getAcc().getBalance() > currentFleet.getPrice()){
-							activePlayer.getAcc().withdraw(currentFleet.getPrice());
-							currentFleet.setOwner(activePlayer);
-							activePlayer.addNumberOfFleetsOwned();
-							display.setOwner(activePlayer.getField(), activePlayer.getName());
-						} else{
-							display.sendMessage("Du har ikke nok penge til at købe denne grund");
-						}
+						buyField();
 					}
 				}
 				break;
@@ -197,5 +181,16 @@ public class GameController {
 				}
 			}
 		}	
+	}
+	private void buyField(){
+		if(activePlayer.getAcc().getBalance() > currentLaborCamp.getPrice()){
+    		activePlayer.getAcc().withdraw(currentLaborCamp.getPrice());
+    		currentLaborCamp.setOwner(activePlayer);
+    		activePlayer.addNumberOfLaborCamps();
+    		display.setOwner(activePlayer.getField(), activePlayer.getName());
+    	}
+    	else{
+    		display.sendMessage("Du har ikke nok penge til at købe denne grund");
+    	}
 	}
 }
