@@ -34,8 +34,14 @@ public class Account {
 	}
 	
 	public void transfer(Account reciever, int amount){
-		this.withdraw(amount);
-		reciever.deposit(amount);
+		if(amount > this.balance){
+			reciever.deposit(balance);
+			this.withdraw(amount);
+		} else{
+			this.withdraw(amount);
+			reciever.deposit(amount);
+		}
+		
 	}
 	
 	public String toString() {
