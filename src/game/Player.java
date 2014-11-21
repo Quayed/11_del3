@@ -11,6 +11,7 @@ public class Player{
 	private int numberOfFleetsOwned = 0;
 	private int numberOfLaborCampsOwned = 0;
 	private boolean hasLost = false;
+	private int[] inventory = new int[17];
 	
 	public Player(int id, String name){
 		this.name = name;
@@ -101,5 +102,13 @@ public class Player{
 
 	public void setHasLost(boolean hasLost) {
 		this.hasLost = hasLost;
+	}
+
+	public int[] getInventory() {
+		return inventory;
+	}
+
+	public void setInventory(int[] inventory) {
+		this.inventory = inventory;
 	}
 }
