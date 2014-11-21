@@ -62,9 +62,7 @@ public class GameController {
 				}
 				else if(!currentTerritory.isOwned()){
 					if(display.chooseToBuyTerritory(currentTerritory.getName(), currentTerritory.getPrice(), activePlayer, currentTerritory.getRent()) == "Køb"){
-						if(buyField(currentTerritory)){
-							activePlayer.addNumberOfFleetsOwned();
-						}
+						buyField(currentTerritory);
 					}
 				}
 				else{
@@ -124,7 +122,9 @@ public class GameController {
 					}
 				} else{
 					if(display.chooseToBuyFleet(currentFleet.getName(), currentFleet.getPrice(), activePlayer) == "Køb"){
-						buyField(currentFleet);
+						if(buyField(currentFleet)){
+							activePlayer.addNumberOfFleetsOwned();
+						}
 					}
 				}
 				break;
@@ -178,7 +178,6 @@ public class GameController {
 		if(activePlayer.getAcc().getBalance() >= field.getPrice()){
     		activePlayer.getAcc().withdraw(field.getPrice());
     		field.setOwner(activePlayer);
-    		activePlayer.addNumberOfLaborCamps();
     		display.setOwner(activePlayer.getField(), activePlayer.getName());
     		return true;
     	}
