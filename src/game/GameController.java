@@ -7,6 +7,7 @@ public class GameController {
 	LaborCamp currentLaborCamp;
 	OurRefuge currentRefuge;
 	OurTax currentTax;
+	Ownable currentOwnable;
 	Player activePlayer;
 	GameBoard board;
 	Die dice;
@@ -60,7 +61,7 @@ public class GameController {
 				}
 				else if(!currentTerritory.isOwned()){
 					if(display.chooseToBuyTerritory(currentTerritory.getName(), currentTerritory.getPrice(), activePlayer, currentTerritory.getRent()) == "Køb"){
-						buyField();
+						buyField(currentTerritory);
 					}
 				}
 				else{
@@ -94,7 +95,7 @@ public class GameController {
 			    	}
 			    }else{
 			    	if(display.chooseToBuyLaborCamp(currentLaborCamp.getName(), currentLaborCamp.getPrice(), activePlayer) == "Køb"){
-			    		buyField();
+			    		buyField(currentLaborCamp);
 			    	}
 			    }
 				break;
@@ -119,7 +120,7 @@ public class GameController {
 					}
 				} else{
 					if(display.chooseToBuyFleet(currentFleet.getName(), currentFleet.getPrice(), activePlayer) == "Køb"){
-						buyField();
+						buyField(currentFleet);
 					}
 				}
 				break;
@@ -136,20 +137,8 @@ public class GameController {
 						int[] playerInventory = activePlayer.getInventory();
 						for (int i = 0; i < playerInventory.length; i++){
 							if (playerInventory[i] != 0){
-								switch(board.getField(playerInventory[i]-1).getType()){
-								case("Territory"):
-									currentTerritory = (Territory) board.getField(playerInventory[i]); 
-									totalAssets += currentTerritory.getPrice();
-									break;
-								case("LaborCamp"):
-									currentLaborCamp = (LaborCamp) board.getField(playerInventory[i]);
-									totalAssets += currentLaborCamp.getPrice();
-									break;
-								case("Fleet"):
-									currentFleet = (Fleet) board.getField(playerInventory[i]);
-									totalAssets += currentFleet.getPrice();
-									break;
-								}
+								Ownable currentOwnable = (Ownable) board.getField(playerInventory[i]-1);
+								totalAssets += currentOwnable.getPrice();
 							}
 						}
 						activePlayer.getAcc().withdraw((int) (totalAssets*currentTax.getTaxRate()));
@@ -174,10 +163,11 @@ public class GameController {
 			}
 		}	
 	}
-	private void buyField(){
-		if(activePlayer.getAcc().getBalance() > currentLaborCamp.getPrice()){
-    		activePlayer.getAcc().withdraw(currentLaborCamp.getPrice());
-    		currentLaborCamp.setOwner(activePlayer);
+	
+	private void buyField(Ownable field){
+		if(activePlayer.getAcc().getBalance() > field.getPrice()){
+    		activePlayer.getAcc().withdraw(field.getPrice());
+    		field.setOwner(activePlayer);
     		activePlayer.addNumberOfLaborCamps();
     		display.setOwner(activePlayer.getField(), activePlayer.getName());
     	}
