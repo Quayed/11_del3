@@ -67,7 +67,9 @@ public class GameController {
 				}
 				else{
 					display.sendMessage(activePlayer.getName() + " er landet på " + currentTerritory.getName() + ". Grunden er ejet, du skal betale " + currentTerritory.getRent() + " i leje.");
-					activePlayer.getAcc().transfer(currentTerritory.getOwner().getAcc(), currentTerritory.getRent());
+					if(!activePlayer.getAcc().transfer(currentTerritory.getOwner().getAcc(), currentTerritory.getRent())){
+						die();
+					}
 				}
 				break;
 				
@@ -76,7 +78,6 @@ public class GameController {
 				currentLaborCamp = (LaborCamp) board.getField(activePlayer.getField()-1);
 			    if(currentLaborCamp.isOwned()){
 			    	if(!currentLaborCamp.isOwner(activePlayer)){
-			    		if(activePlayer.getAcc().getBalance() > currentLaborCamp.getPrice()){
 			    			//Jeg sender en besked han skal bekræfte for at fortsætte, hvor der står hvilket felt han har landt på og hvad der skal ske
 			    			display.sendMessage(activePlayer.getName() + "er landet på " + currentLaborCamp.getName() + "og skal slå med tegningerne. Der betales 100*øjne*ejet Labor Camps");
 			    			//Jeg slår med 2 terninger, og viser dette i grafikken
@@ -88,11 +89,9 @@ public class GameController {
 			    			//Jeg sender en besked han skal bekræfte for at fortsætte, hvor der står hvad han slog og hvad han skal betale
 			    			display.sendMessage("du har slået " + (dieOne + dieTwo) + ", og skal betale " + rent);
 			    			//Jeg sender penge fra den aktive spiller til ejeren af feltet. Jeg ved han har penge nok da dette var condition til at komme herned 
-			    			activePlayer.getAcc().transfer(currentLaborCamp.getOwner().getAcc(), rent);
-			    		}
-			    		else{
-			    			//her skal han smides ud
-			    		}
+			    			if(!activePlayer.getAcc().transfer(currentLaborCamp.getOwner().getAcc(), rent)){
+			    				die();
+			    			}
 			    	}
 			    }else{
 			    	if(display.chooseToBuyLaborCamp(currentLaborCamp.getName(), currentLaborCamp.getPrice(), activePlayer) == "Køb"){
@@ -114,10 +113,10 @@ public class GameController {
 						if(activePlayer.getAcc().getBalance() > currentFleet.getPrice()){
 							display.sendMessage(activePlayer.getName() + " er landet på " + currentFleet.getName() + " og skal betale " + currentFleet.getRent() + " kroner.");
 							//Her overføres penge fra spilleren der landte på 
-							activePlayer.getAcc().transfer(currentFleet.getOwner().getAcc(), currentFleet.getRent());
-						} else{
-							// her skal der kaldes en metode for at spilleren har tabt.
-						}
+							if(!activePlayer.getAcc().transfer(currentFleet.getOwner().getAcc(), currentFleet.getRent())){
+								die();
+							}
+						} 
 					}
 				} else{
 					if(display.chooseToBuyFleet(currentFleet.getName(), currentFleet.getPrice(), activePlayer) == "Køb"){
@@ -175,5 +174,9 @@ public class GameController {
     	else{
     		display.sendMessage("Du har ikke nok penge til at købe denne grund");
     	}
+	}
+	
+	private void die(){
+		
 	}
 }
