@@ -111,11 +111,8 @@ public class GameController {
 					if(!currentFleet.isOwner(activePlayer)){
 						if(activePlayer.getAcc().getBalance() > currentFleet.getPrice()){
 							display.sendMessage(activePlayer.getName() + " er landet på " + currentFleet.getName() + " og skal betale " + currentFleet.getRent() + " kroner.");
-							
 							//Her overføres penge fra spilleren der landte på 
 							activePlayer.getAcc().transfer(currentFleet.getOwner().getAcc(), currentFleet.getRent());
-							
-							
 						} else{
 							// her skal der kaldes en metode for at spilleren har tabt.
 						}
@@ -129,13 +126,10 @@ public class GameController {
 				
 			case("Tax"):
 				currentTax =  (OurTax) board.getField(activePlayer.getField() -1); 
-				// felt 16, spilleren skal miste 2000
 				if(activePlayer.getField() == 9) {
 					display.sendMessage(activePlayer.getName() + " er landet på " + currentTax.getName() + " og skal betale 2000 kroner i skat.");
 					activePlayer.getAcc().withdraw(2000);
-				}
-				// felt 17, spilleren skal vælge mellem at miste 10% eller 4000
-				else if (activePlayer.getField() == 19) {
+				}else if (activePlayer.getField() == 19) {
 					switch (display.choosePayment(activePlayer.getName())) {
 					case "10%":
 						int totalAssets = activePlayer.getAcc().getBalance();
@@ -158,7 +152,6 @@ public class GameController {
 								}
 							}
 						}
-						
 						activePlayer.getAcc().withdraw((int) (totalAssets*currentTax.getTaxRate()));
 						break;
 					case "4000":
@@ -169,7 +162,6 @@ public class GameController {
 				break;
 			}
 
-			board.getField(activePlayer.getField()-1).landOnField(activePlayer, display);
 			//Opdatering af gameboard
 			
 			turn = ++turn % numberOfPlayers;
