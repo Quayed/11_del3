@@ -1,4 +1,7 @@
-package game;
+package fields;
+
+import game.GUIManager;
+import game.Player;
 
 abstract public class OurField {
 	private String name;

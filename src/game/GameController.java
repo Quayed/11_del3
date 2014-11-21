@@ -1,6 +1,13 @@
 package game;
 import java.awt.Color;
 
+import fields.Fleet;
+import fields.LaborCamp;
+import fields.OurRefuge;
+import fields.OurTax;
+import fields.Ownable;
+import fields.Territory;
+
 public class GameController {
 	Territory currentTerritory;
 	Fleet currentFleet;

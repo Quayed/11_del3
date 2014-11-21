@@ -1,4 +1,7 @@
-package game;
+package fields;
+
+import game.GUIManager;
+import game.Player;
 
 public class OurRefuge extends OurField{
 	private int bonus;

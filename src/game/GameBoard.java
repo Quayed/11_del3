@@ -1,5 +1,12 @@
 package game;
 
+import fields.Fleet;
+import fields.LaborCamp;
+import fields.OurField;
+import fields.OurRefuge;
+import fields.OurTax;
+import fields.Territory;
+
 public class GameBoard {
 	OurField[] fields = new OurField[21];
 	

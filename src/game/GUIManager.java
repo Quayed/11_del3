@@ -2,6 +2,12 @@ package game;
 
 import java.awt.Color;
 
+import fields.Fleet;
+import fields.LaborCamp;
+import fields.OurField;
+import fields.OurRefuge;
+import fields.OurTax;
+import fields.Territory;
 import boundaryToMatador.*;
 
 public class GUIManager {

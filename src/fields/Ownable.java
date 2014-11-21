@@ -1,4 +1,6 @@
-package game;
+package fields;
+
+import game.Player;
 
 abstract public class Ownable extends OurField{
 	private int price;
