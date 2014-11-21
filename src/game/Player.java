@@ -9,6 +9,7 @@ public class Player{
 	private String payMethod = "10%"; // Kan være "10%" eller "4000"
 	private Account acc;
 	private int numberOfFleetsOwned = 0;
+	private boolean hasLost = false;
 	
 	public Player(int id, String name){
 		this.name = name;
@@ -77,6 +78,15 @@ public class Player{
 	//Denne metode skal kaldes idet GameController vurderer at en spiller er gået bankerot
 	public void bankruptcy(){
 		System.out.print("Spiller" + name + " er gået banekrot og har tabt.");
+		this.hasLost = true;
 		//Frigiv alle ejede grunde
+	}
+
+	public boolean isHasLost() {
+		return hasLost;
+	}
+
+	public void setHasLost(boolean hasLost) {
+		this.hasLost = hasLost;
 	}
 }
