@@ -75,6 +75,32 @@ public class GameController {
 				//statements
 				break;
 			case("Fleet"):
+				Fleet currentFleet = (Fleet) board.getField(activePlayer.getField()-1);
+				if(currentFleet.isOwned()){
+					if(!currentFleet.isOwner(activePlayer)){
+						if(activePlayer.getAcc().getBalance() > currentFleet.getPrice()){
+							display.sendMessage(activePlayer.getName() + " er landet på " + currentFleet.getName() + " og skal betale " + currentFleet.getRent() + " kroner.");
+							
+							//Her overføres penge fra spilleren der landte på 
+							activePlayer.getAcc().transfer(currentFleet.getOwner().getAcc(), currentFleet.getRent());
+							
+							
+						} else{
+							// her skal der kaldes en metode for at spilleren har tabt.
+						}
+					}
+				} else{
+					if(display.chooseToBuyFleet(currentFleet.getName(), currentFleet.getPrice(), activePlayer) == "Køb"){
+						if(activePlayer.getAcc().getBalance() > currentFleet.getPrice()){
+							activePlayer.getAcc().withdraw(currentFleet.getPrice());
+							currentFleet.setOwner(activePlayer);
+							activePlayer.addNumberOfFleetsOwned();
+							display.setOwner(activePlayer.getField(), activePlayer.getName());
+						} else{
+							display.sendMessage("Du har ikke nok penge til at købe denne grund");
+						}
+					}
+				}
 				//statements
 				break;
 			case("Tax"):
