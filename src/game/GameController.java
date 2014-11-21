@@ -15,17 +15,14 @@ public class GameController {
 		int numberOfPlayers;
 		int turn = 0;
 		int dieOne, dieTwo;
+		//Kør spillet
+		GUIManager display = new GUIManager();
+		display.create(board);
 		Territory currentTerritory;
 		Fleet currentFleet;
 		LaborCamp currentLaborCamp;
 		OurRefuge currentRefuge;
 		OurTax currentTax;
-		
-		
-		//Kør spillet
-		GUIManager display = new GUIManager();
-		display.create(board);
-		
 		
 		//Vælg antal spillere
 		numberOfPlayers = display.getNumberOfPlayers();
@@ -40,6 +37,7 @@ public class GameController {
 		Player activePlayer;
 		while(true){
 			activePlayer = players[turn];
+			if (activePlayer == null) continue;
 			display.roll(activePlayer);
 			dieOne = dice.roll();
 			dieTwo = dice.roll();
@@ -159,7 +157,6 @@ public class GameController {
 				else if (activePlayer.getField() == 19) {
 					switch (display.choosePayment(activePlayer.getName())) {
 					case "10%":
-						//Dette skal laves om til total assets
 						int totalAssets = activePlayer.getAcc().getBalance();
 						int[] playerInventory = activePlayer.getInventory();
 						for (int i = 0; i < playerInventory.length; i++){

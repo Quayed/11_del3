@@ -1,4 +1,5 @@
 package tests;
+import game.Player;
 
 import static org.junit.Assert.*;
 
@@ -10,7 +11,7 @@ public class Fleetttests {
 	//Kontrol af hvorvidt det rigtige beløb bliver trukket fra idet en fleet købes
 	@Test
 	public void buyTest() {
-		fail("Not yet implemented");
+		
 	}
 	
 	
