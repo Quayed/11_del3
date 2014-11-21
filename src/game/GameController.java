@@ -14,7 +14,7 @@ public class GameController {
 		Color colors[] = new Color[] {Color.BLUE, Color.RED, Color.GREEN, Color.CYAN, Color.ORANGE, Color.YELLOW};
 		int numberOfPlayers;
 		int turn = 0;
-		int dieOne, dieTwo, field;
+		int dieOne, dieTwo;
 		
 		
 		//Kør spillet
@@ -110,7 +110,9 @@ public class GameController {
 
 				break;
 			case("Refuge"):
-				//statements
+				OurRefuge currentRefuge = (OurRefuge) board.getField(activePlayer.getField()-1);
+				display.sendMessage(activePlayer.getName() + " landede på " + currentRefuge.getName() + " og modtager " + currentRefuge.getBonus());
+				activePlayer.getAcc().deposit(currentRefuge.getBonus());
 				break;
 			case("Fleet"):
 				Fleet currentFleet = (Fleet) board.getField(activePlayer.getField()-1);
