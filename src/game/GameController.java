@@ -83,14 +83,15 @@ public class GameController {
 			    			//Jeg udregner hvad spilleren skal betale til ejeren. Dette er øjne*ejet*100
 			    			int rent = currentLaborCamp.getOwner().getNumberOfLaborCampsOwned()*100*(dieOne+dieTwo);
 			    			//Jeg sender en besked han skal bekræfte for at fortsætte, hvor der står hvad han slog og hvad han skal betale
-			    			display.sendMessage("du har slået " + dieOne + dieTwo + ", og skal betale " + rent);
+			    			display.sendMessage("du har slået " + (dieOne + dieTwo) + ", og skal betale " + rent);
 			    			//Jeg sender penge fra den aktive spiller til ejeren af feltet. Jeg ved han har penge nok da dette var condition til at komme herned 
 			    			activePlayer.getAcc().transfer(currentLaborCamp.getOwner().getAcc(), rent);
 			    		}
 			    		else{
 			    			//her skal han smides ud
 			    		}
-			    	}else{
+			    	}
+			    }else{
 			    		if(display.chooseToBuyLaborCamp(currentLaborCamp.getName(), currentLaborCamp.getPrice(), activePlayer) == "Køb"){
 			    			//Her skal der ske noget hvis han køber grunden
 			    		}
@@ -105,7 +106,7 @@ public class GameController {
 							}
 			    	}
 			    	
-			    }
+			    
 
 				break;
 			case("Refuge"):
