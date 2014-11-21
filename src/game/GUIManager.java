@@ -112,6 +112,10 @@ public class GUIManager {
 		return GUI.getUserButtonPressed("\n" + player.getName() + " er landet på grunden " + name + ". Den er ikke ejet.\nVil du købe " + name + "? Det koster " + price + " kroner, lejen er på " + rent, "Køb", "Afslå");
 	}
 	
+	public String chooseToBuyLaborCamp(String name, int price, Player player){
+		return GUI.getUserButtonPressed("\n" + player.getName() + " er landet på grunden " + name + ". Den er ikke ejet.\nVil du købe " + name + "? Det koster " + price + " kroner, lejen variere alt efter hvad der slås", "Køb", "Afslå");
+	}
+	
 	public void setOwner(int fieldNumber, String name){
 		GUI.setOwner(fieldNumber, name);
 	}

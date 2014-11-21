@@ -70,6 +70,43 @@ public class GameController {
 				break;
 			case("LaborCamp"):
 				//statements
+				LaborCamp currentLaborCamp = (LaborCamp) board.getField(activePlayer.getField()-1);
+			    if(currentLaborCamp.isOwned()){
+			    	if(!currentLaborCamp.isOwner(activePlayer)){
+			    		if(activePlayer.getAcc().getBalance() > currentLaborCamp.getPrice()){
+			    			//Jeg sender en besked han skal bekræfte for at fortsætte, hvor der står hvilket felt han har landt på og hvad der skal ske
+			    			display.sendMessage(activePlayer.getName() + "er landet på " + currentLaborCamp.getName() + "og skal slå med tegningerne. Der betales 100*øjne*ejet Labor Camps");
+			    			//Jeg slår med 2 terninger, og viser dette i grafikken
+			    			dieOne = dice.roll();
+			    			dieTwo = dice.roll();
+			    			display.setDice(dieOne, dieTwo);
+			    			//Jeg udregner hvad spilleren skal betale til ejeren. Dette er øjne*ejet*100
+			    			int rent = currentLaborCamp.getOwner().getNumberOfLaborCampsOwned()*100*(dieOne+dieTwo);
+			    			//Jeg sender en besked han skal bekræfte for at fortsætte, hvor der står hvad han slog og hvad han skal betale
+			    			display.sendMessage("du har slået " + dieOne + dieTwo + ", og skal betale " + rent);
+			    			//Jeg sender penge fra den aktive spiller til ejeren af feltet. Jeg ved han har penge nok da dette var condition til at komme herned 
+			    			activePlayer.getAcc().transfer(currentLaborCamp.getOwner().getAcc(), rent);
+			    		}
+			    		else{
+			    			//her skal han smides ud
+			    		}
+			    	}else{
+			    		if(display.chooseToBuyLaborCamp(currentLaborCamp.getName(), currentLaborCamp.getPrice(), activePlayer) == "Køb"){
+			    			//Her skal der ske noget hvis han køber grunden
+			    		}
+							if(activePlayer.getAcc().getBalance() > currentLaborCamp.getPrice()){
+								activePlayer.getAcc().withdraw(currentLaborCamp.getPrice());
+								currentLaborCamp.setOwner(activePlayer);
+								activePlayer.addNumberOfLaborCamps();
+								display.setOwner(activePlayer.getField(), activePlayer.getName());
+							}
+							else{
+								display.sendMessage("Du har ikke nok penge til at købe denne grund");
+							}
+			    	}
+			    	
+			    }
+
 				break;
 			case("Refuge"):
 				//statements

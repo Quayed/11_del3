@@ -9,6 +9,7 @@ public class Player{
 	private String payMethod = "10%"; // Kan være "10%" eller "4000"
 	private Account acc;
 	private int numberOfFleetsOwned = 0;
+	private int numberOfLaborCampsOwned = 0;
 	private boolean hasLost = false;
 	
 	public Player(int id, String name){
@@ -73,6 +74,18 @@ public class Player{
 	
 	public void addNumberOfFleetsOwned(){
 		this.numberOfFleetsOwned++;
+	}
+	
+	public int getNumberOfLaborCampsOwned(){
+		return numberOfLaborCampsOwned;
+	}
+	
+	public void addNumberOfLaborCamps(){
+		this.numberOfLaborCampsOwned++;
+	}
+	
+	public void setNumberOfLaborCamps(int numberOfLabourCampsOwned){
+		this.numberOfLaborCampsOwned = numberOfLabourCampsOwned;
 	}
 	
 	//Denne metode skal kaldes idet GameController vurderer at en spiller er gået bankerot

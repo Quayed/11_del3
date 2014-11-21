@@ -15,8 +15,10 @@ public class LaborCamp extends Ownable{
 	@Override
 	public int getRent() {
 		// Ikke helt sikker på denne her metode i den her class.
-		return 0;
-		
+		if (super.getOwner() != null){
+			return super.getOwner().getNumberOfLaborCampsOwned()-1;
+		}
+			return 0; // returner 0 hvis grunden ikke ejes af nogle.
 	}
 
 	public int getBaseRent() {
