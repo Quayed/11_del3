@@ -23,6 +23,7 @@ public class GameController {
 		LaborCamp currentLaborCamp;
 		OurRefuge currentRefuge;
 		OurTax currentTax;
+		Player activePlayer;
 		
 		//Vælg antal spillere
 		numberOfPlayers = display.getNumberOfPlayers();
@@ -33,8 +34,7 @@ public class GameController {
 			display.addPlayer(players[i].getName(), players[i].getAcc().getBalance(), colors[i]);
 		}
 		
-		//Første terningekast
-		Player activePlayer;
+		//loop er får vores spil til at køre.
 		while(true){
 			activePlayer = players[turn];
 			if (activePlayer == null) continue;
@@ -46,13 +46,12 @@ public class GameController {
 			//Spiller bevæger sig
 			display.movePlayer(activePlayer.getPrevField(), activePlayer.getField(), activePlayer.getName());
                         
-			//Landing på felter
+			//Logik til at kontrollere hvilket felt der er landet på.
 			switch(board.getField(activePlayer.getField()-1).getType()) {
 			case("Territory"):
 				currentTerritory = (Territory) board.getField(activePlayer.getField()-1);
-			
 				if (currentTerritory.isOwner(activePlayer)){
-					System.out.println("Du er ejeren af denne grund");
+					
 				}
 				else if(!currentTerritory.isOwned()){
 					if(display.chooseToBuyTerritory(currentTerritory.getName(), currentTerritory.getPrice(), activePlayer, currentTerritory.getRent()) == "Køb"){
@@ -66,11 +65,11 @@ public class GameController {
 					}
 				}
 				else{
-					System.out.println("Nu skal du sku betale");
 					display.sendMessage(activePlayer.getName() + " er landet på " + currentTerritory.getName() + ". Grunden er ejet, du skal betale " + currentTerritory.getRent() + " i leje.");
 					activePlayer.getAcc().transfer(currentTerritory.getOwner().getAcc(), currentTerritory.getRent());
 				}
 				break;
+				
 			case("LaborCamp"):
 				//statements
 				currentLaborCamp = (LaborCamp) board.getField(activePlayer.getField()-1);
@@ -108,15 +107,14 @@ public class GameController {
 			    		display.sendMessage("Du har ikke nok penge til at købe denne grund");
 			    	}
 			    }
-			    	
-			    
-
 				break;
+				
 			case("Refuge"):
 				currentRefuge = (OurRefuge) board.getField(activePlayer.getField()-1);
 				display.sendMessage(activePlayer.getName() + " landede på " + currentRefuge.getName() + " og modtager " + currentRefuge.getBonus());
 				activePlayer.getAcc().deposit(currentRefuge.getBonus());
 				break;
+				
 			case("Fleet"):
 				currentFleet = (Fleet) board.getField(activePlayer.getField()-1);
 				if(currentFleet.isOwned()){
@@ -144,8 +142,8 @@ public class GameController {
 						}
 					}
 				}
-				//statements
 				break;
+				
 			case("Tax"):
 				currentTax =  (OurTax) board.getField(activePlayer.getField() -1); 
 				// felt 16, spilleren skal miste 2000
