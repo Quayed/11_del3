@@ -95,16 +95,15 @@ public class GameController {
 			    	}
 			    }else{
 			    	if(display.chooseToBuyLaborCamp(currentLaborCamp.getName(), currentLaborCamp.getPrice(), activePlayer) == "Køb"){
-			    		//Her skal der ske noget hvis han køber grunden
-			    	}
-			    	if(activePlayer.getAcc().getBalance() > currentLaborCamp.getPrice()){
-			    		activePlayer.getAcc().withdraw(currentLaborCamp.getPrice());
-			    		currentLaborCamp.setOwner(activePlayer);
-			    		activePlayer.addNumberOfLaborCamps();
-			    		display.setOwner(activePlayer.getField(), activePlayer.getName());
-			    	}
-			    	else{
-			    		display.sendMessage("Du har ikke nok penge til at købe denne grund");
+				    	if(activePlayer.getAcc().getBalance() > currentLaborCamp.getPrice()){
+				    		activePlayer.getAcc().withdraw(currentLaborCamp.getPrice());
+				    		currentLaborCamp.setOwner(activePlayer);
+				    		activePlayer.addNumberOfLaborCamps();
+				    		display.setOwner(activePlayer.getField(), activePlayer.getName());
+				    	}
+				    	else{
+				    		display.sendMessage("Du har ikke nok penge til at købe denne grund");
+				    	}
 			    	}
 			    }
 				break;
