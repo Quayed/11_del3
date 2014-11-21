@@ -160,24 +160,28 @@ public class GameController {
 					switch (display.choosePayment(activePlayer.getName())) {
 					case "10%":
 						//Dette skal laves om til total assets
-						int sum;
+						int totalAssets = activePlayer.getAcc().getBalance();
 						int[] playerInventory = activePlayer.getInventory();
 						for (int i = 0; i < playerInventory.length; i++){
 							if (playerInventory[i] != 0){
 								switch(board.getField(playerInventory[i]-1).getType()){
 								case("Territory"):
 									currentTerritory = (Territory) board.getField(playerInventory[i]); 
+									totalAssets += currentTerritory.getPrice();
 									break;
 								case("LaborCamp"):
-								
+									currentLaborCamp = (LaborCamp) board.getField(playerInventory[i]);
+									totalAssets += currentLaborCamp.getPrice();
 									break;
 								case("Fleet"):
-								
+									currentFleet = (Fleet) board.getField(playerInventory[i]);
+									totalAssets += currentFleet.getPrice();
 									break;
 								}
 							}
 						}
-						activePlayer.getAcc().withdraw((int) (activePlayer.getAcc().getBalance()*currentTax.getTaxRate()));
+						
+						activePlayer.getAcc().withdraw((int) (totalAssets*currentTax.getTaxRate()));
 						break;
 					case "4000":
 						activePlayer.getAcc().withdraw(4000);
