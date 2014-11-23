@@ -40,7 +40,7 @@ public class GUIManager {
 				LaborCamp laborCamp = (LaborCamp) field;
 				fields[i] = new Brewery.Builder()
 					.setTitle(laborCamp.getName())
-					.setDescription("Rent: 100x dice roll")
+					.setDescription("Rent: 100 * rolled value")
 					.setSubText("Price: " + laborCamp.getPrice())
 					.build();
 				break;
@@ -85,12 +85,12 @@ public class GUIManager {
 	}
 	
 	public int getNumberOfPlayers(){
-		int numberOfPlayers = Integer.parseInt(GUI.getUserButtonPressed("Vælg hvor mange spillere der skal være", "2", "3", "4", "5", "6"));
+		int numberOfPlayers = Integer.parseInt(GUI.getUserButtonPressed("Vælg hvor mange spillere der ønskes:", "2", "3", "4", "5", "6"));
 		return numberOfPlayers;
 	}
 	
 	public void roll(Player player){
-		GUI.getUserButtonPressed("Det er " + player.getName() + "'s tur. Tryk på knappen for at kaste terninger", "kast");
+		GUI.getUserButtonPressed("Det er " + player.getName() + "'s tur. Tryk på knappen for at kaste terningerne.", "Kast");
 	}
 	
 	public int movePlayer(int prevField, int field, String name){
@@ -111,15 +111,15 @@ public class GUIManager {
 	}
 	
 	public String chooseToBuyFleet(String name, int price, Player player){
-		return GUI.getUserButtonPressed("\n" + player.getName() + " er landet på flåden " + name + ". Den er ikke ejet.\nVil du købe " + name + "? Det koster " + price + " kroner", "Køb", "Afslå");
+		return GUI.getUserButtonPressed("\n" + player.getName() + " er landet på flåden " + name + ". Den er ikke ejet.\nVil du købe " + name + "? Det koster " + price + " kroner.", "Køb", "Afslå");
 	}
 	
 	public String chooseToBuyTerritory(String name, int price, Player player, int rent){
-		return GUI.getUserButtonPressed("\n" + player.getName() + " er landet på grunden " + name + ". Den er ikke ejet.\nVil du købe " + name + "? Det koster " + price + " kroner, lejen er på " + rent, "Køb", "Afslå");
+		return GUI.getUserButtonPressed("\n" + player.getName() + " er landet på grunden " + name + ". Den er ikke ejet.\nVil du købe " + name + "? Det koster " + price + " kroner, lejen er på " + rent+".", "Køb", "Afslå");
 	}
 	
 	public String chooseToBuyLaborCamp(String name, int price, Player player){
-		return GUI.getUserButtonPressed("\n" + player.getName() + " er landet på grunden " + name + ". Den er ikke ejet.\nVil du købe " + name + "? Det koster " + price + " kroner, lejen variere alt efter hvad der slås", "Køb", "Afslå");
+		return GUI.getUserButtonPressed("\n" + player.getName() + " er landet på grunden " + name + ". Den er ikke ejet.\nVil du købe " + name + "? Det koster " + price + " kroner, lejen varierer alt efter hvad der rulles.", "Køb", "Afslå");
 	}
 	
 	public void setOwner(int fieldNumber, String name){

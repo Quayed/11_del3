@@ -89,7 +89,7 @@ public class GameController {
 			    if(currentLaborCamp.isOwned()){
 			    	if(!currentLaborCamp.isOwner(activePlayer)){
 			    			//Jeg sender en besked han skal bekræfte for at fortsætte, hvor der står hvilket felt han har landt på og hvad der skal ske
-			    			display.sendMessage(activePlayer.getName() + "er landet på " + currentLaborCamp.getName() + "og skal slå med tegningerne. Der betales 100*øjne*ejet Labor Camps");
+			    			display.sendMessage(activePlayer.getName() + "er landet på " + currentLaborCamp.getName() + "og skal slå med tegningerne. Der betales 100*øjne*ejet Labor Camps.");
 			    			//Jeg slår med 2 terninger, og viser dette i grafikken
 			    			dieOne = dice.roll();
 			    			dieTwo = dice.roll();
@@ -97,7 +97,7 @@ public class GameController {
 			    			//Jeg udregner hvad spilleren skal betale til ejeren. Dette er øjne*ejet*100
 			    			int rent = currentLaborCamp.getOwner().getNumberOfLaborCampsOwned()*100*(dieOne+dieTwo);
 			    			//Jeg sender en besked han skal bekræfte for at fortsætte, hvor der står hvad han slog og hvad han skal betale
-			    			display.sendMessage("du har slået " + (dieOne + dieTwo) + ", og skal betale " + rent);
+			    			display.sendMessage("Du har slået " + (dieOne + dieTwo) + ", og skal betale " + rent + ".");
 			    			//Jeg sender penge fra den aktive spiller til ejeren af feltet. Jeg ved han har penge nok da dette var condition til at komme herned 
 			    			if(!activePlayer.getAcc().transfer(currentLaborCamp.getOwner().getAcc(), rent)){
 			    				die(turn);
@@ -190,7 +190,7 @@ public class GameController {
     		return true;
     	}
     	else{
-    		display.sendMessage("Du har ikke nok penge til at købe denne grund");
+    		display.sendMessage("Du har ikke nok penge til at købe denne grund.");
     		return false;
     	}
 	}

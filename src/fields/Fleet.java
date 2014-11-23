@@ -54,7 +54,7 @@ public class Fleet extends Ownable{
 					player.addNumberOfFleetsOwned();
 					display.setOwner(possition, player.getName());
 				} else{
-					display.sendMessage("Du har ikke nok penge til at købe denne grund");
+					display.sendMessage("Du har ikke nok penge til at købe denne grund.");
 				}
 			}
 		}
