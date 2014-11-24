@@ -108,7 +108,11 @@ public class Player{
 	public int[] getInventory() {
 		return inventory;
 	}
-
+	
+	public int getNumberOfFieldsOwned(){
+		return numberOfFieldsOwned;
+	}
+	
 	public void setInventory(int[] inventory) {
 		this.inventory = inventory;
 	}

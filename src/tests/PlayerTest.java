@@ -13,6 +13,20 @@ public class PlayerTest {
 		assertEquals(player.getName(),"THOMAS");
 		assertEquals(player.getId(),101);
 		assertEquals(player.getStartMoney(),5000);
+		assertEquals(player.getField(),0);
+		assertEquals(player.getNumberOfFleetsOwned(),0);
+		assertEquals(player.getNumberOfLaborCampsOwned(),0);
+		assertEquals(player.getNumberOfFieldsOwned(),0);
+		player.addNumberOfFleetsOwned();
+		player.addNumberOfLaborCamps();
+		player.addToInventory(1);
+		assertEquals(player.getNumberOfFleetsOwned(),1);
+		assertEquals(player.getNumberOfLaborCampsOwned(),1);
+		assertEquals(player.getNumberOfFieldsOwned(),1);
+		assertEquals(player.isHasLost(),false);
+		player.setHasLost(true);		
+		assertEquals(player.isHasLost(),true);
+		
 	}
 
 }
