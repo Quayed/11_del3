@@ -13,7 +13,6 @@ public class PlayerTest {
 		assertEquals(player.getName(),"THOMAS");
 		assertEquals(player.getId(),101);
 		assertEquals(player.getStartMoney(),5000);
-		assertEquals(player.getField(),0);
 		assertEquals(player.getNumberOfFleetsOwned(),0);
 		assertEquals(player.getNumberOfLaborCampsOwned(),0);
 		assertEquals(player.getNumberOfFieldsOwned(),0);
@@ -26,6 +25,22 @@ public class PlayerTest {
 		assertEquals(player.isHasLost(),false);
 		player.setHasLost(true);		
 		assertEquals(player.isHasLost(),true);
+		
+		
+		
+		assertEquals(player.getField(),0);
+		player.move(6);
+		assertEquals(player.getField(),6);
+		player.move(15);
+		assertEquals(player.getField(),21);
+		player.move(12);
+		assertEquals(player.getField(),12);
+		
+		
+		
+		
+		
+		
 		
 	}
 
