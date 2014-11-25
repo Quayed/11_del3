@@ -181,7 +181,7 @@ public class GameController {
 		}	
 	}
 	
-	private boolean buyField(Ownable field){
+	public boolean buyField(Ownable field){
 		if(activePlayer.getAcc().getBalance() >= field.getPrice()){
     		activePlayer.getAcc().withdraw(field.getPrice());
     		activePlayer.addToInventory(activePlayer.getField());
@@ -195,7 +195,7 @@ public class GameController {
     	}
 	}
 	
-	private void die(int turn){
+	public void die(int turn){
 		int[] playerInventory = activePlayer.getInventory();
 		for (int i = 0; i < playerInventory.length; i++){
 			if (playerInventory[i] != 0){
