@@ -7,8 +7,8 @@ import game.*;
 public class PlayerTest {
 
 	@Test
-	public void test() {
-		//Vi starter med at oprette en spiller med navnet "THOMAS" og ID 101. Derefter ser vi om THOMAS har de rigtige startegenskaber
+	public void TestInitialConditions() {
+		//Test af start egenskab:
 		Player player = new Player(101, "THOMAS");
 		assertEquals(player.getName(),"THOMAS");
 		assertEquals(player.getId(),101);
@@ -16,18 +16,34 @@ public class PlayerTest {
 		assertEquals(player.getNumberOfFleetsOwned(),0);
 		assertEquals(player.getNumberOfLaborCampsOwned(),0);
 		assertEquals(player.getNumberOfFieldsOwned(),0);
+	}
+	
+	@Test
+	//Vi tester add og set metoderne, for felterne.
+	public void testAddSet()  {
+		Player player = new Player(101, "THOMAS");
 		player.addNumberOfFleetsOwned();
 		player.addNumberOfLaborCamps();
-		player.addToInventory(1);
+		player.addToInventory(10);
 		assertEquals(player.getNumberOfFleetsOwned(),1);
 		assertEquals(player.getNumberOfLaborCampsOwned(),1);
 		assertEquals(player.getNumberOfFieldsOwned(),1);
+		assertEquals(player.getInventory()[0],10);
+	}
+	
+	@Test
+	//Vi tester om metoden Haslost, setHasLost og isHasLost virker.
+	public void testLost(){
+		Player player = new Player(101, "THOMAS");
 		assertEquals(player.isHasLost(),false);
 		player.setHasLost(true);		
 		assertEquals(player.isHasLost(),true);
-		
-		
-		
+	}
+
+	@Test
+	//VI tester Field og move metoderne virker.
+	public void testFieldmove() {
+		Player player = new Player(101, "THOMAS");
 		assertEquals(player.getField(),0);
 		player.move(6);
 		assertEquals(player.getField(),6);
@@ -35,13 +51,9 @@ public class PlayerTest {
 		assertEquals(player.getField(),21);
 		player.move(12);
 		assertEquals(player.getField(),12);
-		
-		
-		
-		
-		
-		
-		
+		assertEquals(player.getPrevField(),21);		
 	}
+	
+
 
 }

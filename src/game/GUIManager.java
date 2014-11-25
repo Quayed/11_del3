@@ -139,6 +139,11 @@ public class GUIManager {
 		GUI.getUserButtonPressed("\n\n" + name + "har vundet spillet!! Tillykke!!! ", "Afslut spil");
 		GUI.close();
 	}
+	
+	public String getPlayerName(){
+		String name = GUI.getUserString("Indtast dit navn");
+		return name;
+	}
 }
 
 
