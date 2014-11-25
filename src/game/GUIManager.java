@@ -134,6 +134,11 @@ public class GUIManager {
 	public void removeOwner(int fieldNumber){
 		GUI.removeOwner(fieldNumber);
 	}
+	
+	public void winning(String name){
+		GUI.getUserButtonPressed("\n\n" + name + "har vundet spillet!! Tillykke!!! ", "Afslut spil");
+		GUI.close();
+	}
 }
 
 
