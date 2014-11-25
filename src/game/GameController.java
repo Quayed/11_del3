@@ -54,18 +54,6 @@ public class GameController {
 				turn = ++turn % numberOfPlayers;
 				continue; 
 			}
-			int countOfNotNull = 0;
-			Player winningPlayer = null;
-			for (int count = 0; count < players.length; count++){
-				if (players[count] != null){
-					countOfNotNull++;
-					winningPlayer = players[count];
-				}
-			}
-			if (countOfNotNull == 1){
-				display.winning(winningPlayer.getName());
-				break;
-			}
 			display.roll(activePlayer);
 			dieOne = dice.roll();
 			dieTwo = dice.roll();
@@ -90,7 +78,7 @@ public class GameController {
 				else{
 					display.sendMessage(activePlayer.getName() + " er landet på " + currentTerritory.getName() + ". Grunden er ejet, du skal betale " + currentTerritory.getRent() + " i leje.");
 					if(!activePlayer.getAcc().transfer(currentTerritory.getOwner().getAcc(), currentTerritory.getRent())){
-						die(turn);
+						bankruptcy(turn);
 					}
 				}
 				break;
@@ -112,7 +100,7 @@ public class GameController {
 			    			display.sendMessage("Du har slået " + (dieOne + dieTwo) + ", og skal betale " + rent + ".");
 			    			//Jeg sender penge fra den aktive spiller til ejeren af feltet. Jeg ved han har penge nok da dette var condition til at komme herned 
 			    			if(!activePlayer.getAcc().transfer(currentLaborCamp.getOwner().getAcc(), rent)){
-			    				die(turn);
+			    				bankruptcy(turn);
 			    			}
 			    	}
 			    }else{
@@ -138,10 +126,11 @@ public class GameController {
 							display.sendMessage(activePlayer.getName() + " er landet på " + currentFleet.getName() + " og skal betale " + currentFleet.getRent() + " kroner.");
 							//Her overføres penge fra spilleren der landte på 
 							if(!activePlayer.getAcc().transfer(currentFleet.getOwner().getAcc(), currentFleet.getRent())){
-								die(turn);
+								bankruptcy(turn);
 							}
 						} 
 					}
+					
 				} else{
 					if(display.chooseToBuyFleet(currentFleet.getName(), currentFleet.getPrice(), activePlayer) == "Køb"){
 						if(buyField(currentFleet)){
@@ -156,26 +145,21 @@ public class GameController {
 				if(activePlayer.getField() == 9) {
 					display.sendMessage(activePlayer.getName() + " er landet på " + currentTax.getName() + " og skal betale 2000 kroner i skat.");
 					if(!activePlayer.getAcc().withdraw(2000)){
-						die(turn);
+						bankruptcy(turn);
 					}
 				}else if (activePlayer.getField() == 19) {
 					switch (display.choosePayment(activePlayer.getName())) {
 					case "10%":
-						int totalAssets = activePlayer.getAcc().getBalance();
-						int[] playerInventory = activePlayer.getInventory();
-						for (int i = 0; i < playerInventory.length; i++){
-							if (playerInventory[i] != 0){
-								Ownable currentOwnable = (Ownable) board.getField(playerInventory[i]-1);
-								totalAssets += currentOwnable.getPrice();
-							}
-						}
+						//Samlede værdi hentes
+						int totalAssets = activePlayer.getTotalAssets(board);
+
 						if(!activePlayer.getAcc().withdraw((int) (totalAssets*currentTax.getTaxRate()))){
-							die(turn);
+							bankruptcy(turn);
 						}
 						break;
 					case "4000":
 						if(!activePlayer.getAcc().withdraw(4000)){
-							die(turn);
+							bankruptcy(turn);
 						}
 						break;
 					}
@@ -193,7 +177,7 @@ public class GameController {
 		}	
 	}
 	
-	public boolean buyField(Ownable field){
+	private boolean buyField(Ownable field){
 		if(activePlayer.getAcc().getBalance() >= field.getPrice()){
     		activePlayer.getAcc().withdraw(field.getPrice());
     		activePlayer.addToInventory(activePlayer.getField());
@@ -207,7 +191,7 @@ public class GameController {
     	}
 	}
 	
-	public void die(int turn){
+	private void bankruptcy(int turn){
 		int[] playerInventory = activePlayer.getInventory();
 		for (int i = 0; i < playerInventory.length; i++){
 			if (playerInventory[i] != 0){

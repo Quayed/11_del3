@@ -1,5 +1,7 @@
 package game;
 
+import fields.Ownable;
+
 public class Player{
 	private String name;
 	private int previous_field = 0;
@@ -120,6 +122,21 @@ public class Player{
 	public void addToInventory(int field){
 		this.inventory[this.numberOfFieldsOwned] = field;
 		this.numberOfFieldsOwned++;
+	}
+	
+	public int getTotalAssets(GameBoard board) {
+		int totalAssets = getAcc().getBalance();
+		
+		int[] playerInventory = getInventory();
+		
+		for (int i = 0; i < playerInventory.length; i++){
+			if (playerInventory[i] != 0){
+				Ownable currentOwnable = (Ownable) board.getField(playerInventory[i]-1);
+				totalAssets += currentOwnable.getPrice();
+			}
+		}
+		
+		return totalAssets;
 	}
 	
 	public void resetInventory(){
