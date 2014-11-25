@@ -28,6 +28,7 @@ public class TerritoryController  {
 		}
 	}
 	
+	
 	public void Owned(Player player) {
 		player.getAcc().transfer(territory.getOwner().getAcc(),territory.getRent());
 	}
