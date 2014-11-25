@@ -21,6 +21,7 @@ public class GameController {
 	Player players[];
 	Color colors[];
 	GUIManager display;
+	String name;
 	public GameController(){
 		
 	}
@@ -42,8 +43,9 @@ public class GameController {
 		numberOfPlayers = display.getNumberOfPlayers();
 		
 		for(int i = 0; i < numberOfPlayers; i++){
-			// her bør der tilføjes muligheden for spillerne at vælge navn - dette skal dog først gøres til sidst.
-			players[i] = new Player(i, "Spiller "+i);
+			
+			name = display.getPlayerName();
+			players[i] = new Player(i, name);
 			display.addPlayer(players[i].getName(), players[i].getAcc().getBalance(), colors[i]);
 		}
 		
