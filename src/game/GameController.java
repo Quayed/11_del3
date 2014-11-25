@@ -54,6 +54,18 @@ public class GameController {
 				turn = ++turn % numberOfPlayers;
 				continue; 
 			}
+			int countOfNotNull = 0;
+			Player winningPlayer = null;
+			for (int count = 0; count < players.length; count++){
+				if (players[count] != null){
+					countOfNotNull++;
+					winningPlayer = players[count];
+				}
+			}
+			if (countOfNotNull == 1){
+				display.winning(winningPlayer.getName());
+				break;
+			}
 			display.roll(activePlayer);
 			dieOne = dice.roll();
 			dieTwo = dice.roll();
