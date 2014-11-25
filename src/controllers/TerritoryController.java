@@ -1,4 +1,5 @@
-package fields;
+package controllers;
+import fields.Territory;
 import game.*;
 
 public class TerritoryController  {
