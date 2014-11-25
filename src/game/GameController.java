@@ -1,12 +1,7 @@
 package game;
 import java.awt.Color;
 
-import fields.Fleet;
-import fields.LaborCamp;
-import fields.OurRefuge;
-import fields.OurTax;
-import fields.Ownable;
-import fields.Territory;
+import fields.*;
 
 public class GameController {
 	Territory currentTerritory;
@@ -64,23 +59,28 @@ public class GameController {
 			display.movePlayer(activePlayer.getPrevField(), activePlayer.getField(), activePlayer.getName());
                         
 			//Logik til at kontrollere hvilket felt der er landet på.
+			TerritoryController territoryController = new TerritoryController();
 			switch(board.getField(activePlayer.getField()-1).getType()) {
 			case("Territory"):
+				
 				currentTerritory = (Territory) board.getField(activePlayer.getField()-1);
-				if (currentTerritory.isOwner(activePlayer)){
+				
+				territoryController.setTerritory(currentTerritory);
+
+				if(territoryController.landOnField()) {
+					if(territoryController.isOwner(activePlayer)) {
+						display.sendMessage("Du er ejer af denne grund");
+					} else {
+						display.sendMessage(activePlayer.getName() + " er landet på " + currentTerritory.getName() + ". Grunden er ejet, du skal betale " + currentTerritory.getRent() + " i leje.");
+						territoryController.Owned(activePlayer);
+					}
 					
-				}
-				else if(!currentTerritory.isOwned()){
+				} else {
 					if(display.chooseToBuyTerritory(currentTerritory.getName(), currentTerritory.getPrice(), activePlayer, currentTerritory.getRent()) == "Køb"){
 						buyField(currentTerritory);
 					}
 				}
-				else{
-					display.sendMessage(activePlayer.getName() + " er landet på " + currentTerritory.getName() + ". Grunden er ejet, du skal betale " + currentTerritory.getRent() + " i leje.");
-					if(!activePlayer.getAcc().transfer(currentTerritory.getOwner().getAcc(), currentTerritory.getRent())){
-						bankruptcy(turn);
-					}
-				}
+				//
 				break;
 				
 			case("LaborCamp"):
@@ -173,6 +173,8 @@ public class GameController {
 			for(int i = 0; i < numberOfPlayers; i++) {
 				if (players[i] == null) continue;
 				display.updateBalance(players[i]);
+				if(players[i].getAcc().getBalance() < 0)
+					bankruptcy(i);
 			}
 		}	
 	}

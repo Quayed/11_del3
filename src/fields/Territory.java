@@ -34,9 +34,14 @@ public class Territory extends Ownable{
 	}
 
 	@Override
-	public void landOnField(Player player, GUIManager display) {
-		
+	public boolean landOnField() {
+		if(isOwned()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
+	
 	public String toString() {
 		String s = "Rent: " + rent + " Price: " + super.getPrice() + " Name: " + super.getOwner().getName() + " fieldId: " + super.getFieldId();
 		return s;

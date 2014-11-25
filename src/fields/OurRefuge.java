@@ -32,8 +32,8 @@ public class OurRefuge extends OurField{
 	}
 
 	@Override
-	public void landOnField(Player player, GUIManager display) {
-			
+	public boolean landOnField() {
+		return true;
 	}
 	
 	public String toString() {

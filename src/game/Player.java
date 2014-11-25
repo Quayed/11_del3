@@ -16,6 +16,12 @@ public class Player{
 	private int[] inventory = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	private int numberOfFieldsOwned = 0;
 	
+	public Player() {
+		this.name = "DefaultPlayer";
+		this.ID = 1;
+		this.acc = new Account(this.STARTMONEY, 1);
+	}
+	
 	public Player(int id, String name){
 		this.name = name;
 		this.ID = id;
