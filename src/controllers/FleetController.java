@@ -17,10 +17,10 @@ public class FleetController extends OwnableController {
 		fleet = (Fleet) field;
 		if(fleet.isOwned()){
 			if(!isOwner(player, field)){
-				if(player.getAcc().getBalance() > fleet.getPrice()){
+				if(player.getBalance() > fleet.getPrice()){
 					display.sendMessage(player.getName() + " er landet på " + fleet.getName() + " og skal betale " + fleet.getRent() + " kroner.");
 					//Her overføres penge fra spilleren der landte på 
-					return player.getAcc().transfer(fleet.getOwner().getAcc(), fleet.getRent());
+					return payRent(player, fleet);
 				} 
 			}
 			

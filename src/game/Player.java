@@ -143,4 +143,22 @@ public class Player{
 		}
 		this.numberOfFieldsOwned = 0;
 	}
+	
+	// methods for other classes to use when using account.
+	
+	public int getBalance(){
+		return acc.getBalance();
+	}
+	
+	public boolean transfer(Player reciever, int amount){
+		return acc.transfer(reciever.getAcc(), amount);
+	}
+	
+	public boolean withdraw(int amount){
+		return acc.withdraw(amount);
+	}
+	
+	public void deposit(int amount){
+		acc.deposit(amount);
+	}
 }

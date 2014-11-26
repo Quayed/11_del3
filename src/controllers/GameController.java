@@ -56,7 +56,7 @@ public class GameController {
 			
 			name = display.getPlayerName();
 			players[i] = new Player(i, name);
-			display.addPlayer(players[i].getName(), players[i].getAcc().getBalance(), colors[i]);
+			display.addPlayer(players[i].getName(), players[i].getBalance(), colors[i]);
 		}
 		
 		//loop er får vores spil til at køre.
@@ -125,8 +125,8 @@ public class GameController {
 			turn = ++turn % numberOfPlayers;
 			for(int i = 0; i < numberOfPlayers; i++) {
 				if (players[i] == null) continue;
-				display.updateBalance(players[i].getName(), players[i].getAcc().getBalance());
-				if(players[i].getAcc().getBalance() < 0)
+				display.updateBalance(players[i].getName(), players[i].getBalance());
+				if(players[i].getBalance() < 0)
 					bankruptcy(i);
 			}
 		}	

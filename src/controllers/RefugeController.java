@@ -16,7 +16,7 @@ public class RefugeController extends FieldController{
 	public boolean landOnField(Player player, GUIManager display, OurField field, Die die) {
 		refuge = (OurRefuge) field;
 		display.sendMessage(player.getName() + " landede på " + refuge.getName() + " og modtager " + refuge.getBonus());
-		player.getAcc().deposit(refuge.getBonus());
+		player.deposit(refuge.getBonus());
 		return true;
 	}
 }
