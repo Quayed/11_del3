@@ -104,7 +104,7 @@ public class GameController {
 				break;
 				
 			case("Fleet"):
-				if(fleetController.landOnField(activePlayer, display, currentField, dice)){
+				if(!fleetController.landOnField(activePlayer, display, currentField, dice)){
 					bankruptcy(turn);
 				}
 				break;
@@ -114,28 +114,8 @@ public class GameController {
 				break;
 				
 			case("Tax"):
-				currentTax =  (OurTax) board.getField(activePlayer.getField() -1); 
-				if(activePlayer.getField() == 9) {
-					display.sendMessage(activePlayer.getName() + " er landet på " + currentTax.getName() + " og skal betale 2000 kroner i skat.");
-					if(!activePlayer.getAcc().withdraw(2000)){
-						bankruptcy(turn);
-					}
-				}else if (activePlayer.getField() == 19) {
-					switch (display.choosePayment(activePlayer.getName())) {
-					case "10%":
-						//Samlede værdi hentes
-						int totalAssets = activePlayer.getTotalAssets(board);
-
-						if(!activePlayer.getAcc().withdraw((int) (totalAssets*currentTax.getTaxRate()))){
-							bankruptcy(turn);
-						}
-						break;
-					case "4000":
-						if(!activePlayer.getAcc().withdraw(4000)){
-							bankruptcy(turn);
-						}
-						break;
-					}
+				if(!taxController.landOnField(activePlayer, display, currentField, dice)){
+					bankruptcy(turn);
 				}
 				break;
 			}
@@ -150,22 +130,7 @@ public class GameController {
 					bankruptcy(i);
 			}
 		}	
-	}
-	
-	private boolean buyField(Ownable field){
-		if(activePlayer.getAcc().getBalance() >= field.getPrice()){
-    		activePlayer.getAcc().withdraw(field.getPrice());
-    		activePlayer.addToInventory(activePlayer.getField());
-    		field.setOwner(activePlayer);
-    		display.setOwner(activePlayer.getField(), activePlayer.getName());
-    		return true;
-    	}
-    	else{
-    		display.sendMessage("Du har ikke nok penge til at købe denne grund.");
-    		return false;
-    	}
-	}
-	
+	}	
 	private void bankruptcy(int turn){
 		int[] playerInventory = activePlayer.getInventory();
 		for (int i = 0; i < playerInventory.length; i++){
