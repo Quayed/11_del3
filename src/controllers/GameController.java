@@ -17,6 +17,7 @@ public class GameController {
 	Ownable currentOwnable;
 	TerritoryController territoryController = new TerritoryController();
 	LaborCampController laborCampController = new LaborCampController();
+	FleetController fleetController = new FleetController();
 	Player activePlayer;
 	GameBoard board;
 	Die dice;
@@ -95,24 +96,8 @@ public class GameController {
 				break;
 				
 			case("Fleet"):
-				currentFleet = (Fleet) board.getField(activePlayer.getField()-1);
-				if(currentFleet.isOwned()){
-					if(!currentFleet.isOwner(activePlayer)){
-						if(activePlayer.getAcc().getBalance() > currentFleet.getPrice()){
-							display.sendMessage(activePlayer.getName() + " er landet på " + currentFleet.getName() + " og skal betale " + currentFleet.getRent() + " kroner.");
-							//Her overføres penge fra spilleren der landte på 
-							if(!activePlayer.getAcc().transfer(currentFleet.getOwner().getAcc(), currentFleet.getRent())){
-								bankruptcy(turn);
-							}
-						} 
-					}
-					
-				} else{
-					if(display.chooseToBuyFleet(currentFleet.getName(), currentFleet.getPrice(), activePlayer) == "Køb"){
-						if(buyField(currentFleet)){
-							activePlayer.addNumberOfFleetsOwned();
-						}
-					}
+				if(fleetController.landOnField(activePlayer, display, currentField, dice)){
+					bankruptcy(turn);
 				}
 				break;
 				

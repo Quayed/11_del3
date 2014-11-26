@@ -4,6 +4,7 @@ import game.*;
 import fields.*;
 
 public abstract class OwnableController extends FieldController {
+	
 	public boolean buyField(Player player, GUIManager display, Ownable field){
 		if(player.getAcc().getBalance() >= field.getPrice()){
 			player.getAcc().withdraw(field.getPrice());
