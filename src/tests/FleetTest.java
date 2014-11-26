@@ -32,7 +32,7 @@ public class FleetTest {
 	}
 	
 	@Test
-	public void testPurchasingFields() {
+	public void testPurchasingFleets() {
 		assertEquals(30000, player1.getBalance());
 		assertEquals(true, fleetController.landOnField(player1, display, fleet1, die));
 		assertEquals(26000, player1.getBalance());
@@ -49,7 +49,7 @@ public class FleetTest {
 	}
 	
 	@Test
-	public void testPurchasingFieldsWithoutMoney(){
+	public void testPurchasingFleetsWithoutMoney(){
 		player1.getAcc().setBalance(1000);
 		assertEquals(1000, player1.getBalance());
 		assertEquals(true, fleetController.landOnField(player1, display, fleet1, die));
