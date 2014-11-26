@@ -11,6 +11,18 @@ import fields.Territory;
 import boundaryToMatador.*;
 
 public class GUIManager {
+	String state;
+	String paymentChoice;
+	
+	public GUIManager(){
+		
+	}
+	
+	public GUIManager(String state, String paymentChoice){
+		this.state = state;
+		this.paymentChoice = paymentChoice;
+		
+	}
 	
 	public void create(GameBoard board) {
 		
@@ -85,11 +97,17 @@ public class GUIManager {
 	}
 	
 	public int getNumberOfPlayers(){
+		if(state == "test"){
+			return 5;
+		}
 		int numberOfPlayers = Integer.parseInt(GUI.getUserButtonPressed("Vælg hvor mange spillere der ønskes:", "2", "3", "4", "5", "6"));
 		return numberOfPlayers;
 	}
 	
 	public void roll(Player player){
+		if(state == "test"){
+			return;
+		}
 		GUI.getUserButtonPressed("Det er " + player.getName() + "'s tur. Tryk på knappen for at kaste terningerne.", "Kast");
 	}
 	
@@ -103,6 +121,9 @@ public class GUIManager {
 	}
 	
 	public String choosePayment(String name) {
+		if(state == "test"){
+			return this.paymentChoice;
+		} else 
 		return GUI.getUserButtonPressed("\n" + name + " er landet på karavane feltet og skal betale skat\nVil du betale 10% eller 4000?", "10%", "4000");
 	}
 	
