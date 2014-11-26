@@ -29,7 +29,7 @@ public class LaborCampController extends OwnableController{
 	    			//Jeg sender en besked han skal bekræfte for at fortsætte, hvor der står hvad han slog og hvad han skal betale
 	    			display.sendMessage("Du har slået " + (dieOne + dieTwo) + ", og skal betale " + rent + ".");
 	    			//Jeg sender penge fra den aktive spiller til ejeren af feltet. Jeg ved han har penge nok da dette var condition til at komme herned 
-	    			return payRent(player, field);
+	    			return payRent(player, laborCamp, (dieOne+dieTwo));
 	    	}
 	    }else{
 	    	if(display.chooseToBuyLaborCamp(laborCamp.getName(), laborCamp.getPrice(), player.getName()) == "Køb"){
@@ -40,6 +40,4 @@ public class LaborCampController extends OwnableController{
 	    }
 		return true;
 	}
-	
-	
 }

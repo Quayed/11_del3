@@ -32,4 +32,8 @@ public abstract class OwnableController extends FieldController {
 		Ownable ownable = (Ownable) field;
 		return player.transfer(ownable.getOwner(),ownable.getRent());
 	}
+	
+	public boolean payRent(Player player, LaborCamp laborCamp, int sum){
+		return player.transfer(laborCamp.getOwner(), laborCamp.getBaseRent()*sum);
+	}
 }
