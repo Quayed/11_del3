@@ -2,7 +2,6 @@ package fields;
 
 public class Territory extends Ownable{
 	private int rent;
-	private int fieldPossition;
 	
 	public Territory(int rent, int price, String name, int id, int fieldPossition){
 		this.rent = rent;
@@ -10,7 +9,7 @@ public class Territory extends Ownable{
 		super.setName(name);
 		super.setFieldId(id);
 		super.setType("Territory");
-		this.setFieldPossition(fieldPossition);
+		super.setFieldPossition(fieldPossition);
 	}
 	
 	public void setRent(int rent){
@@ -20,14 +19,6 @@ public class Territory extends Ownable{
 	@Override
 	public int getRent() {
 		return rent;
-	}
-
-	public int getFieldPossition() {
-		return fieldPossition;
-	}
-
-	public void setFieldPossition(int fieldPossition) {
-		this.fieldPossition = fieldPossition;
 	}
 	
 	public String toString() {

@@ -2,14 +2,13 @@ package fields;
 
 public class LaborCamp extends Ownable{
 	private int baseRent = 100;
-	private int fieldPossition;
-
+	
 	public LaborCamp(int price, String name, int id, int fieldPossition){
 		super.setPrice(price);
 		super.setName(name);
 		super.setFieldId(id);
 		super.setType("LaborCamp");
-		this.setFieldPossition(fieldPossition);
+		super.setFieldPossition(fieldPossition);
 	}
 	
 	@Override
@@ -27,14 +26,6 @@ public class LaborCamp extends Ownable{
 
 	public void setBaseRent(int baseRent) {
 		this.baseRent = baseRent;
-	}
-
-	public int getFieldPossition() {
-		return fieldPossition;
-	}
-
-	public void setFieldPossition(int fieldPossition) {
-		this.fieldPossition = fieldPossition;
 	}
 	
 	public String toString() {

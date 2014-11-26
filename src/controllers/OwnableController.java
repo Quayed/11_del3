@@ -8,7 +8,7 @@ public abstract class OwnableController extends FieldController {
 	public boolean buyField(Player player, GUIManager display, Ownable field){
 		if(player.getBalance() >= field.getPrice()){
 			player.withdraw(field.getPrice());
-			player.addToInventory(player.getField(), field.getPrice());
+			player.addToInventory(field.getFieldPossition(), field.getPrice());
     		field.setOwner(player);
     		display.setOwner(player.getField(), player.getName());
     		return true;

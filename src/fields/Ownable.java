@@ -5,6 +5,7 @@ import game.Player;
 abstract public class Ownable extends OurField{
 	private int price;
 	private Player owner;
+	private int fieldPossition;
 	abstract public int getRent();
 	
 	public int getPrice() {
@@ -36,5 +37,13 @@ abstract public class Ownable extends OurField{
 		else{
 			return false;
 		}
+	}
+
+	public int getFieldPossition() {
+		return fieldPossition;
+	}
+
+	public void setFieldPossition(int fieldPossition) {
+		this.fieldPossition = fieldPossition;
 	}
 }
