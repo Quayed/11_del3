@@ -158,6 +158,9 @@ public class GUIManager {
 	}
 	
 	public void setOwner(int fieldNumber, String name){
+		if(state == "test"){
+			return;
+		}
 		GUI.setOwner(fieldNumber, name);
 	}
 	
