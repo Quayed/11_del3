@@ -13,14 +13,16 @@ import boundaryToMatador.*;
 public class GUIManager {
 	String state;
 	String paymentChoice;
+	String handel;
 	
 	public GUIManager(){
 		
 	}
 	
-	public GUIManager(String state, String paymentChoice){
+	public GUIManager(String state, String paymentChoice, String handel){
 		this.state = state;
 		this.paymentChoice = paymentChoice;
+		this.handel = handel;
 		
 	}
 	
@@ -123,7 +125,7 @@ public class GUIManager {
 	public String choosePayment(String name) {
 		if(state == "test"){
 			return this.paymentChoice;
-		} else 
+		}
 		return GUI.getUserButtonPressed("\n" + name + " er landet på karavane feltet og skal betale skat\nVil du betale 10% eller 4000?", "10%", "4000");
 	}
 	
@@ -132,14 +134,23 @@ public class GUIManager {
 	}
 	
 	public String chooseToBuyFleet(String name, int price, Player player){
+		if(state == "test"){
+			return handel;
+		}
 		return GUI.getUserButtonPressed("\n" + player.getName() + " er landet på flåden " + name + ". Den er ikke ejet.\nVil du købe " + name + "? Det koster " + price + " kroner.", "Køb", "Afslå");
 	}
 	
 	public String chooseToBuyTerritory(String name, int price, Player player, int rent){
+		if(state == "test"){
+			return handel;
+		}
 		return GUI.getUserButtonPressed("\n" + player.getName() + " er landet på grunden " + name + ". Den er ikke ejet.\nVil du købe " + name + "? Det koster " + price + " kroner, lejen er på " + rent+".", "Køb", "Afslå");
 	}
 	
 	public String chooseToBuyLaborCamp(String name, int price, Player player){
+		if(state == "test"){
+			return handel;
+		}
 		return GUI.getUserButtonPressed("\n" + player.getName() + " er landet på grunden " + name + ". Den er ikke ejet.\nVil du købe " + name + "? Det koster " + price + " kroner, lejen varierer alt efter hvad der rulles.", "Køb", "Afslå");
 	}
 	
@@ -157,8 +168,12 @@ public class GUIManager {
 	}
 	
 	public void winning(String name){
+		if(state == "test"){
+			System.out.println(name + "har vundet, tillykke");
+		}else{
 		GUI.getUserButtonPressed("\n\n" + name + "har vundet spillet!! Tillykke!!! ", "Afslut spil");
 		GUI.close();
+		}
 	}
 	
 	public String getPlayerName(){
