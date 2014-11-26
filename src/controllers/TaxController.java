@@ -15,11 +15,11 @@ public class TaxController extends FieldController{
 	@Override
 	public boolean landOnField(Player player, GUIManager display, OurField field, Die die) {
 		tax =  (OurTax) field; 
-		if(tax.getName() == "Goldmine") {
+		if(tax.getTaxRate() == 0) {
 			display.sendMessage(player.getName() + " er landet på " + player.getName() + " og skal betale " + tax.getTaxAmount() + " kroner i skat.");
 			return player.withdraw(tax.getTaxAmount());
 			
-		}else if (tax.getName() == "Caravan") {
+		}else {
 			switch (display.choosePayment(player.getName())) {
 			case "10%":
 				//Samlede værdi hentes
