@@ -24,7 +24,7 @@ public class PlayerTest {
 		Player player = new Player(101, "THOMAS");
 		player.addNumberOfFleetsOwned();
 		player.addNumberOfLaborCamps();
-		player.addToInventory(10);
+		player.addToInventory(10,1000);
 		assertEquals(player.getNumberOfFleetsOwned(),1);
 		assertEquals(player.getNumberOfLaborCampsOwned(),1);
 		assertEquals(player.getNumberOfFieldsOwned(),1);

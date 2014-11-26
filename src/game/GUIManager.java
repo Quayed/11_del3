@@ -130,6 +130,9 @@ public class GUIManager {
 	}
 	
 	public void sendMessage(String message){
+		if(state=="test"){
+		return;
+		}
 		GUI.getUserButtonPressed("\n\n" + message, "Ok");
 	}
 	
