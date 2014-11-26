@@ -38,8 +38,8 @@ public class GameController {
 		numberOfPlayers = display.getNumberOfPlayers();
 		
 		for(int i = 0; i < numberOfPlayers; i++){
-			
 			name = display.getPlayerName();
+			
 			players[i] = new Player(i, name);
 			display.addPlayer(players[i].getName(), players[i].getAcc().getBalance(), colors[i]);
 		}
