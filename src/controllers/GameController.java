@@ -18,6 +18,8 @@ public class GameController {
 	TerritoryController territoryController = new TerritoryController();
 	LaborCampController laborCampController = new LaborCampController();
 	FleetController fleetController = new FleetController();
+	RefugeController refugeController = new RefugeController();
+	TaxController taxController = new TaxController();
 	Player activePlayer;
 	GameBoard board;
 	Die dice;
@@ -101,16 +103,14 @@ public class GameController {
 				}
 				break;
 				
-			case("Refuge"):
-				currentRefuge = (OurRefuge) board.getField(activePlayer.getField()-1);
-				display.sendMessage(activePlayer.getName() + " landede på " + currentRefuge.getName() + " og modtager " + currentRefuge.getBonus());
-				activePlayer.getAcc().deposit(currentRefuge.getBonus());
-				break;
-				
 			case("Fleet"):
 				if(fleetController.landOnField(activePlayer, display, currentField, dice)){
 					bankruptcy(turn);
 				}
+				break;
+				
+			case("Refuge"):
+				refugeController.landOnField(activePlayer, display, currentField, dice);
 				break;
 				
 			case("Tax"):
