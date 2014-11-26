@@ -150,8 +150,8 @@ public class Player{
 		return acc.getBalance();
 	}
 	
-	public boolean transfer(Account reciever, int amount){
-		return acc.transfer(reciever, amount);
+	public boolean transfer(Player reciever, int amount){
+		return acc.transfer(reciever.getAcc(), amount);
 	}
 	
 	public boolean withdraw(int amount){

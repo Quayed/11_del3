@@ -15,19 +15,19 @@ public class TaxController extends FieldController{
 	@Override
 	public boolean landOnField(Player player, GUIManager display, OurField field, Die die) {
 		tax =  (OurTax) field; 
-		if(player.getField() == 9) {
-			display.sendMessage(player.getName() + " er landet på " + player.getName() + " og skal betale 2000 kroner i skat.");
-			return player.getAcc().withdraw(2000);
+		if(tax.getName() == "Goldmine") {
+			display.sendMessage(player.getName() + " er landet på " + player.getName() + " og skal betale " + tax.getTaxAmount() + " kroner i skat.");
+			return player.withdraw(tax.getTaxAmount());
 			
-		}else if (player.getField() == 19) {
+		}else if (tax.getName() == "Caravan") {
 			switch (display.choosePayment(player.getName())) {
 			case "10%":
 				//Samlede værdi hentes
 				int totalAssets = player.getTotalAssets();
 
-				return player.getAcc().withdraw((int) (totalAssets*tax.getTaxRate()));
+				return player.withdraw((int) (totalAssets*tax.getTaxRate()));
 			case "4000":
-				return player.getAcc().withdraw(4000);
+				return player.withdraw(tax.getTaxAmount());
 			}
 		}
 		return true;
