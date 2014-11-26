@@ -1,24 +1,12 @@
 package controllers;
-import fields.Territory;
+import fields.*;
 import game.*;
 
-public class TerritoryController  {
+public class TerritoryController extends OwnableController {
 	Territory territory;
 	
 	public TerritoryController() {
 		
-	}
-
-	public void setTerritory(Territory currentTerritory){
-		this.territory = currentTerritory;
-	}
-	
-	public boolean landOnField() {
-		if(territory.landOnField()) {
-			return true;
-		} else {
-			return false;
-		}	
 	}
 	
 	public boolean isOwner(Player player) {
@@ -29,8 +17,25 @@ public class TerritoryController  {
 		}
 	}
 	
-	
-	public void Owned(Player player) {
+	public void payRent(Player player) {
 		player.getAcc().transfer(territory.getOwner().getAcc(),territory.getRent());
+	}
+
+	@Override
+	public void landOnField(Player player, GUIManager display, OurField field, Die die) {
+		territory = (Territory) field;
+		if(field.landOnField()) {
+			if(this.isOwner(player)) {
+				display.sendMessage("Du er ejer af denne grund");
+			} else {
+				display.sendMessage(player.getName() + " er landet på " + territory.getName() + ". Grunden er ejet, du skal betale " + territory.getRent() + " i leje.");
+				payRent(player);
+			}
+			
+		} else {
+			if(display.chooseToBuyTerritory(territory.getName(), territory.getPrice(), player, territory.getRent()) == "Køb"){
+				buyField(player, display, territory);
+			}
+		}
 	}
 }

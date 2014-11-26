@@ -8,6 +8,7 @@ import game.GameBoard;
 import game.Player;
 
 public class GameController {
+	OurField currentField;
 	Territory currentTerritory;
 	Fleet currentFleet;
 	LaborCamp currentLaborCamp;
@@ -71,27 +72,10 @@ public class GameController {
                         
 			//Logik til at kontrollere hvilket felt der er landet på.
 			TerritoryController territoryController = new TerritoryController();
-			switch(board.getField(activePlayer.getField()-1).getType()) {
+			currentField = board.getField(activePlayer.getField() - 1);
+			switch(currentField.getType()) {
 			case("Territory"):
-				
-				currentTerritory = (Territory) board.getField(activePlayer.getField()-1);
-				
-				territoryController.setTerritory(currentTerritory);
-
-				if(territoryController.landOnField()) {
-					if(territoryController.isOwner(activePlayer)) {
-						display.sendMessage("Du er ejer af denne grund");
-					} else {
-						display.sendMessage(activePlayer.getName() + " er landet på " + currentTerritory.getName() + ". Grunden er ejet, du skal betale " + currentTerritory.getRent() + " i leje.");
-						territoryController.Owned(activePlayer);
-					}
-					
-				} else {
-					if(display.chooseToBuyTerritory(currentTerritory.getName(), currentTerritory.getPrice(), activePlayer, currentTerritory.getRent()) == "Køb"){
-						buyField(currentTerritory);
-					}
-				}
-				//
+				territoryController.landOnField(activePlayer, display, currentField, dice);
 				break;
 				
 			case("LaborCamp"):
