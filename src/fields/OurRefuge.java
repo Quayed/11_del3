@@ -30,11 +30,6 @@ public class OurRefuge extends OurField{
 	public void setFieldPossition(int fieldPossition) {
 		this.fieldPossition = fieldPossition;
 	}
-
-	@Override
-	public boolean landOnField() {
-		return true;
-	}
 	
 	public String toString() {
 		String s = "Bonus: " + bonus + " Name: " + super.getName() + " FieldID: " + super.getFieldId();

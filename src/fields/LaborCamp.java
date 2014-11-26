@@ -39,11 +39,6 @@ public class LaborCamp extends Ownable{
 	public void setFieldPossition(int fieldPossition) {
 		this.fieldPossition = fieldPossition;
 	}
-
-	@Override
-	public boolean landOnField() {
-		return true;
-	}
 	
 	public String toString() {
 		String s = "Price: " + super.getPrice() + " Name: " + super.getName() + " FieldID: " + super.getFieldId();

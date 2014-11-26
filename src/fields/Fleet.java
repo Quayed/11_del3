@@ -29,11 +29,6 @@ public class Fleet extends Ownable{
 			return 0; // returner 0 hvis grunden ikke ejes af nogle.
 	}
 	
-	@Override
-	public boolean landOnField() {
-		return true;
-	}
-	
 	public String toString() {
 		String s = "Rent: " + rent[0] + ", " + rent[1] + ", " + rent [2] + ", " + rent[3] + " Name: " + super.getName() + " FieldID: " + super.getFieldId();
 		

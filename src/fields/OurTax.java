@@ -50,11 +50,6 @@ public class OurTax extends OurField{
 	public void setFieldPossition(int fieldPossition) {
 		this.fieldPossition = fieldPossition;
 	}
-
-	@Override
-	public boolean landOnField() {
-		return true;
-	}
 	
 	public String toString() {
 		String s = "Tax Amount: " + taxAmount + " Tax Rate: " + taxRate + " Name: " + super.getName() + " FieldID: " + super.getFieldId();

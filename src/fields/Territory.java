@@ -32,12 +32,6 @@ public class Territory extends Ownable{
 	public void setFieldPossition(int fieldPossition) {
 		this.fieldPossition = fieldPossition;
 	}
-
-	@Override
-	public boolean landOnField() {
-		return false;
-		
-	}
 	
 	public String toString() {
 		String s = "Rent: " + rent + " Price: " + super.getPrice() + " Name: " + super.getOwner().getName() + " fieldId: " + super.getFieldId();
