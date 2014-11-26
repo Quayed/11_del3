@@ -7,7 +7,7 @@ import game.GUIManager;
 import game.Player;
 
 public class TaxController extends FieldController{
-	OurTax tax;
+	private OurTax tax;
 	public TaxController(){
 		
 	}

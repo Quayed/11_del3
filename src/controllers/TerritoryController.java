@@ -3,7 +3,7 @@ import fields.*;
 import game.*;
 
 public class TerritoryController extends OwnableController {
-	Territory territory;
+	private Territory territory;
 	
 	public TerritoryController() {
 		

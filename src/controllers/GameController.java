@@ -8,25 +8,20 @@ import game.GameBoard;
 import game.Player;
 
 public class GameController {
-	OurField currentField;
-	Territory currentTerritory;
-	Fleet currentFleet;
-	LaborCamp currentLaborCamp;
-	OurRefuge currentRefuge;
-	OurTax currentTax;
-	Ownable currentOwnable;
-	TerritoryController territoryController = new TerritoryController();
-	LaborCampController laborCampController = new LaborCampController();
-	FleetController fleetController = new FleetController();
-	RefugeController refugeController = new RefugeController();
-	TaxController taxController = new TaxController();
-	Player activePlayer;
-	GameBoard board;
-	Die dice;
-	Player players[];
-	Color colors[];
-	GUIManager display;
-	String name;
+	private OurField currentField;
+	private TerritoryController territoryController = new TerritoryController();
+	private LaborCampController laborCampController = new LaborCampController();
+	private FleetController fleetController = new FleetController();
+	private RefugeController refugeController = new RefugeController();
+	private TaxController taxController = new TaxController();
+	private Player activePlayer;
+	private GameBoard board;
+	private Die dice;
+	private Player players[];
+	private Color colors[];
+	private GUIManager display;
+	private String name;
+	
 	public GameController(){
 		
 	}

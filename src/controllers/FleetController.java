@@ -7,7 +7,7 @@ import game.GUIManager;
 import game.Player;
 
 public class FleetController extends OwnableController {
-	Fleet fleet;
+	private Fleet fleet;
 	public FleetController(){
 		
 	}

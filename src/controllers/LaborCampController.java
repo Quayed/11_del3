@@ -7,7 +7,7 @@ import game.GUIManager;
 import game.Player;
 
 public class LaborCampController extends OwnableController{
-	LaborCamp laborCamp;
+	private LaborCamp laborCamp;
 	public LaborCampController() {
 		
 	}

@@ -7,7 +7,7 @@ import game.GUIManager;
 import game.Player;
 
 public class RefugeController extends FieldController{
-	OurRefuge refuge;
+	private OurRefuge refuge;
 	public RefugeController(){
 		
 	}
