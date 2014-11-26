@@ -35,11 +35,8 @@ public class Territory extends Ownable{
 
 	@Override
 	public boolean landOnField() {
-		if(isOwned()) {
-			return true;
-		} else {
-			return false;
-		}
+		return false;
+		
 	}
 	
 	public String toString() {

@@ -8,28 +8,16 @@ public class TerritoryController extends OwnableController {
 	public TerritoryController() {
 		
 	}
-	
-	public boolean isOwner(Player player) {
-		if(player.getId() == territory.getOwner().getId()) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	public void payRent(Player player) {
-		player.getAcc().transfer(territory.getOwner().getAcc(),territory.getRent());
-	}
 
 	@Override
-	public void landOnField(Player player, GUIManager display, OurField field, Die die) {
+	public boolean landOnField(Player player, GUIManager display, OurField field, Die die) {
 		territory = (Territory) field;
-		if(field.landOnField()) {
-			if(this.isOwner(player)) {
+		if(territory.isOwned()) {
+			if(isOwner(player, field)) {
 				display.sendMessage("Du er ejer af denne grund");
 			} else {
 				display.sendMessage(player.getName() + " er landet på " + territory.getName() + ". Grunden er ejet, du skal betale " + territory.getRent() + " i leje.");
-				payRent(player);
+				return payRent(player, field);
 			}
 			
 		} else {
@@ -37,5 +25,6 @@ public class TerritoryController extends OwnableController {
 				buyField(player, display, territory);
 			}
 		}
+		return true;
 	}
 }

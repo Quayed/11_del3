@@ -15,6 +15,8 @@ public class GameController {
 	OurRefuge currentRefuge;
 	OurTax currentTax;
 	Ownable currentOwnable;
+	TerritoryController territoryController = new TerritoryController();
+	LaborCampController laborCampController = new LaborCampController();
 	Player activePlayer;
 	GameBoard board;
 	Die dice;
@@ -71,40 +73,19 @@ public class GameController {
 			display.movePlayer(activePlayer.getPrevField(), activePlayer.getField(), activePlayer.getName());
                         
 			//Logik til at kontrollere hvilket felt der er landet på.
-			TerritoryController territoryController = new TerritoryController();
+			
 			currentField = board.getField(activePlayer.getField() - 1);
 			switch(currentField.getType()) {
 			case("Territory"):
-				territoryController.landOnField(activePlayer, display, currentField, dice);
+				if(!territoryController.landOnField(activePlayer, display, currentField, dice)){
+					bankruptcy(turn);
+				}
 				break;
 				
 			case("LaborCamp"):
-				//statements
-				currentLaborCamp = (LaborCamp) board.getField(activePlayer.getField()-1);
-			    if(currentLaborCamp.isOwned()){
-			    	if(!currentLaborCamp.isOwner(activePlayer)){
-			    			//Jeg sender en besked han skal bekræfte for at fortsætte, hvor der står hvilket felt han har landt på og hvad der skal ske
-			    			display.sendMessage(activePlayer.getName() + "er landet på " + currentLaborCamp.getName() + "og skal slå med tegningerne. Der betales 100*øjne*ejet Labor Camps.");
-			    			//Jeg slår med 2 terninger, og viser dette i grafikken
-			    			dieOne = dice.roll();
-			    			dieTwo = dice.roll();
-			    			display.setDice(dieOne, dieTwo);
-			    			//Jeg udregner hvad spilleren skal betale til ejeren. Dette er øjne*ejet*100
-			    			int rent = currentLaborCamp.getOwner().getNumberOfLaborCampsOwned()*100*(dieOne+dieTwo);
-			    			//Jeg sender en besked han skal bekræfte for at fortsætte, hvor der står hvad han slog og hvad han skal betale
-			    			display.sendMessage("Du har slået " + (dieOne + dieTwo) + ", og skal betale " + rent + ".");
-			    			//Jeg sender penge fra den aktive spiller til ejeren af feltet. Jeg ved han har penge nok da dette var condition til at komme herned 
-			    			if(!activePlayer.getAcc().transfer(currentLaborCamp.getOwner().getAcc(), rent)){
-			    				bankruptcy(turn);
-			    			}
-			    	}
-			    }else{
-			    	if(display.chooseToBuyLaborCamp(currentLaborCamp.getName(), currentLaborCamp.getPrice(), activePlayer) == "Køb"){
-			    		if(buyField(currentLaborCamp)){
-			    			activePlayer.addNumberOfLaborCamps();
-			    		}
-			    	}
-			    }
+				if(!laborCampController.landOnField(activePlayer, display, currentField, dice)){
+					bankruptcy(turn);
+				}
 				break;
 				
 			case("Refuge"):
