@@ -25,7 +25,7 @@ public class FleetController extends OwnableController {
 			}
 			
 		} else{
-			if(display.chooseToBuyFleet(fleet.getName(), fleet.getPrice(), player) == "Køb"){
+			if(display.chooseToBuyFleet(fleet.getName(), fleet.getPrice(), player.getName()) == "Køb"){
 				if(buyField(player, display, fleet)){
 					player.addNumberOfFleetsOwned();
 				}

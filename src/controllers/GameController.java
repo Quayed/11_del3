@@ -78,7 +78,7 @@ public class GameController {
 				display.winning(winningPlayer.getName());
 				break;
 			}
-			display.roll(activePlayer);
+			display.roll(activePlayer.getName());
 			dieOne = dice.roll();
 			dieTwo = dice.roll();
 			display.setDice(dieOne, dieTwo);
@@ -125,7 +125,7 @@ public class GameController {
 			turn = ++turn % numberOfPlayers;
 			for(int i = 0; i < numberOfPlayers; i++) {
 				if (players[i] == null) continue;
-				display.updateBalance(players[i]);
+				display.updateBalance(players[i].getName(), players[i].getAcc().getBalance());
 				if(players[i].getAcc().getBalance() < 0)
 					bankruptcy(i);
 			}

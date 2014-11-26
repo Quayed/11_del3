@@ -32,7 +32,7 @@ public class LaborCampController extends OwnableController{
 	    			return payRent(player, field);
 	    	}
 	    }else{
-	    	if(display.chooseToBuyLaborCamp(laborCamp.getName(), laborCamp.getPrice(), player) == "Køb"){
+	    	if(display.chooseToBuyLaborCamp(laborCamp.getName(), laborCamp.getPrice(), player.getName()) == "Køb"){
 	    		if(buyField(player, display, laborCamp)){
 	    			player.addNumberOfLaborCamps();
 	    		}
