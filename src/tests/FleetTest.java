@@ -49,6 +49,18 @@ public class FleetTest {
 	}
 	
 	@Test
+	public void testPurchasingFieldsWithoutMoney(){
+		player1.getAcc().setBalance(1000);
+		assertEquals(1000, player1.getBalance());
+		assertEquals(true, fleetController.landOnField(player1, display, fleet1, die));
+		assertEquals(1000, player1.getBalance());
+		assertEquals(null, fleet1.getOwner());
+		assertEquals(0, player1.getNumberOfFleetsOwned());
+		assertEquals(0, player1.getNumberOfFieldsOwned());
+		assertEquals(0, player1.getInventory()[0]);
+	}
+	
+	@Test
 	public void testLandingOnOwnField(){
 		assertEquals(true, fleetController.landOnField(player1, display, fleet1, die));
 		assertEquals(player1, fleet1.getOwner());
