@@ -17,6 +17,6 @@ public class RefugeController extends FieldController{
 		refuge = (OurRefuge) field;
 		display.sendMessage(player.getName() + " landede på " + refuge.getName() + " og modtager " + refuge.getBonus());
 		player.getAcc().deposit(refuge.getBonus());
-		return false;
+		return true;
 	}
 }
