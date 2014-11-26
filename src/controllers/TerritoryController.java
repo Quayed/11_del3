@@ -21,7 +21,7 @@ public class TerritoryController extends OwnableController {
 			}
 			
 		} else {
-			if(display.chooseToBuyTerritory(territory.getName(), territory.getPrice(), player, territory.getRent()) == "Køb"){
+			if(display.chooseToBuyTerritory(territory.getName(), territory.getPrice(), player.getName(), territory.getRent()) == "Køb"){
 				buyField(player, display, territory);
 			}
 		}
