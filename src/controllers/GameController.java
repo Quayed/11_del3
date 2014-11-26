@@ -126,8 +126,6 @@ public class GameController {
 			for(int i = 0; i < numberOfPlayers; i++) {
 				if (players[i] == null) continue;
 				display.updateBalance(players[i].getName(), players[i].getBalance());
-				if(players[i].getBalance() < 0)
-					bankruptcy(i);
 			}
 		}	
 	}	
