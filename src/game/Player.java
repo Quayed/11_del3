@@ -7,7 +7,7 @@ public class Player{
 	private int previous_field = 0;
 	private int field = 0;
 	final private int ID;
-	final private int STARTMONEY = 5000;
+	final private int STARTMONEY = 30000;
 	private String payMethod = "10%"; // Kan være "10%" eller "4000"
 	private Account acc;
 	private int numberOfFleetsOwned = 0;
@@ -15,6 +15,7 @@ public class Player{
 	private boolean hasLost = false;
 	private int[] inventory = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	private int numberOfFieldsOwned = 0;
+	private int wealthOfFieldsOwned = 0;
 	
 	public Player() {
 		this.name = "DefaultPlayer";
@@ -125,23 +126,14 @@ public class Player{
 		this.inventory = inventory;
 	}
 	
-	public void addToInventory(int field){
-		this.inventory[this.numberOfFieldsOwned] = field;
+	public void addToInventory(int fieldNumber, int fieldPrice){
+		this.inventory[this.numberOfFieldsOwned] = fieldNumber;
 		this.numberOfFieldsOwned++;
+		this.wealthOfFieldsOwned += fieldPrice;
 	}
 	
-	public int getTotalAssets(GameBoard board) {
-		int totalAssets = getAcc().getBalance();
-		
-		int[] playerInventory = getInventory();
-		
-		for (int i = 0; i < playerInventory.length; i++){
-			if (playerInventory[i] != 0){
-				Ownable currentOwnable = (Ownable) board.getField(playerInventory[i]-1);
-				totalAssets += currentOwnable.getPrice();
-			}
-		}
-		
+	public int getTotalAssets() {
+		int totalAssets = acc.getBalance() + wealthOfFieldsOwned;
 		return totalAssets;
 	}
 	

@@ -18,6 +18,8 @@ public class GameController {
 	TerritoryController territoryController = new TerritoryController();
 	LaborCampController laborCampController = new LaborCampController();
 	FleetController fleetController = new FleetController();
+	RefugeController refugeController = new RefugeController();
+	TaxController taxController = new TaxController();
 	Player activePlayer;
 	GameBoard board;
 	Die dice;
@@ -64,6 +66,18 @@ public class GameController {
 				turn = ++turn % numberOfPlayers;
 				continue; 
 			}
+			int countOfNotNull = 0;
+			Player winningPlayer = null;
+			for (int count = 0; count < players.length; count++){
+				if (players[count] != null){
+					countOfNotNull++;
+					winningPlayer = players[count];
+				}
+			}
+			if (countOfNotNull == 1){
+				display.winning(winningPlayer.getName());
+				break;
+			}
 			display.roll(activePlayer);
 			dieOne = dice.roll();
 			dieTwo = dice.roll();
@@ -89,41 +103,19 @@ public class GameController {
 				}
 				break;
 				
-			case("Refuge"):
-				currentRefuge = (OurRefuge) board.getField(activePlayer.getField()-1);
-				display.sendMessage(activePlayer.getName() + " landede på " + currentRefuge.getName() + " og modtager " + currentRefuge.getBonus());
-				activePlayer.getAcc().deposit(currentRefuge.getBonus());
-				break;
-				
 			case("Fleet"):
-				if(fleetController.landOnField(activePlayer, display, currentField, dice)){
+				if(!fleetController.landOnField(activePlayer, display, currentField, dice)){
 					bankruptcy(turn);
 				}
 				break;
 				
+			case("Refuge"):
+				refugeController.landOnField(activePlayer, display, currentField, dice);
+				break;
+				
 			case("Tax"):
-				currentTax =  (OurTax) board.getField(activePlayer.getField() -1); 
-				if(activePlayer.getField() == 9) {
-					display.sendMessage(activePlayer.getName() + " er landet på " + currentTax.getName() + " og skal betale 2000 kroner i skat.");
-					if(!activePlayer.getAcc().withdraw(2000)){
-						bankruptcy(turn);
-					}
-				}else if (activePlayer.getField() == 19) {
-					switch (display.choosePayment(activePlayer.getName())) {
-					case "10%":
-						//Samlede værdi hentes
-						int totalAssets = activePlayer.getTotalAssets(board);
-
-						if(!activePlayer.getAcc().withdraw((int) (totalAssets*currentTax.getTaxRate()))){
-							bankruptcy(turn);
-						}
-						break;
-					case "4000":
-						if(!activePlayer.getAcc().withdraw(4000)){
-							bankruptcy(turn);
-						}
-						break;
-					}
+				if(!taxController.landOnField(activePlayer, display, currentField, dice)){
+					bankruptcy(turn);
 				}
 				break;
 			}
@@ -138,22 +130,7 @@ public class GameController {
 					bankruptcy(i);
 			}
 		}	
-	}
-	
-	private boolean buyField(Ownable field){
-		if(activePlayer.getAcc().getBalance() >= field.getPrice()){
-    		activePlayer.getAcc().withdraw(field.getPrice());
-    		activePlayer.addToInventory(activePlayer.getField());
-    		field.setOwner(activePlayer);
-    		display.setOwner(activePlayer.getField(), activePlayer.getName());
-    		return true;
-    	}
-    	else{
-    		display.sendMessage("Du har ikke nok penge til at købe denne grund.");
-    		return false;
-    	}
-	}
-	
+	}	
 	private void bankruptcy(int turn){
 		int[] playerInventory = activePlayer.getInventory();
 		for (int i = 0; i < playerInventory.length; i++){
