@@ -1,8 +1,5 @@
 package fields;
 
-import game.GUIManager;
-import game.Player;
-
 abstract public class OurField {
 	private String name;
 	private int fieldId;

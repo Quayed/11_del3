@@ -1,8 +1,5 @@
 package fields;
 
-import game.GUIManager;
-import game.Player;
-
 public class LaborCamp extends Ownable{
 	private int baseRent = 100;
 	private int fieldPossition;

@@ -1,7 +1,5 @@
 package game;
 
-import fields.Ownable;
-
 public class Player{
 	private String name;
 	private int previous_field = 0;

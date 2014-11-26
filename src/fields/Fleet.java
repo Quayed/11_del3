@@ -1,8 +1,5 @@
 package fields;
 
-import game.GUIManager;
-import game.Player;
-
 public class Fleet extends Ownable{
 
 	private int[] rent = {500,1000,2000,4000};

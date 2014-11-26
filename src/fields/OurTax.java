@@ -1,8 +1,5 @@
 package fields;
 
-import game.GUIManager;
-import game.Player;
-
 public class OurTax extends OurField{
 	private int taxAmount;
 	private int taxPercentage;
