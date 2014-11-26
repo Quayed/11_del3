@@ -17,7 +17,7 @@ public class LaborCampController extends OwnableController{
 		laborCamp = (LaborCamp) field;
 		
 	    if(laborCamp.isOwned()){
-	    	if(!isOwner(player, field)){
+	    	if(!isOwner(player, laborCamp)){
 	    			//Jeg sender en besked han skal bekræfte for at fortsætte, hvor der står hvilket felt han har landt på og hvad der skal ske
 	    			display.sendMessage(player.getName() + "er landet på " + laborCamp.getName() + "og skal slå med tegningerne. Der betales 100*øjne*ejet Labor Camps.");
 	    			//Jeg slår med 2 terninger, og viser dette i grafikken

@@ -19,8 +19,7 @@ public abstract class OwnableController extends FieldController {
     	}
 	}
 	
-	public boolean isOwner(Player player, OurField field) {
-		Ownable ownable = (Ownable) field;
+	public boolean isOwner(Player player, Ownable ownable) {
 		if(player.getId() == ownable.getOwner().getId()) {
 			return true;
 		} else {
@@ -28,8 +27,7 @@ public abstract class OwnableController extends FieldController {
 		}
 	}
 	
-	public boolean payRent(Player player, OurField field) {
-		Ownable ownable = (Ownable) field;
+	public boolean payRent(Player player, Ownable ownable) {
 		return player.transfer(ownable.getOwner(),ownable.getRent());
 	}
 	

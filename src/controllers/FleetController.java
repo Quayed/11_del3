@@ -16,7 +16,7 @@ public class FleetController extends OwnableController {
 	public boolean landOnField(Player player, GUIManager display, OurField field, Die die) {
 		fleet = (Fleet) field;
 		if(fleet.isOwned()){
-			if(!isOwner(player, field)){
+			if(!isOwner(player, fleet)){
 				if(player.getBalance() > fleet.getPrice()){
 					display.sendMessage(player.getName() + " er landet på " + fleet.getName() + " og skal betale " + fleet.getRent() + " kroner.");
 					//Her overføres penge fra spilleren der landte på 
