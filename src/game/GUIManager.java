@@ -175,10 +175,10 @@ public class GUIManager {
 	
 	public void winning(String name){
 		if(state == "test"){
-			System.out.println(name + "har vundet, tillykke");
-		}else{
-		GUI.getUserButtonPressed("\n\n" + name + "har vundet spillet!! Tillykke!!! ", "Afslut spil");
-		GUI.close();
+			System.out.println(name + " har vundet, tillykke!");
+		} else{
+			GUI.getUserButtonPressed("\n\n" + name + " har vundet spillet! Tillykke! ", "Afslut spil");
+			GUI.close();
 		}
 	}
 	

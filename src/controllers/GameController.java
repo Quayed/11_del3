@@ -36,9 +36,8 @@ public class GameController {
 		dice = new Die();
 		players = new Player[6];
 		colors = new Color[] {Color.BLUE, Color.RED, Color.GREEN, Color.CYAN, Color.ORANGE, Color.YELLOW};
-		int numberOfPlayers;
+		int numberOfPlayers, dieOne, dieTwo;
 		int turn = 0;
-		int dieOne, dieTwo;
 		//Kør spillet
 		display = new GUIManager();
 		display.create(board);
@@ -48,7 +47,6 @@ public class GameController {
 		numberOfPlayers = display.getNumberOfPlayers();
 		
 		for(int i = 0; i < numberOfPlayers; i++){
-			
 			name = display.getPlayerName(i+1);
 			players[i] = new Player(i, name);
 			display.addPlayer(players[i].getName(), players[i].getBalance(), colors[i]);
