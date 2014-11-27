@@ -147,7 +147,7 @@ public class GUIManager {
 		if(state == "test"){
 			return handel;
 		}
-		return GUI.getUserButtonPressed("\n" + name  + " er landet på grunden " + name + ". Den er ikke ejet.\nVil du købe " + name + "? Det koster " + price + " kroner, lejen er på " + rent+".", "Køb", "Afslå");
+		return GUI.getUserButtonPressed("\n" + playerName  + " er landet på grunden " + name + ". Den er ikke ejet.\nVil du købe " + name + "? Det koster " + price + " kroner, lejen er på " + rent+".", "Køb", "Afslå");
 	}
 	
 	public String chooseToBuyLaborCamp(String name, int price, String playerName){
