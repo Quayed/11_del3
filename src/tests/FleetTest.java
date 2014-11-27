@@ -111,4 +111,30 @@ public class FleetTest {
 		assertEquals(21000, player1.getBalance());
 		assertEquals(23000, player2.getBalance());
 	}
+	
+	@Test
+	public void testPayingRentWithoutEnoughMoneyOneFleet(){
+		assertEquals(true, fleetController.landOnField(player1, display, fleet1, die));
+		assertEquals(player1, fleet1.getOwner());
+		assertEquals(26000, player1.getBalance());
+		player2.getAcc().setBalance(400);
+		assertEquals(400,player2.getBalance());
+		assertEquals(false, fleetController.landOnField(player2, display, fleet1, die));
+		assertEquals(0, player2.getBalance());
+		assertEquals(26400, player1.getBalance());
+	}
+	
+	@Test
+	public void testPayingRentWithoutEnoughMoneyMultipleFleets(){
+		assertEquals(true, fleetController.landOnField(player1, display, fleet1, die));
+		assertEquals(true, fleetController.landOnField(player1, display, fleet2, die));
+		assertEquals(true, fleetController.landOnField(player1, display, fleet3, die));
+		assertEquals(true, fleetController.landOnField(player1, display, fleet4, die));
+		assertEquals(14000, player1.getBalance());
+		player2.getAcc().setBalance(3000);
+		assertEquals(3000, player2.getBalance());
+		assertEquals(false, fleetController.landOnField(player2, display, fleet2, die));
+		assertEquals(17000, player1.getBalance());
+		assertEquals(0, player2.getBalance());
+	}
 }
