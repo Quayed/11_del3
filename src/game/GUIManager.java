@@ -182,8 +182,8 @@ public class GUIManager {
 		}
 	}
 	
-	public String getPlayerName(){
-		String name = GUI.getUserString("Indtast dit navn");
+	public String getPlayerName(int playerNumber){
+		String name = GUI.getUserString("Indtast venligst navnet for spiller "+playerNumber+":");
 		return name;
 	}
 }

@@ -49,7 +49,7 @@ public class GameController {
 		
 		for(int i = 0; i < numberOfPlayers; i++){
 			
-			name = display.getPlayerName();
+			name = display.getPlayerName(i+1);
 			players[i] = new Player(i, name);
 			display.addPlayer(players[i].getName(), players[i].getBalance(), colors[i]);
 		}
