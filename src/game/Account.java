@@ -43,7 +43,7 @@ public class Account {
 		if(amount > 0){
 			if(amount > this.balance){
 				reciever.deposit(balance);
-				this.withdraw(amount);
+				this.withdraw(balance);
 				return false;
 			} else{
 				this.withdraw(amount);
