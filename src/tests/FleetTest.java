@@ -32,6 +32,18 @@ public class FleetTest {
 	}
 	
 	@Test
+	public void testLandingOnFieldNotWantingToBuy(){
+		display = new GUIManager("test", "", "Afslå");
+		assertEquals(30000, player1.getBalance());
+		assertEquals(0, player1.getNumberOfFieldsOwned());
+		assertEquals(0, player1.getInventory()[0]);
+		assertEquals(true, fleetController.landOnField(player1, display, fleet1, die));
+		assertEquals(30000, player1.getBalance());
+		assertEquals(0, player1.getNumberOfFieldsOwned());
+		assertEquals(0, player1.getInventory()[0]);
+	}
+	
+	@Test
 	public void testPurchasingFleets() {
 		assertEquals(30000, player1.getBalance());
 		assertEquals(true, fleetController.landOnField(player1, display, fleet1, die));
