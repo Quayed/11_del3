@@ -12,7 +12,7 @@ public class PlayerTest {
 		Player player = new Player(101, "THOMAS");
 		assertEquals(player.getName(),"THOMAS");
 		assertEquals(player.getId(),101);
-		assertEquals(player.getStartMoney(),5000);
+		assertEquals(player.getStartMoney(),30000);
 		assertEquals(player.getNumberOfFleetsOwned(),0);
 		assertEquals(player.getNumberOfLaborCampsOwned(),0);
 		assertEquals(player.getNumberOfFieldsOwned(),0);
