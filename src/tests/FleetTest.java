@@ -32,7 +32,7 @@ public class FleetTest {
 	}
 	
 	@Test
-	public void testLandingOnFieldNotWantingToBuy(){
+	public void testLandingOnFleetNotWantingToBuy(){
 		display = new GUIManager("test", "", "Afslå");
 		assertEquals(30000, player1.getBalance());
 		assertEquals(0, player1.getNumberOfFieldsOwned());
@@ -73,7 +73,7 @@ public class FleetTest {
 	}
 	
 	@Test
-	public void testLandingOnOwnField(){
+	public void testLandingOnOwnFleet(){
 		assertEquals(true, fleetController.landOnField(player1, display, fleet1, die));
 		assertEquals(player1, fleet1.getOwner());
 		assertEquals(26000, player1.getBalance());
