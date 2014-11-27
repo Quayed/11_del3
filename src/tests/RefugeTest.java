@@ -50,7 +50,6 @@ public class RefugeTest {
 	public void landingOnField() {
 		player.deposit(refuge.getBonus());
 		assertEquals(player.getAcc().getBalance(),30500);
-
 	}
 	
 	@Test
@@ -64,7 +63,7 @@ public class RefugeTest {
 	@Test
 	public void testFieldPosition(){
 		//To refuge testes
-		refuge2 = new OurRefuge(800, "Tjøbenhavn", 18, 6);
+		refuge2 = new OurRefuge(800, "København", 18, 6);
 		assertEquals(refuge.getFieldPossition(), 12);
 		assertEquals(refuge2.getFieldPossition(), 6);
 		
@@ -75,6 +74,5 @@ public class RefugeTest {
 		//Det testes om værdierne stemmer overens
 		assertEquals(refuge.getFieldPossition(), 10);
 		assertEquals(refuge2.getFieldPossition(), 48);
-		
 	}
 }
