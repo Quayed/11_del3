@@ -38,5 +38,10 @@ public class AccountTest {
 		assertEquals(false, acc.withdraw(1000)); // balance doesn't change
 		assertEquals(expected, acc.getBalance());		
 	}
+	
+	@Test
+	public void testTransfer(){
+		
+	}
 
 }
