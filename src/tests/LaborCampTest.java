@@ -30,82 +30,100 @@ public class LaborCampTest {
 		
 	}	
 	
-	//@Test
+	@Test
 	public void NotOwnedBuyHasMoney(){
+		
 		Player player = new Player(1,"Joachim von And");
 		player.setField(10);
+		
 		labcController.landOnField(player, display, laborCamp, die);
-		assertEquals(player.getInventory()[0],10);
-		assertEquals(player.getNumberOfFieldsOwned(),1);
-		assertEquals(player.getAcc().getBalance(),28000);
-		assertEquals(labcController.landOnField(player, display, laborCamp, die),true);
+		
+		assertEquals(10,player.getInventory()[0]);
+		assertEquals(1,player.getNumberOfFieldsOwned());
+		assertEquals(28000,player.getAcc().getBalance());
+		assertEquals(true,labcController.landOnField(player, display, laborCamp, die));
 	}
-	//@Test
+	@Test
 	public void NotOwnedBuyExactMoney(){
+		
 		Player player = new Player(1,"Joachim von And");
 		player.setField(10);
 		player.getAcc().setBalance(2000);
+		
 		labcController.landOnField(player, display, laborCamp, die);
-		assertEquals(player.getInventory()[0],10);
-		assertEquals(player.getNumberOfFieldsOwned(),1);
-		assertEquals(player.getAcc().getBalance(),0);
-		assertEquals(labcController.landOnField(player, display, laborCamp, die),true);
+		
+		assertEquals(10,player.getInventory()[0]);
+		assertEquals(1,player.getNumberOfFieldsOwned());
+		assertEquals(0,player.getAcc().getBalance(),0);
+		assertEquals(true,labcController.landOnField(player, display, laborCamp, die));
 	}
-	//@Test
+	@Test
 	public void NotOwnedBuyNoMoney(){
+		
 		Player player = new Player(1,"Joachim von And");
 		player.setField(10);
 		player.getAcc().setBalance(1500);
+		
 		labcController.landOnField(player, display, laborCamp, die);
-		assertEquals(player.getInventory()[0],0);
-		assertEquals(player.getNumberOfFieldsOwned(),0);
-		assertEquals(player.getAcc().getBalance(),1500);
-		assertEquals(labcController.landOnField(player, display, laborCamp, die),true);
+		
+		assertEquals(0,player.getInventory()[0]);
+		assertEquals(0,player.getNumberOfFieldsOwned());
+		assertEquals(1500,player.getAcc().getBalance());
+		assertEquals(true,labcController.landOnField(player, display, laborCamp, die));
 	}
 	
 	
-	//@Test
+	@Test
 	//Der testes om en spiller med rigeligt penge kan afvise et felt.  
 	public void NotOwnedRejectHasMoney(){
+		
 		Player player = new Player(1,"Joachim von And");
 		display = new GUIManager("test","10%","Afslå"); 
+		
 		labcController.landOnField(player, display, laborCamp, die);
-		assertEquals(player.getAcc().getBalance(),30000);
-		assertEquals((int)player.getInventory()[0],0);
-		assertEquals(player.getNumberOfFieldsOwned(),0);	
+		
+		assertEquals(30000,player.getAcc().getBalance());
+		assertEquals(0,(int)player.getInventory()[0]);
+		assertEquals(0,player.getNumberOfFieldsOwned());	
 	}
 	
 	@Test
 	//Der testes om en spiller der lander på sit eget felt skal betale noget.
 	public void OwnedSelf() {
+		
 		Player player = new Player(1,"Joachim von And");
 		player.setField(10);
+		
 		labcController.landOnField(player, display, laborCamp, die);
 		labcController.landOnField(player, display, laborCamp, die);
-		assertEquals(player.getInventory()[0],10);
-		assertEquals(player.getNumberOfFieldsOwned(),1);
-		assertEquals(player.getAcc().getBalance(),28000);
-		assertEquals(labcController.landOnField(player, display, laborCamp, die),true);
+		
+		assertEquals(10,player.getInventory()[0]);
+		assertEquals(1,player.getNumberOfFieldsOwned());
+		assertEquals(28000,player.getAcc().getBalance());
+		assertEquals(true,labcController.landOnField(player, display, laborCamp, die));
 	}
 
 	@Test
 	//Der testes om en spiller med rigeligt penge, der lander på et allerede eget felt af en anden betaler og mister det rigtige antal penge,
 	//og ikke taber spillet selvom man har penge nok 
 	public void OwnedOtherOnePayRentAbove(){
+		
 		Player player1 = new Player(1,"Joachim Von And");
 		Player player2 = new Player(2,"Guld-Iver Flintesten");
+		
 		HasLost1 = labcController.landOnField(player1, display, laborCamp, die);
 		HasLost2 = labcController.landOnField(player2, display, laborCamp, die);
-		assertEquals(player1.getInventory()[0],10);
-		assertEquals(player1.getNumberOfFieldsOwned(),1);
-		assertEquals(player1.getAcc().getBalance(),29200);
 		
-		assertEquals(player2.getInventory()[0],0);
-		assertEquals(player2.getNumberOfFieldsOwned(),0);
-		assertEquals(player2.getAcc().getBalance(),28800);
+		assertEquals(10,player1.getInventory()[0]);
+		assertEquals(1,player1.getNumberOfFieldsOwned());
+		assertEquals(29200,player1.getAcc().getBalance());
 		
-		assertEquals(HasLost1,true);
-		assertEquals(HasLost2,true);
+		assertEquals(0,player2.getInventory()[0]);
+		assertEquals(0,player2.getNumberOfFieldsOwned());
+		assertEquals(28800,player2.getAcc().getBalance());
+		
+		assertEquals(true,HasLost1);
+		assertEquals(true,HasLost2);
 
 	}
 	
@@ -113,22 +131,24 @@ public class LaborCampTest {
 	//Der testes om en spiller med det nøjagtige antal penge til at betale en anden spiller, betaler det rigtige beløb
 	//og ikke ryger ud af spillet
 	public void OwnedOtherOnePayRentExact(){
+		
 		Player player1 = new Player(1,"Joachim Von And");
 		Player player2 = new Player(2,"Guld-Iver Flintesten");
 		player2.getAcc().setBalance(1200);
 		
 		HasLost1 = labcController.landOnField(player1, display, laborCamp, die);
 		HasLost2 = labcController.landOnField(player2, display, laborCamp, die);
-		assertEquals(player1.getInventory()[0],10);
-		assertEquals(player1.getNumberOfFieldsOwned(),1);
-		assertEquals(player1.getAcc().getBalance(),29200);
 		
-		assertEquals(player2.getInventory()[0],0);
-		assertEquals(player2.getNumberOfFieldsOwned(),0);
-		assertEquals(player2.getAcc().getBalance(),0);
+		assertEquals(10,player1.getInventory()[0]);
+		assertEquals(1,player1.getNumberOfFieldsOwned());
+		assertEquals(29200,player1.getAcc().getBalance());
 		
-		assertEquals(HasLost1,true);
-		assertEquals(HasLost2,true);
+		assertEquals(0,player2.getInventory()[0]);
+		assertEquals(0,player2.getNumberOfFieldsOwned());
+		assertEquals(0,player2.getAcc().getBalance());
+		
+		assertEquals(true,HasLost1);
+		assertEquals(true,HasLost2);
 	}
 	
 	//Der undersøges om en spiller uden penge nok betaler hvad han har tilbage til den anden spiller, 
@@ -141,15 +161,16 @@ public class LaborCampTest {
 		
 		HasLost1 = labcController.landOnField(player1, display, laborCamp, die);
 		HasLost2 = labcController.landOnField(player2, display, laborCamp, die);
-		assertEquals(player1.getInventory()[0],10);
-		assertEquals(player1.getNumberOfFieldsOwned(),1);
-		assertEquals(player1.getAcc().getBalance(),28600);
 		
-		assertEquals(player2.getInventory()[0],0);
-		assertEquals(player2.getNumberOfFieldsOwned(),0);
+		assertEquals(10,player1.getInventory()[0]);
+		assertEquals(1,player1.getNumberOfFieldsOwned());
+		assertEquals(28600,player1.getAcc().getBalance());
 		
-		assertEquals(HasLost1,true);
-		assertEquals(HasLost2,false);
+		assertEquals(0,player2.getInventory()[0]);
+		assertEquals(0,player2.getNumberOfFieldsOwned());
+		
+		assertEquals(true,HasLost1);
+		assertEquals(false,HasLost2);
 	}
 
 		
@@ -158,6 +179,7 @@ public class LaborCampTest {
 	//Denne gang ejer han det andet felt 
 
 	public void OwnedOtherTwoPayRentAbove(){
+		
 		Player player1 = new Player(1,"Joachim Von And");
 		Player player2 = new Player(2,"Guld-Iver Flintesten");
 		laborCamp2 = new LaborCamp(2000, "Bjørnehulen", 16, 11);
@@ -165,16 +187,17 @@ public class LaborCampTest {
 		labcController.landOnField(player1, display, laborCamp2, die);
 		HasLost1 = labcController.landOnField(player1, display, laborCamp, die);
 		HasLost2 = labcController.landOnField(player2, display, laborCamp, die);
-		assertEquals(player1.getInventory()[0],10);
-		assertEquals(player1.getNumberOfFieldsOwned(),1);
-		assertEquals(player1.getAcc().getBalance(),30400);
 		
-		assertEquals(player2.getInventory()[0],0);
-		assertEquals(player2.getNumberOfFieldsOwned(),0);
-		assertEquals(player2.getAcc().getBalance(),27600);
+		assertEquals(10,player1.getInventory()[0]);
+		assertEquals(1,player1.getNumberOfFieldsOwned());
+		assertEquals(30400,player1.getAcc().getBalance());
 		
-		assertEquals(HasLost1,true);
-		assertEquals(HasLost2,true);
+		assertEquals(0,player2.getInventory()[0]);
+		assertEquals(0,player2.getNumberOfFieldsOwned());
+		assertEquals(27600,player2.getAcc().getBalance());
+		
+		assertEquals(true,HasLost1);
+		assertEquals(true,HasLost2);
 		
 	}
 	
@@ -182,6 +205,7 @@ public class LaborCampTest {
 	//Der testes om en spiller med det nøjagtige antal penge til at betale en anden spiller, betaler det rigtige beløb
 	//og ikke ryger ud af spillet
 	public void OwnedOtherTwoPayRentExact(){
+		
 		Player player1 = new Player(1,"Joachim Von And");
 		Player player2 = new Player(2,"Guld-Iver Flintesten");
 		laborCamp2 = new LaborCamp(2000, "Bjørnehulen", 16, 11);
@@ -190,16 +214,17 @@ public class LaborCampTest {
 		labcController.landOnField(player1, display, laborCamp2, die);
 		HasLost1 = labcController.landOnField(player1, display, laborCamp, die);
 		HasLost2 = labcController.landOnField(player2, display, laborCamp, die);
-		assertEquals(player1.getInventory()[0],11);
-		assertEquals(player1.getNumberOfFieldsOwned(),2);
-		assertEquals(player1.getAcc().getBalance(),28400);
 		
-		assertEquals(player2.getInventory()[0],0);
-		assertEquals(player2.getNumberOfFieldsOwned(),0);
-		assertEquals(player2.getAcc().getBalance(),0);
+		assertEquals(11,player1.getInventory()[0]);
+		assertEquals(2,player1.getNumberOfFieldsOwned());
+		assertEquals(28400,player1.getAcc().getBalance());
 		
-		assertEquals(HasLost1,true);
-		assertEquals(HasLost2,true);
+		assertEquals(0,player2.getInventory()[0]);
+		assertEquals(0,player2.getNumberOfFieldsOwned());
+		assertEquals(0,player2.getAcc().getBalance());
+		
+		assertEquals(true,HasLost1);
+		assertEquals(true,HasLost2);
 	}
 	
 	//Der undersøges om en spiller uden penge nok betaler hvad han har tilbage til den anden spiller, 
@@ -214,15 +239,16 @@ public class LaborCampTest {
 		labcController.landOnField(player1, display, laborCamp2, die);
 		HasLost1 = labcController.landOnField(player1, display, laborCamp, die);
 		HasLost2 = labcController.landOnField(player2, display, laborCamp, die);
-		assertEquals(player1.getInventory()[0],11);
-		assertEquals(player1.getNumberOfFieldsOwned(),2);
-		assertEquals(player1.getAcc().getBalance(),27200);
 		
-		assertEquals(player2.getInventory()[0],0);
-		assertEquals(player2.getNumberOfFieldsOwned(),0);
+		assertEquals(11,player1.getInventory()[0]);
+		assertEquals(2,player1.getNumberOfFieldsOwned());
+		assertEquals(27200,player1.getAcc().getBalance());
 		
-		assertEquals(HasLost1,true);
-		assertEquals(HasLost2,false);
+		assertEquals(0,player2.getInventory()[0]);
+		assertEquals(0,player2.getNumberOfFieldsOwned());
+		
+		assertEquals(true,HasLost1);
+		assertEquals(false,HasLost2);
 	}
 	
 	
