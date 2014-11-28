@@ -1,6 +1,5 @@
 package tests;
 
-import fields.OurRefuge;
 import game.GameBoard;
 import static org.junit.Assert.*;
 
@@ -17,7 +16,6 @@ public class GameBoardTest {
 	
 	@Test
 	public void testNumberOfFields() {
-		board.getNumberOfFields();
 		assertEquals(board.getNumberOfFields(),21);
 	}
 }
