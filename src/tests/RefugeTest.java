@@ -49,7 +49,7 @@ public class RefugeTest {
 	
 	
 	@Test
-	public void landingOnField() {
+	public void testLandingOnField() {
 		assertEquals(true, refugeController.landOnField(player, display, refuge, die));
 		assertEquals(player.getAcc().getBalance(),30500);
 	}
