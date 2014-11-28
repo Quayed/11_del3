@@ -40,7 +40,7 @@ public class Account {
 	}
 	
 	public boolean transfer(Account reciever, int amount){
-		if(amount > 0){
+		if(amount >= 0){
 			if(amount > this.balance){
 				reciever.deposit(balance);
 				this.withdraw(balance);

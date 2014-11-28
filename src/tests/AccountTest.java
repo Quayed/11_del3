@@ -41,15 +41,19 @@ public class AccountTest {
 	
 	@Test
 	public void testTransfer(){
-		Player player1 = new Player();
-		Player player2 = new Player();
-		player1.getAcc().setBalance(1000);
-		player2.getAcc().setBalance(1000);
-		
-		player1.getAcc().transfer(player2.getAcc(), 500);
-		
-		assertEquals(player1.getAcc().getBalance(),500);
-		assertEquals(player2.getAcc().getBalance(),1500);
+		Account acc1 = new Account(1000, 1);
+		Account acc2 = new Account(1000, 1);
+		assertEquals(1000, acc1.getBalance());
+		assertEquals(1000, acc2.getBalance());
+		assertEquals(true, acc1.transfer(acc2, 500));
+		assertEquals(500, acc1.getBalance());
+		assertEquals(1500, acc2.getBalance());
+		assertEquals(false, acc1.transfer(acc2, -500));
+		assertEquals(500, acc1.getBalance());
+		assertEquals(1500, acc2.getBalance());
+		assertEquals(true, acc1.transfer(acc2, 0));
+		assertEquals(500, acc1.getBalance());
+		assertEquals(1500, acc2.getBalance());
 	}
 
 }
