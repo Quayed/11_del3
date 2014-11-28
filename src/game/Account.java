@@ -34,7 +34,10 @@ public class Account {
 			if(amount <= this.balance){
 				this.balance -= amount; 
 				return true;	
-			}			
+			} else {
+				this.balance = 0;
+				return false;
+			}
 		} 
 		return false;		
 	}
