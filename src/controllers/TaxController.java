@@ -16,7 +16,7 @@ public class TaxController extends FieldController{
 	public boolean landOnField(Player player, GUIManager display, OurField field, Die die) {
 		tax =  (OurTax) field; 
 		if(tax.getTaxRate() == 0) {
-			display.sendMessage(player.getName() + " er landet på " + player.getName() + " og skal betale " + tax.getTaxAmount() + " kroner i skat.");
+			display.sendMessage(player.getName() + " er landet på " + tax.getName() + " og skal betale " + tax.getTaxAmount() + " kroner i skat.");
 			return player.withdraw(tax.getTaxAmount());
 			
 		}else {
