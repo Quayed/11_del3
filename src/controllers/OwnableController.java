@@ -32,6 +32,6 @@ public abstract class OwnableController extends FieldController {
 	}
 	
 	public boolean payRent(Player player, LaborCamp laborCamp, int sum){
-		return player.transfer(laborCamp.getOwner(), laborCamp.getBaseRent()*laborCamp.getOwner().getNumberOfLaborCampsOwned());
+		return player.transfer(laborCamp.getOwner(), laborCamp.getBaseRent()*laborCamp.getOwner().getNumberOfLaborCampsOwned()*sum);
 	}
 }
