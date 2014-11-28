@@ -29,6 +29,7 @@ public class LaborCampTest {
 		display = new GUIManager("test", "10%", "Køb");
 		
 	}	
+	
 	//@Test
 	public void NotOwnedBuyHasMoney(){
 		Player player = new Player(1,"Joachim von And");
