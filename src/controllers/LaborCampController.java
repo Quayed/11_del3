@@ -15,7 +15,6 @@ public class LaborCampController extends OwnableController{
 	@Override
 	public boolean landOnField(Player player, GUIManager display, OurField field, Die die) {
 		laborCamp = (LaborCamp) field;
-		
 	    if(laborCamp.isOwned()){
 	    	if(!isOwner(player, laborCamp)){
 	    			//Jeg sender en besked han skal bekræfte for at fortsætte, hvor der står hvilket felt han har landt på og hvad der skal ske
@@ -28,7 +27,7 @@ public class LaborCampController extends OwnableController{
 	    			int rent = laborCamp.getOwner().getNumberOfLaborCampsOwned()*100*(dieOne+dieTwo);
 	    			//Jeg sender en besked han skal bekræfte for at fortsætte, hvor der står hvad han slog og hvad han skal betale
 	    			display.sendMessage("Du har slået " + (dieOne + dieTwo) + ", og skal betale " + rent + ".");
-	    			//Jeg sender penge fra den aktive spiller til ejeren af feltet. Jeg ved han har penge nok da dette var condition til at komme herned 
+	    			//Jeg sender penge fra den aktive spiller til ejeren af feltet. Jeg ved han har penge nok da dette var condition til at komme herned
 	    			return payRent(player, laborCamp, (dieOne+dieTwo));
 	    	}
 	    }else{
