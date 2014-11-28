@@ -35,7 +35,6 @@ public class LaborCampTest {
 		Player player = new Player(1,"Joachim von And");
 		display = new GUIManager("test","10%","Afslå"); 
 		player.getAcc().setBalance(100);
-		player.setField(10);
 		labcController.landOnField(player, display, laborCamp, dieOne);
 		
 		assertEquals(player.getAcc().getBalance(),100);
@@ -47,6 +46,7 @@ public class LaborCampTest {
 	@Test
 	//Der testes om en spiller der lander på sit eget felt skal betale noget.
 	public void OwnedSelf() {
+		Player player = new Player(1,"Joachim von And");
 		
 		
 		
