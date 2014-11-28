@@ -27,9 +27,13 @@ public class AccountTest {
 		Account acc = new Account(1000, 1);
 		int expected = 1000;
 		assertEquals(expected, acc.getBalance());
-		acc.withdraw(100); // balance = 900
+		assertEquals(true, acc.withdraw(100)); // balance = 900
 		expected -= 100; // expected now 900
 		assertEquals(expected, acc.getBalance());
+		assertEquals(false, acc.withdraw(-100));
+		assertEquals(900, acc.getBalance());
+		assertEquals(true, acc.withdraw(0));
+		assertEquals(900, acc.getBalance());
 		// test that it returns true when the account does have enough money
 		assertEquals(true, acc.withdraw(100)); // balance = 800
 		expected -= 100; // expected now 800

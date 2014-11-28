@@ -30,7 +30,7 @@ public class Account {
 	}
 	
 	public boolean withdraw(int amount){
-		if(amount > 0){
+		if(amount >= 0){
 			if(amount <= this.balance){
 				this.balance -= amount; 
 				return true;	
