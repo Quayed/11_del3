@@ -65,102 +65,118 @@ public class TerritoryTest {
 		
 		//Der testes for om det rigtige beløb er blevet trukket, om listen med spillerens egede felter og hans antal af ejede felter opdateres. 
 		//- til sidst undersøges der om han har tabt.
-		assertEquals(player.getAcc().getBalance(),28000);
-		assertEquals(player.getField(),10);
-		assertEquals(player.getInventory()[0],10);
-		assertEquals(player.getNumberOfFieldsOwned(),1);
-		assertEquals(territoryController.landOnField(player, display, territory, die),true);
+		assertEquals(28000,player.getAcc().getBalance());
+		assertEquals(10,player.getField());
+		assertEquals(10,player.getInventory()[0]);
+		assertEquals(1,player.getNumberOfFieldsOwned());
+		assertEquals(true,territoryController.landOnField(player, display, territory, die));
 	}
 	
 	@Test
 	//Der testes om en spiller med det nøjagtige antal penge kan købe et felt. De samme ting undersøges bagefter.
 	public void NotOwnedBuyEqualMoney() {
+		
 		Player player = new Player(1,"Anders And");
 		player.getAcc().setBalance(2000);
-		player.setField(10);
+		
 		territoryController.landOnField(player, display, territory, die);
-		assertEquals(player.getAcc().getBalance(),0);
-		assertEquals(player.getField(),10);
-		assertEquals(player.getInventory()[0],10);
-		assertEquals(player.getNumberOfFieldsOwned(),1);
-		assertEquals(territoryController.landOnField(player, display, territory, die),true);
+		
+		assertEquals(0,player.getAcc().getBalance());
+		assertEquals(10,player.getInventory()[0]);
+		assertEquals(1,player.getNumberOfFieldsOwned());
+		assertEquals(true,territoryController.landOnField(player, display, territory, die));
 		
 	}
 	
 	@Test
 	//Der testes om en spiller uden penge nok får lov til at købe et felt 
 	public void NotOwnedBuyNoMoney() {
+		
 		Player player = new Player(1,"Anders And");
 		player.getAcc().setBalance(1500);
 		player.setField(10);
+		
 		territoryController.landOnField(player, display, territory, die);
-		assertEquals(player.getAcc().getBalance(),1500);
-		assertEquals(player.getField(),10);
-		assertEquals(player.getInventory()[0],0);
-		assertEquals(player.getNumberOfFieldsOwned(),0);
-		assertEquals(territoryController.landOnField(player, display, territory, die),true);
+		
+		assertEquals(1500,player.getAcc().getBalance());
+		assertEquals(10,player.getField());
+		assertEquals(0,player.getInventory()[0]);
+		assertEquals(0,player.getNumberOfFieldsOwned());
+		assertEquals(true,territoryController.landOnField(player, display, territory, die));
 	}
 	
 	@Test
 	//Der testes om en spiller med rigeligt penge kan afvise et felt.  
 	public void NotOwnedRejectHasMoney() {
+		
 		Player player = new Player(1,"Anders And");
 		GUIManager display = new GUIManager("test","10%","Afslå"); 
 		player.setField(10);
+		
 		territoryController.landOnField(player, display, territory, die);
-		assertEquals(player.getAcc().getBalance(),30000);
-		assertEquals(player.getField(),10);
-		assertEquals(player.getInventory()[0],0);
-		assertEquals(territoryController.landOnField(player, display, territory, die),true);
+		
+		assertEquals(30000,player.getAcc().getBalance());
+		assertEquals(10,player.getField());
+		assertEquals(0,player.getInventory()[0]);
+		assertEquals(true,territoryController.landOnField(player, display, territory, die));
 	}
 	@Test
 	//Der testes om en spiller der lander på sit eget felt skal betale noget.
 	public void OwnedSelf() {
+		
 		Player player = new Player(1,"Onkel Joachim");
 		player.setField(10);
+		
 		territoryController.landOnField(player, display, territory, die);
 		territoryController.landOnField(player, display, territory, die);
-		assertEquals(player.getAcc().getBalance(),28000);
-		assertEquals(player.getField(),10);
-		assertEquals(player.getInventory()[1],0);
-		assertEquals(territoryController.landOnField(player, display, territory, die),true);
+		
+		assertEquals(28000,player.getAcc().getBalance());
+		assertEquals(10,player.getField());
+		assertEquals(0,player.getInventory()[1]);
+		assertEquals(true,territoryController.landOnField(player, display, territory, die));
 	}
 
 	@Test
 	//Der testes om en spiller med rigeligt penge, der lander på et allerede eget felt af en anden betaler og mister det rigtige antal penge,
 	// og ikke taber spillet selvom man har penge nok 
 	public void OwnedOtherPayRentAbove() {
+		
 		Player player1 = new Player(1,"Anders And");
 		Player player2 = new Player(2,"Fætter Højben");
 		player2.setField(10);
 		player1.setField(10);
+		
 		territoryController.landOnField(player2, display, territory, die);
 		territoryController.landOnField(player1, display, territory, die);
-		assertEquals(player1.getAcc().getBalance(),29000);
-		assertEquals(player2.getAcc().getBalance(),29000);
-		assertEquals(player2.getInventory()[0],10);
-		assertEquals(player1.getInventory()[0],0);
-		assertEquals(territoryController.landOnField(player1, display, territory, die),true);
-		assertEquals(territoryController.landOnField(player2, display, territory, die),true);
+		
+		assertEquals(29000,player1.getAcc().getBalance());
+		assertEquals(29000,player2.getAcc().getBalance());
+		assertEquals(10,player2.getInventory()[0]);
+		assertEquals(0,player1.getInventory()[0]);
+		assertEquals(true,territoryController.landOnField(player1, display, territory, die));
+		assertEquals(true,territoryController.landOnField(player2, display, territory, die));
 	}
 	
 	@Test
 	//Der testes om en spiller med det nøjagtige antal penge til at betale en anden spiller, betaler det rigtige beløb
 	// og ikke ryger ud af spillet
 	public void OwnedOtherPayRentExact() {
+		
 		Player player1 = new Player(1,"Anders And");
 		Player player2 = new Player(2,"Fætter Højben");
 		player1.getAcc().setBalance(1000);
 		player2.setField(10);
 		player1.setField(10);
+		
 		boolean HasLost2 = territoryController.landOnField(player2, display, territory, die);
 		boolean HasLost1 = territoryController.landOnField(player1, display, territory, die);
-		assertEquals(player1.getAcc().getBalance(),0);
-		assertEquals(player2.getAcc().getBalance(),29000);
-		assertEquals(player2.getInventory()[0],10);
-		assertEquals(player1.getInventory()[0],0);
-		assertEquals(HasLost1,true);
-		assertEquals(HasLost2,true);
+		
+		assertEquals(0,player1.getAcc().getBalance());
+		assertEquals(29000,player2.getAcc().getBalance());
+		assertEquals(10,player2.getInventory()[0]);
+		assertEquals(0,player1.getInventory()[0]);
+		assertEquals(true,HasLost1);
+		assertEquals(true,HasLost2);
 		
 	}
 	
@@ -168,17 +184,20 @@ public class TerritoryTest {
 	//Der undersøges om en spiller uden penge nok betaler hvad han har tilbage til den anden spiller, 
 	// og den anden spiller får det rigtige beløb. Til sidst undersøges der hvilke af spillerne der har tabt. 
 	public void OwnedOtherPayRentBelow() {
+		
 		Player player1 = new Player(1,"Anders And");
 		Player player2 = new Player(2,"Fætter Højben");
 		player1.getAcc().setBalance(500);
 		player2.setField(10);
 		player1.setField(10);
+		
 		boolean HasLost2 = territoryController.landOnField(player2, display, territory, die);
 		boolean HasLost1 = territoryController.landOnField(player1, display, territory, die);
+		
 		assertEquals(28500, player2.getAcc().getBalance());
-		assertEquals(player2.getInventory()[0],10);
-		assertEquals(HasLost1,false);
-		assertEquals(HasLost2,true);
+		assertEquals(10,player2.getInventory()[0]);
+		assertEquals(false,HasLost1);
+		assertEquals(true,HasLost2);
 
 	}
 }
