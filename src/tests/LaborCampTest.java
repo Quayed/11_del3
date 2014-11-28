@@ -75,7 +75,7 @@ public class LaborCampTest {
 		assertEquals(player.getNumberOfFieldsOwned(),0);	
 	}
 	
-	//@Test
+	@Test
 	//Der testes om en spiller der lander på sit eget felt skal betale noget.
 	public void OwnedSelf() {
 		Player player = new Player(1,"Joachim von And");
