@@ -13,6 +13,7 @@ public class TerritoryTest {
 	Territory territory;
 	TerritoryController territoryController;
 	GUIManager display;
+	Territory territory2; 
 	
 //Der er lavet test for LandOnField() af Territory. LandOnField tjekker følgende:
 		//Lander man på et felt der ikke ejes får man muligheden for:
@@ -53,6 +54,7 @@ public class TerritoryTest {
 	//Der testes om en spiller med rigeligt penge kan købe et felt og ende med de rigtige antal penge til sidst, 
 	// og om hans data er opdateret til sidst
 	public void NotOwnedBuyHasMoney() {
+		
 		//Jeg starter med at oprette en spiller der står på felt 10.
 		Player player = new Player(1,"Joachim von And");
 		player.setField(10);
@@ -103,11 +105,10 @@ public class TerritoryTest {
 	//Der testes om en spiller med rigeligt penge kan afvise et felt.  
 	public void NotOwnedRejectHasMoney() {
 		Player player = new Player(1,"Anders And");
-		player.getAcc().setBalance(2001);
 		GUIManager display = new GUIManager("test","10%","Afslå"); 
 		player.setField(10);
 		territoryController.landOnField(player, display, territory, die);
-		assertEquals(player.getAcc().getBalance(),2001);
+		assertEquals(player.getAcc().getBalance(),30000);
 		assertEquals(player.getField(),10);
 		assertEquals(player.getInventory()[0],0);
 		assertEquals(territoryController.landOnField(player, display, territory, die),true);
@@ -116,11 +117,10 @@ public class TerritoryTest {
 	//Der testes om en spiller der lander på sit eget felt skal betale noget.
 	public void OwnedSelf() {
 		Player player = new Player(1,"Onkel Joachim");
-		player.getAcc().setBalance(6000);
 		player.setField(10);
 		territoryController.landOnField(player, display, territory, die);
 		territoryController.landOnField(player, display, territory, die);
-		assertEquals(player.getAcc().getBalance(),4000);
+		assertEquals(player.getAcc().getBalance(),28000);
 		assertEquals(player.getField(),10);
 		assertEquals(player.getInventory()[1],0);
 		assertEquals(territoryController.landOnField(player, display, territory, die),true);
@@ -177,9 +177,8 @@ public class TerritoryTest {
 		boolean HasLost1 = territoryController.landOnField(player1, display, territory, die);
 		assertEquals(28500, player2.getAcc().getBalance());
 		assertEquals(player2.getInventory()[0],10);
-		assertEquals(player1.getInventory()[0],0);
-		assertEquals(territoryController.landOnField(player1, display, territory, die),false);
-		assertEquals(territoryController.landOnField(player2, display, territory, die),true);
+		assertEquals(HasLost1,false);
+		assertEquals(HasLost2,true);
 
 	}
 }
