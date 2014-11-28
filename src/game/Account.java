@@ -22,7 +22,7 @@ public class Account {
 	}
 	
 	public void deposit(int amount){
-		if(amount > 0){
+		if(amount >= 0){
 			this.balance += amount;
 		} else if(amount < 0){
 			System.out.println("Du må ikke indsætte negative beløb.");
