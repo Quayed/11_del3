@@ -16,6 +16,7 @@ public class LaborCampTest {
 	LaborCamp laborCamp;
 	Player player1;
 	Player player2;
+	GUIManager display;
 
 	
 	@Before
@@ -23,24 +24,30 @@ public class LaborCampTest {
 		dieOne = new Die();
 		dieTwo = new Die();
 		labcController = new LaborCampController();
-		laborCamp = new LaborCamp(2500, "The pit", 15, 14);
+		laborCamp = new LaborCamp(2500, "Andeby", 15, 14);
+		display = new GUIManager("test", "10%", "Køb");
 		
-		
-		
-		
-	}
+	}	
 	
 	@Test
 	//Der testes om en spiller med rigeligt penge kan afvise et felt.  
 	public void NotOwnedRejectHasMoney(){
+		Player player = new Player(1,"Joachim von And");
+		display = new GUIManager("test","10%","Afslå"); 
+		player.getAcc().setBalance(100);
+		player.setField(10);
+		labcController.landOnField(player, display, laborCamp, dieOne);
 		
+		assertEquals(player.getAcc().getBalance(),100);
+		assertEquals((int)player.getInventory()[0],0);
+		assertEquals(player.getNumberOfFieldsOwned(),0);
 		
 	}
 	
 	@Test
 	//Der testes om en spiller der lander på sit eget felt skal betale noget.
 	public void OwnedSelf() {
-
+		
 		
 		
 	}

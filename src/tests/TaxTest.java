@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.junit.Before;
 
 
-public class Taxtest{
+public class TaxTest{
 	Die die;
 	OurTax tax;
 	TaxController taxController;
