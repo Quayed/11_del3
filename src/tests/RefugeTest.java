@@ -35,6 +35,7 @@ public class RefugeTest {
 	RefugeController refugeController;
 	Die die;
 	Player player;
+	GUIManager display;
 	
 	
 	@Before
@@ -42,13 +43,14 @@ public class RefugeTest {
 		die = new Die();
 		refuge = new OurRefuge(500, "Monastery", 13, 12);
 		refugeController = new RefugeController();
+		display = new GUIManager("test", "", "");
 		player = new Player();
 	}
 	
 	
 	@Test
 	public void landingOnField() {
-		player.deposit(refuge.getBonus());
+		assertEquals(true, refugeController.landOnField(player, display, refuge, die));
 		assertEquals(player.getAcc().getBalance(),30500);
 	}
 	
@@ -56,7 +58,7 @@ public class RefugeTest {
 	public void testSetGet(){
 		refuge.setBonus(5000);
 		assertEquals(refuge.getBonus(), 5000);
-		player.deposit(refuge.getBonus());
+		assertEquals(true, refugeController.landOnField(player, display, refuge, die));
 		assertEquals(player.getAcc().getBalance(),35000);
 	}
 	
