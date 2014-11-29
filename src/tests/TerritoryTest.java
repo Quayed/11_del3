@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.Before;
 
+import entities.*;
 import fields.*;
-import game.*;
 import controllers.*;
 public class TerritoryTest {
 	Die die;

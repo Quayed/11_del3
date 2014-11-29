@@ -1,5 +1,5 @@
 package tests;
-import game.*;
+import entities.*;
 import fields.*;
 import controllers.*;
 import static org.junit.Assert.*;

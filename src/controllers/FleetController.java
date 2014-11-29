@@ -1,10 +1,10 @@
 package controllers;
 
+import entities.Die;
+import entities.GUIManager;
+import entities.Player;
 import fields.Fleet;
 import fields.OurField;
-import game.Die;
-import game.GUIManager;
-import game.Player;
 
 public class FleetController extends OwnableController {
 	private Fleet fleet;

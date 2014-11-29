@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.Before;
 
-import game.*;
 import controllers.*;
+import entities.*;
 import fields.*;
 
 public class LaborCampTest {

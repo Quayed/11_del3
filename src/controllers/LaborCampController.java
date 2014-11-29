@@ -1,10 +1,10 @@
 package controllers;
 
+import entities.Die;
+import entities.GUIManager;
+import entities.Player;
 import fields.LaborCamp;
 import fields.OurField;
-import game.Die;
-import game.GUIManager;
-import game.Player;
 
 public class LaborCampController extends OwnableController{
 	private LaborCamp laborCamp;

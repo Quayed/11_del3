@@ -1,8 +1,8 @@
 package tests;
 
 
-import game.*;
 import controllers.*;
+import entities.*;
 import fields.*;
 import static org.junit.Assert.*;
 

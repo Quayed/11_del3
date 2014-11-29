@@ -1,6 +1,6 @@
 package controllers;
+import entities.*;
 import fields.*;
-import game.*;
 
 public class TerritoryController extends OwnableController {
 	private Territory territory;

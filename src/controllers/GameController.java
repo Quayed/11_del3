@@ -1,11 +1,11 @@
 package controllers;
 import java.awt.Color;
 
+import entities.Die;
+import entities.GUIManager;
+import entities.GameBoard;
+import entities.Player;
 import fields.*;
-import game.Die;
-import game.GUIManager;
-import game.GameBoard;
-import game.Player;
 
 public class GameController {
 	private OurField currentField;

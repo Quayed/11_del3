@@ -1,6 +1,6 @@
 package tests;
 
-import game.GameBoard;
+import entities.GameBoard;
 import static org.junit.Assert.*;
 
 import org.junit.Test;

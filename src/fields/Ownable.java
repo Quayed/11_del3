@@ -1,6 +1,6 @@
 package fields;
 
-import game.Player;
+import entities.Player;
 
 abstract public class Ownable extends OurField{
 	private int price;

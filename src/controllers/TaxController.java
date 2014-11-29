@@ -1,10 +1,10 @@
 package controllers;
 
+import entities.Die;
+import entities.GUIManager;
+import entities.Player;
 import fields.OurField;
 import fields.OurTax;
-import game.Die;
-import game.GUIManager;
-import game.Player;
 
 public class TaxController extends FieldController{
 	private OurTax tax;

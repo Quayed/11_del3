@@ -1,6 +1,6 @@
 package controllers;
 
-import game.*;
+import entities.*;
 import fields.*;
 
 public abstract class OwnableController extends FieldController {

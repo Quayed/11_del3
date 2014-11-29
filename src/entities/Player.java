@@ -1,4 +1,4 @@
-package game;
+package entities;
 
 public class Player{
 	private String name;
