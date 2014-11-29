@@ -1,7 +1,8 @@
-package entities;
+package controllers;
 
 import java.awt.Color;
 
+import entities.GameBoard;
 import fields.Fleet;
 import fields.LaborCamp;
 import fields.OurField;

@@ -1,7 +1,6 @@
 package controllers;
 
 import entities.Die;
-import entities.GUIManager;
 import entities.Player;
 import fields.OurField;
 import fields.OurTax;

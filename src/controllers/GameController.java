@@ -2,7 +2,6 @@ package controllers;
 import java.awt.Color;
 
 import entities.Die;
-import entities.GUIManager;
 import entities.GameBoard;
 import entities.Player;
 import fields.*;
